@@ -1,17 +1,11 @@
-#include<stdio.h>
+#include <stdio.h>
 
-int main( int ac, char **av)
-
+int main()
 {
-
 #pragma omp parallel // specify the code between the curly brackets is part of an OpenMP parallel section.
+    {
+        printf("Hello World!!!\n");
+    }
 
-{
-
-printf("Hello World!!!\n");
-
-}
-
-return 0;
-
+    return 0;
 }
