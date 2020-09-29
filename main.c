@@ -13,15 +13,25 @@ int main()
         return 1;
     }
 
-    #pragma omp parallel // specify the code between the curly brackets is part of an OpenMP parallel section.
-    {
-        char str[10];
+    /* далее идет запись преполагаемой структуры будущего кода с двумя параллельными потоками */
 
-        n = 0;
-        while (1) {
-            fscanf(fp, "%10s", str);
-            if (*str == '/') break;
-            if (fscanf(fp, "%f", &fval[n++]) == EOF) break;
+    // чтение чанка строк текстовика
+
+    // далее область цикла
+    {
+
+        // точка синхронизации
+
+        #pragma omp parallel sections
+        {
+            #pragma omp section
+            {
+                // чтение чанка строк текстовика
+            }
+            #pragma omp section
+            {
+                // парсинг чанка
+            }
         }
     }
 
