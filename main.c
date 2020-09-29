@@ -19,7 +19,7 @@ int main()
 
         n = 0;
         while (1) {
-            fscanf(fp, "%s", str);
+            fscanf(fp, "%10s", str);
             if (*str == '/') break;
             if (fscanf(fp, "%f", &fval[n++]) == EOF) break;
         }
