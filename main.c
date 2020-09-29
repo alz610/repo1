@@ -13,12 +13,11 @@ int main()
         return 1;
     }
 
-#pragma omp parallel // specify the code between the curly brackets is part of an OpenMP parallel section.
+    #pragma omp parallel // specify the code between the curly brackets is part of an OpenMP parallel section.
     {
+        char str[10];
 
         n = 0;
-        char str [10];
-
         while (1) {
             fscanf(fp, "%s", str);
             if (*str == '/') break;
