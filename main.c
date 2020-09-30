@@ -14,10 +14,14 @@ int main()
     }
 
     /* далее идет набросок кода с двумя параллельными потоками */
+    unsigned int chunk_size = 10; // кол-во строк текстовика
+    char *chunk[chunk_size]; // массив указателей строк
 
+    read_chunk(fp, chunk_size, chunk);
     // чтение чанка 0 из строк текстовика
 
-    for (size_t i = 0; i < count; i++)    
+
+    while (1)
     {
         #pragma omp parallel sections
         {
