@@ -2,23 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-int getchunk(char **chunk, size_t *chksize, FILE *stream)
+int getchunk(char *chunk, size_t *n, size_t *m, FILE *fp)
 {
-    // Read lines using POSIX function getline
-    // This code won't work on Windows
-    size_t i = 0, nread = 0;
-    char *line = NULL;
-    size_t len = 0;
+    size_t i = 0, nread;
+    char *line;
 
-    while ((getline(&line, &len, stream) != -1) && (i < *chksize))
-    {
-        // запись указателя на прочтенную строку в массив указателей
-        chunk[i++] = line;
-
-        // для автоматического выделения памяти следующей читаемой строки у функции getline
-        line = NULL;
-        len = 0;
-    }
+    while (!feof(fp) && (i < *m))
+        fgets((chunk + *n * i++), *n, fp);
 
     nread = i;
 
@@ -44,50 +34,48 @@ int getchunk(char **chunk, size_t *chksize, FILE *stream)
 //     return i;
 // }
 
-int main()
+int main(int argc, char *argv[])
 {
-    char filename[] = "test";  // имя читаемого файла
-    size_t chksize = 10;  // кол-во строк файла в чанке
-    size_t arrsize = 1000;  // кол-во элементов в массиве распарсенных вещественных чисел
+    size_t n = 128;           // длина строк в чанке
+    size_t m = 10;            // длина чанка, кол-во строк
+    size_t arrsize = 1000;    // кол-во элементов в массиве распарсенных вещественных чисел
 
-    FILE *stream;
-    float *array;  // массив распарсенных вещественных чисел
-    char *chunk0;  // чанк строк файла
-    char *chunk1;  // следующий чанк строк файла
+    FILE *fp;
+    float *arr;   // массив распарсенных вещественных чисел
+    char *chunk0; // чанк строк файла
+    char *chunk1; // следующий чанк строк файла
     int nread;
 
+    char *filename = "test"; // имя читаемого файла
+    // char *filename = argv[1]; // имя читаемого файла
 
-    stream = fopen(filename, "r");
-
-    if (stream == NULL)
+    if ((fp = fopen(filename, "r")) == NULL)
     {
-        perror("failed to open file\n");
-        exit(1);
+        printf("Cannot open file.\n");
+        return 1;
     }
 
+    arr = (float *)malloc(arrsize * sizeof(float));
+    chunk0 = (char *)malloc(n * m * sizeof(char));
+    chunk1 = (char *)malloc(n * m * sizeof(char));
 
-    array = (float *)malloc(arrsize * sizeof(float));
-    chunk0 = (char **)malloc(chksize * sizeof(char*));
-    chunk1 = (char **)malloc(chksize * sizeof(char*));
-
-    if (array == NULL)
+    if (arr == NULL)
     {
-        perror("Unable to allocate array");
-        exit(1);
+        printf("Unable to allocate arr");
+        return 1;
     }
     if (chunk0 == NULL)
     {
-        perror("Unable to allocate chunk0");
-        exit(1);
+        printf("Unable to allocate chunk0");
+        return 1;
     }
     if (chunk1 == NULL)
     {
-        perror("Unable to allocate chunk1");
-        exit(1);
+        printf("Unable to allocate chunk1");
+        return 1;
     }
 
-
-    nread = getchunk(chunk0, &chksize, stream);
+    nread = getchunk(chunk0, &n, &m, fp);
 
     // while (nread == chksize)
     // {
@@ -108,7 +96,10 @@ int main()
     // for (size_t i = 0; i < n - 1; i++)
     //     printf("fval[%d]=%f\n", i, array[i]);
 
-    fclose(stream);
+    printf("%s\n", chunk0);
+    printf("%s\n", chunk0 + n * 1);
 
-    exit(0);
+    fclose(fp);
+
+    return 0;
 }
