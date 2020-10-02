@@ -5,7 +5,6 @@
 int getchunk(char *chunk, size_t *n, size_t *m, FILE *fp)
 {
     size_t i = 0, nread;
-    char *line;
 
     while (!feof(fp) && (i < *m))
         fgets((chunk + *n * i++), *n, fp);
@@ -15,24 +14,24 @@ int getchunk(char *chunk, size_t *n, size_t *m, FILE *fp)
     return nread;
 }
 
-// int parsechunk(float *array, size_t *chksize, char **chunk)
-// {
-//     char *line = NULL;
-//     size_t len = 0;
-//     size_t i = 0;
+int parsechunk(float *arr, size_t *n, char *chunk)
+{
+    size_t i = 0, j = 0, nread;
 
-//     while ((sscanf() != -1) && (i < *chksize))
-//     {
-//         // запись указателя на прочтенную строку в массив указателей
-//         chunk[i++] = line;
+    while ((sscanf() != -1) && (i < *chksize))
+    {
+        // запись указателя на прочтенную строку в массив указателей
+        chunk[i++] = line;
 
-//         // для автоматического выделения памяти для следующей читаемой строки у функции getline
-//         line = NULL;
-//         len = 0;
-//     }
+        // для автоматического выделения памяти для следующей читаемой строки у функции getline
+        line = NULL;
+        len = 0;
+    }
 
-//     return i;
-// }
+    nread = j;
+
+    return nread;
+}
 
 int main(int argc, char *argv[])
 {
@@ -77,7 +76,10 @@ int main(int argc, char *argv[])
 
     nread = getchunk(chunk0, &n, &m, fp);
 
-    // while (nread == chksize)
+    parsechunk(arr, &n, &m, chunk0);
+
+
+    // while (1)
     // {
     //     #pragma omp parallel sections
     //     {
