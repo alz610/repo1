@@ -2,8 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-int getchunk(char ***chunk, size_t *chksize, FILE *stream)
+int getchunk(char **chunk, size_t *chksize, FILE *stream)
 {
+    // Read lines using POSIX function getline
+    // This code won't work on Windows
     size_t i = 0, nread = 0;
     char *line = NULL;
     size_t len = 0;
@@ -11,7 +13,7 @@ int getchunk(char ***chunk, size_t *chksize, FILE *stream)
     while ((getline(&line, &len, stream) != -1) && (i < *chksize))
     {
         // запись указателя на прочтенную строку в массив указателей
-        (*chunk)[i++] = line;
+        chunk[i++] = line;
 
         // для автоматического выделения памяти для следующей читаемой строки у функции getline
         line = NULL;
@@ -29,7 +31,7 @@ int getchunk(char ***chunk, size_t *chksize, FILE *stream)
 //     size_t len = 0;
 //     size_t i = 0;
 
-//     while ((getline(&line, &len, stream) != -1) && (i < *chksize))
+//     while ((sscanf() != -1) && (i < *chksize))
 //     {
 //         // запись указателя на прочтенную строку в массив указателей
 //         chunk[i++] = line;
@@ -45,13 +47,13 @@ int getchunk(char ***chunk, size_t *chksize, FILE *stream)
 int main()
 {
     char filename[] = "test";  // имя читаемого файла
-    size_t chksize = 10;  // кол-во указателей строк файла в чанке
+    size_t chksize = 10;  // кол-во строк файла в чанке
     size_t arrsize = 1000;  // кол-во элементов в массиве распарсенных вещественных чисел
 
     FILE *stream;
     float *array;  // массив распарсенных вещественных чисел
-    char **chunk0;  // чанк указателей строк файла
-    char **chunk1;  // следующий чанк указателей строк файла
+    char *chunk0;  // чанк строк файла
+    char *chunk1;  // следующий чанк строк файла
     int nread;
 
 
@@ -85,22 +87,22 @@ int main()
     }
 
 
-    nread = getchunk(&chunk0, &chksize, stream);
+    nread = getchunk(chunk0, &chksize, stream);
 
-    while (nread == chksize)
-    {
-        #pragma omp parallel sections
-        {
-            #pragma omp section
-            {
-                parsechunk(array, &chksize, &chunk0);
-            }
-            #pragma omp section
-            {
-                nread = getchunk(&chunk1, &chksize, stream);
-            }
-        }
-    }
+    // while (nread == chksize)
+    // {
+    //     #pragma omp parallel sections
+    //     {
+    //         #pragma omp section
+    //         {
+    //             parsechunk(array, &chksize, chunk0);
+    //         }
+    //         #pragma omp section
+    //         {
+    //             nread = getchunk(chunk1, &chksize, stream);
+    //         }
+    //     }
+    // }
 
     /* n-1 float values were successfully read */
     // for (size_t i = 0; i < n - 1; i++)
