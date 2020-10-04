@@ -1,114 +1,144 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
-int getchunk(char **chunk, size_t *chksize, FILE *stream)
+int getchunk(char *chunk, size_t *n, size_t *m, FILE *fp)
 {
-    // Read lines using POSIX function getline
-    // This code won't work on Windows
-    size_t i = 0, nread = 0;
-    char *line = NULL;
-    size_t len = 0;
+    size_t i, nread;
 
-    while ((getline(&line, &len, stream) != -1) && (i < *chksize))
+    for (i = 0; i < *m; i++)
     {
-        // запись указателя на прочтенную строку в массив указателей
-        chunk[i++] = line;
-
-        // для автоматического выделения памяти следующей читаемой строки у функции getline
-        line = NULL;
-        len = 0;
+        fgets((chunk + *n * i), *n, fp);
+        if (feof(fp)) break;
     }
-
     nread = i;
 
     return nread;
 }
 
-// int parsechunk(float *array, size_t *chksize, char **chunk)
-// {
-//     char *line = NULL;
-//     size_t len = 0;
-//     size_t i = 0;
-
-//     while ((sscanf() != -1) && (i < *chksize))
-//     {
-//         // запись указателя на прочтенную строку в массив указателей
-//         chunk[i++] = line;
-
-//         // для автоматического выделения памяти для следующей читаемой строки у функции getline
-//         line = NULL;
-//         len = 0;
-//     }
-
-//     return i;
-// }
-
-int main()
+int parsechunk(float **p, size_t *n, size_t *m, char *chunk)
 {
-    char filename[] = "test";  // имя читаемого файла
-    size_t chksize = 10;  // кол-во строк файла в чанке
-    size_t arrsize = 1000;  // кол-во элементов в массиве распарсенных вещественных чисел
+    size_t j = 0, nread;
+    char *k;
+    float parsed_num;
 
-    FILE *stream;
-    float *array;  // массив распарсенных вещественных чисел
-    char *chunk0;  // чанк строк файла
-    char *chunk1;  // следующий чанк строк файла
-    int nread;
-
-
-    stream = fopen(filename, "r");
-
-    if (stream == NULL)
+    for (size_t i = 0; i < *m; i++)
     {
-        perror("failed to open file\n");
-        exit(1);
+        k = strtok(chunk + *n * i, " ");
+        do {
+            if (parsed_num = atof(k))
+                *((*p)++) = parsed_num;
+        } while (k = strtok(NULL, " "));
     }
 
+    return 0;
+}
 
-    array = (float *)malloc(arrsize * sizeof(float));
-    chunk0 = (char **)malloc(chksize * sizeof(char*));
-    chunk1 = (char **)malloc(chksize * sizeof(char*));
+int main(int argc, char *argv[])
+{
+    size_t n = 128;         // длина строк в чанке
+    size_t m = 100;         // длина чанка, кол-во строк
+    size_t arrsize = 1000;  // кол-во элементов в массиве распарсенных чисел
 
-    if (array == NULL)
+    FILE *fp;
+    float *arr;     // массив распарсенных чисел
+    char *chunk0;   // чанк строк файла
+    char *chunk1;   // следующий чанк строк файла
+
+    // char *filename = "test"; // имя читаемого файла
+    char *filename = argv[1]; // имя читаемого файла
+
+
+    if ((fp = fopen(filename, "r")) == NULL)
     {
-        perror("Unable to allocate array");
-        exit(1);
+        printf("Cannot open file.\n");
+        return 1;
+    }
+
+    arr = (float *) malloc(arrsize * sizeof(float));
+    chunk0 = (char *) malloc(n * m * sizeof(char));
+    chunk1 = (char *) malloc(n * m * sizeof(char));
+
+    if (arr == NULL)
+    {
+        printf("Unable to allocate arr");
+        return 1;
     }
     if (chunk0 == NULL)
     {
-        perror("Unable to allocate chunk0");
-        exit(1);
+        printf("Unable to allocate chunk0");
+        return 1;
     }
     if (chunk1 == NULL)
     {
-        perror("Unable to allocate chunk1");
-        exit(1);
+        printf("Unable to allocate chunk1");
+        return 1;
     }
 
 
-    nread = getchunk(chunk0, &chksize, stream);
 
-    // while (nread == chksize)
-    // {
-    //     #pragma omp parallel sections
-    //     {
-    //         #pragma omp section
-    //         {
-    //             parsechunk(array, &chksize, chunk0);
-    //         }
-    //         #pragma omp section
-    //         {
-    //             nread = getchunk(chunk1, &chksize, stream);
-    //         }
-    //     }
-    // }
+    clock_t begin = clock();
 
-    /* n-1 float values were successfully read */
-    // for (size_t i = 0; i < n - 1; i++)
-    //     printf("fval[%d]=%f\n", i, array[i]);
 
-    fclose(stream);
+    // main 
 
-    exit(0);
+    size_t nread0, nread1;
+
+    float *p = arr;
+    nread0 = getchunk(chunk0, &n, &m, fp);
+
+    while (nread0 != 0)
+    {
+        #pragma omp parallel
+        {
+            #pragma omp sections
+            {
+                #pragma omp section
+                {
+                    parsechunk(&p, &n, &nread0, chunk0);
+                }
+                #pragma omp section
+                {
+                    nread1 = getchunk(chunk1, &n, &m, fp);
+                }
+            }
+        }
+
+
+        // swap
+
+        {
+        char *temp = chunk0;
+        chunk0 = chunk1;
+        chunk1 = temp;
+        }
+
+        {
+        size_t temp = nread0;
+        nread0 = nread1;
+        nread1 = temp;
+        }
+    }
+
+
+    double elapsed = (double)(clock() - begin) / CLOCKS_PER_SEC;
+
+
+    printf("elapsed: %f ms\n", elapsed * 1000);
+
+    if ((argc > 2) && (*argv[2] == 'a'))
+    {
+        /* float values were successfully read */
+        for (float *p_ = arr; p_ < p; p_++)
+            printf("arr[%d]=%f\n", (int) (p_ - arr), *p_);
+    }
+
+
+    fclose(fp);
+    free(arr);
+    free(chunk0);
+    free(chunk1);
+
+    return 0;
 }
