@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 int getchunk(char *chunk, size_t *n, size_t *m, FILE *fp)
 {
@@ -36,18 +37,18 @@ int parsechunk(float **p, size_t *n, size_t *m, char *chunk)
 
 int main(int argc, char *argv[])
 {
-    size_t n = 128;           // длина строк в чанке
-    size_t m = 10;            // длина чанка, кол-во строк
-    size_t arrsize = 1000;    // кол-во элементов в массиве распарсенных вещественных чисел
+    size_t n = 128;         // длина строк в чанке
+    size_t m = 100;         // длина чанка, кол-во строк
+    size_t arrsize = 1000;  // кол-во элементов в массиве распарсенных чисел
 
     FILE *fp;
-    float *arr;   // массив распарсенных вещественных чисел
-    char *chunk0; // чанк строк файла
-    char *chunk1; // следующий чанк строк файла
-    size_t nread;
+    float *arr;     // массив распарсенных чисел
+    char *chunk0;   // чанк строк файла
+    char *chunk1;   // следующий чанк строк файла
 
-    char *filename = "test"; // имя читаемого файла
-    // char *filename = argv[1]; // имя читаемого файла
+    // char *filename = "test"; // имя читаемого файла
+    char *filename = argv[1]; // имя читаемого файла
+
 
     if ((fp = fopen(filename, "r")) == NULL)
     {
@@ -55,9 +56,9 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    arr = (float *)malloc(arrsize * sizeof(float));
-    chunk0 = (char *)malloc(n * m * sizeof(char));
-    chunk1 = (char *)malloc(n * m * sizeof(char));
+    arr = (float *) malloc(arrsize * sizeof(float));
+    chunk0 = (char *) malloc(n * m * sizeof(char));
+    chunk1 = (char *) malloc(n * m * sizeof(char));
 
     if (arr == NULL)
     {
@@ -75,32 +76,69 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    nread = getchunk(chunk0, &n, &m, fp);
+
+
+    clock_t begin = clock();
+
+
+    // main 
+
+    size_t nread0, nread1;
 
     float *p = arr;
+    nread0 = getchunk(chunk0, &n, &m, fp);
 
-    parsechunk(&p, &n, &nread, chunk0);
+    while (nread0 != 0)
+    {
+        #pragma omp parallel
+        {
+            #pragma omp sections
+            {
+                #pragma omp section
+                {
+                    parsechunk(&p, &n, &nread0, chunk0);
+                }
+                #pragma omp section
+                {
+                    nread1 = getchunk(chunk1, &n, &m, fp);
+                }
+            }
+        }
 
-    // while (1)
-    // {
-    //     #pragma omp parallel sections
-    //     {
-    //         #pragma omp section
-    //         {
-    //             parsechunk(&p, &n, &nread, chunk0);
-    //         }
-    //         #pragma omp section
-    //         {
-    //             nread = getchunk(chunk1, &n, &m, fp);
-    //         }
-    //     }
-    // }
 
-    /* float values were successfully read */
-    for (float *p_ = arr; p_ < p; p_++)
-        printf("arr[%d]=%f\n", (int) (p_ - arr), *p_);
+        // swap
+
+        {
+        char *temp = chunk0;
+        chunk0 = chunk1;
+        chunk1 = temp;
+        }
+
+        {
+        size_t temp = nread0;
+        nread0 = nread1;
+        nread1 = temp;
+        }
+    }
+
+
+    double elapsed = (double)(clock() - begin) / CLOCKS_PER_SEC;
+
+
+    printf("elapsed: %f ms\n", elapsed * 1000);
+
+    if ((argc > 2) && (*argv[2] == 'a'))
+    {
+        /* float values were successfully read */
+        for (float *p_ = arr; p_ < p; p_++)
+            printf("arr[%d]=%f\n", (int) (p_ - arr), *p_);
+    }
+
 
     fclose(fp);
+    free(arr);
+    free(chunk0);
+    free(chunk1);
 
     return 0;
 }
