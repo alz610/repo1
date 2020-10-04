@@ -4,33 +4,34 @@
 
 int getchunk(char *chunk, size_t *n, size_t *m, FILE *fp)
 {
-    size_t i = 0, nread;
+    size_t i, nread;
 
-    while (!feof(fp) && (i < *m))
-        fgets((chunk + *n * i++), *n, fp);
-
+    for (i = 0; i < *m; i++)
+    {
+        fgets((chunk + *n * i), *n, fp);
+        if (feof(fp)) break;
+    }
     nread = i;
 
     return nread;
 }
 
-int parsechunk(float *arr, size_t *n, char *chunk)
+int parsechunk(float **p, size_t *n, size_t *m, char *chunk)
 {
-    size_t i = 0, j = 0, nread;
+    size_t j = 0, nread;
+    char *k;
+    float parsed_num;
 
-    while ((sscanf() != -1) && (i < *chksize))
+    for (size_t i = 0; i < *m; i++)
     {
-        // запись указателя на прочтенную строку в массив указателей
-        chunk[i++] = line;
-
-        // для автоматического выделения памяти для следующей читаемой строки у функции getline
-        line = NULL;
-        len = 0;
+        k = strtok(chunk + *n * i, " ");
+        do {
+            if (parsed_num = atof(k))
+                *((*p)++) = parsed_num;
+        } while (k = strtok(NULL, " "));
     }
 
-    nread = j;
-
-    return nread;
+    return 0;
 }
 
 int main(int argc, char *argv[])
@@ -43,7 +44,7 @@ int main(int argc, char *argv[])
     float *arr;   // массив распарсенных вещественных чисел
     char *chunk0; // чанк строк файла
     char *chunk1; // следующий чанк строк файла
-    int nread;
+    size_t nread;
 
     char *filename = "test"; // имя читаемого файла
     // char *filename = argv[1]; // имя читаемого файла
@@ -76,8 +77,9 @@ int main(int argc, char *argv[])
 
     nread = getchunk(chunk0, &n, &m, fp);
 
-    parsechunk(arr, &n, &m, chunk0);
+    float *p = arr;
 
+    parsechunk(&p, &n, &nread, chunk0);
 
     // while (1)
     // {
@@ -85,21 +87,18 @@ int main(int argc, char *argv[])
     //     {
     //         #pragma omp section
     //         {
-    //             parsechunk(array, &chksize, chunk0);
+    //             parsechunk(&p, &n, &nread, chunk0);
     //         }
     //         #pragma omp section
     //         {
-    //             nread = getchunk(chunk1, &chksize, stream);
+    //             nread = getchunk(chunk1, &n, &m, fp);
     //         }
     //     }
     // }
 
-    /* n-1 float values were successfully read */
-    // for (size_t i = 0; i < n - 1; i++)
-    //     printf("fval[%d]=%f\n", i, array[i]);
-
-    printf("%s\n", chunk0);
-    printf("%s\n", chunk0 + n * 1);
+    /* float values were successfully read */
+    for (float *p_ = arr; p_ < p; p_++)
+        printf("arr[%d]=%f\n", (int) (p_ - arr), *p_);
 
     fclose(fp);
 
