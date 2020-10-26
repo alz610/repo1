@@ -1,144 +1,139 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <time.h>
+#include <omp.h>
+#include "parse.h"
 
-int getchunk(char *chunk, size_t *n, size_t *m, FILE *fp)
+
+/*
+Парсинг файла fp в массив чисел arr.
+*/
+int test0()
 {
-    size_t i, nread;
+    size_t cols = 5;            // кол-во колонок в тексте
+    size_t arrsize = 1000000;   // длина массива распарсенных чисел (в элементах float)
+    size_t m_ = 100000;          // кол-во чисел в чанке
 
-    for (i = 0; i < *m; i++)
-    {
-        fgets((chunk + *n * i), *n, fp);
-        if (feof(fp)) break;
-    }
-    nread = i;
-
-    return nread;
-}
-
-int parsechunk(float **p, size_t *n, size_t *m, char *chunk)
-{
-    size_t j = 0, nread;
-    char *k;
-    float parsed_num;
-
-    for (size_t i = 0; i < *m; i++)
-    {
-        k = strtok(chunk + *n * i, " ");
-        do {
-            if (parsed_num = atof(k))
-                *((*p)++) = parsed_num;
-        } while (k = strtok(NULL, " "));
-    }
-
-    return 0;
-}
-
-int main(int argc, char *argv[])
-{
-    size_t n = 128;         // длина строк в чанке
-    size_t m = 100;         // длина чанка, кол-во строк
-    size_t arrsize = 1000;  // кол-во элементов в массиве распарсенных чисел
-
-    FILE *fp;
-    float *arr;     // массив распарсенных чисел
-    char *chunk0;   // чанк строк файла
-    char *chunk1;   // следующий чанк строк файла
-
-    // char *filename = "test"; // имя читаемого файла
-    char *filename = argv[1]; // имя читаемого файла
+    size_t n = 128;             // длина строк чанка
+    size_t m = m_ / cols;       // длина чанка (в строках)
 
 
-    if ((fp = fopen(filename, "r")) == NULL)
-    {
-        printf("Cannot open file.\n");
-        return 1;
-    }
-
-    arr = (float *) malloc(arrsize * sizeof(float));
-    chunk0 = (char *) malloc(n * m * sizeof(char));
-    chunk1 = (char *) malloc(n * m * sizeof(char));
-
-    if (arr == NULL)
-    {
-        printf("Unable to allocate arr");
-        return 1;
-    }
-    if (chunk0 == NULL)
-    {
-        printf("Unable to allocate chunk0");
-        return 1;
-    }
-    if (chunk1 == NULL)
-    {
-        printf("Unable to allocate chunk1");
-        return 1;
-    }
+    FILE *fp = fopen("data.txt", "r");              // читаемый текст
+    float *arr = malloc(arrsize * sizeof(float));   // записываемый массив
 
 
+    double st = omp_get_wtime();
 
-    clock_t begin = clock();
+    size_t nread = parsefile(arr, n, m, fp);
 
-
-    // main 
-
-    size_t nread0, nread1;
-
-    float *p = arr;
-    nread0 = getchunk(chunk0, &n, &m, fp);
-
-    while (nread0 != 0)
-    {
-        #pragma omp parallel
-        {
-            #pragma omp sections
-            {
-                #pragma omp section
-                {
-                    parsechunk(&p, &n, &nread0, chunk0);
-                }
-                #pragma omp section
-                {
-                    nread1 = getchunk(chunk1, &n, &m, fp);
-                }
-            }
-        }
+    double total = omp_get_wtime() - st;
 
 
-        // swap
+    printf("total time: %f ms\n", total * 1000);
+    printf("total floats read: %zu\n", nread);
 
-        {
-        char *temp = chunk0;
-        chunk0 = chunk1;
-        chunk1 = temp;
-        }
-
-        {
-        size_t temp = nread0;
-        nread0 = nread1;
-        nread1 = temp;
-        }
-    }
-
-
-    double elapsed = (double)(clock() - begin) / CLOCKS_PER_SEC;
-
-
-    printf("elapsed: %f ms\n", elapsed * 1000);
-
-    if ((argc > 2) && (*argv[2] == 'a'))
-    {
-        /* float values were successfully read */
-        for (float *p_ = arr; p_ < p; p_++)
-            printf("arr[%d]=%f\n", (int) (p_ - arr), *p_);
-    }
+    /* float values were successfully read */
+    // for (size_t i = 0; i < nread; i++)
+    //     printf("arr[%zu]=%f\n", i, arr[i]);
 
 
     fclose(fp);
     free(arr);
-    free(chunk0);
-    free(chunk1);
+
+    return 0;
+}
+
+
+/*
+Парсинг файла fp в массив чисел arr.
+Непаралелльная версия.
+*/
+int test0_nonparallel()
+{
+    size_t cols = 5;            // кол-во колонок в тексте
+    size_t arrsize = 1000000;   // длина массива распарсенных чисел (в элементах float)
+    size_t m_ = arrsize;        // кол-во чисел в чанке
+
+    size_t n = 128;             // длина строк чанка
+    size_t m = m_ / cols;       // длина чанка (в строках)
+
+
+    FILE *fp = fopen("data.txt", "r");              // читаемый текст
+    float *arr = malloc(arrsize * sizeof(float));   // записываемый массив
+
+
+    double st = omp_get_wtime();
+
+    size_t nread = parsefile(arr, n, m, fp);
+
+    double total = omp_get_wtime() - st;
+
+
+
+    printf("total time: %f ms\n", total * 1000);
+    printf("total floats read: %zu\n", nread);
+
+    /* float values were successfully read */
+    // for (size_t i = 0; i < nread; i++)
+    //     printf("arr[%zu]=%f\n", i, arr[i]);
+
+
+    fclose(fp);
+    free(arr);
+
+    return 0;
+}
+
+
+/*
+Парсинг data в массив чисел arr.
+*/
+int test1()
+{
+    size_t arrsize = 1000;  // кол-во элементов в массиве распарсенных чисел
+    char* data = 1 + R"(
+ 4.6100037e-01 3.1107558e-02 4.5741891e-02 1.0877928e+01 1.1335820e+01
+ 1.9592941e+01 6.9261334e-03 1.9498415e-01 8.4225499e-01 3.5035370e-01
+ 2.4903279e+00 8.4508432e+00 9.4139468e+01 4.3782857e+01 3.4074724e+00
+ 6.7677397e-01 9.9332535e+01 4.3006734e-02 4.3427788e-01 3.6188581e-01)";
+
+    size_t n = 128;         // длина строк в чанке
+    size_t m = 100;         // длина чанка, кол-во строк
+
+
+    FILE *fp = fmemopen(data, strlen(data), "r");
+    float *arr = malloc(arrsize * sizeof(float)); // массив распарсенных чисел
+
+
+    double st = omp_get_wtime();
+
+    size_t nread = parsefile(arr, n, m, fp);
+
+    double total = omp_get_wtime() - st;
+
+
+    printf("total time: %f ms\n", total * 1000);
+    printf("total floats read: %zu\n", nread);
+
+    /* float values were successfully read */
+    for (size_t i = 0; i < nread; i++)
+        printf("arr[%zu]=%f\n", i, arr[i]);
+
+
+    fclose(fp);
+    free(arr);
+
+    return 0;
+}
+
+
+int main(int argc, char *argv[])
+{
+    printf("parallel version\n\n");
+    test0();
+
+    printf("\n\nnonparallel version\n\n");
+    test0_nonparallel();
 
     return 0;
 }
