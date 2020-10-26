@@ -49,11 +49,11 @@ def test0():
     libparse = load_parse_lib()
 
 
-    cols = 5            # кол-во колонок в тексте
-    arrsize = 1000000   # длина массива распарсенных чисел (в элементах float)
-    m_ = 100000         # кол-во чисел в чанке
+    cols = 5            # длина строки текста (в числах)
+    arrsize = 1000000   # длина массива распарсенных чисел (в числах)
+    m_ = 100000         # длина чанка (в числах)
 
-    n = 128             # длина строк чанка
+    n = 128             # длина строк чанка (в символах)
     m = m_ // cols      # длина чанка (в строках)
 
 
@@ -71,6 +71,7 @@ def test0():
     print("total time: {:f} ms".format (total * 1000))
     print("total floats read: {:d}".format (nread))
 
+    # сравнение массива распарсенных чисел с массивом известных чисел
     arr_exact = np.load('data.npy')
     print("integrity: {}".format (np.allclose (arr, arr_exact)))
 
@@ -83,6 +84,8 @@ def test0():
 '''
 Парсинг файла fp в массив чисел arr.
 Непаралелльная версия.
+Отличается от параллельной программы длиной чанка (в числах),
+который равен длине записываемого массива чисел arr.
 '''
 def test0_nonparallel():
     # загрузка библиотек си
@@ -90,11 +93,11 @@ def test0_nonparallel():
     libparse = load_parse_lib()
 
 
-    cols = 5            # кол-во колонок в тексте
-    arrsize = 1000000   # длина массива распарсенных чисел (в элементах float)
-    m_ = arrsize        # кол-во чисел в чанке
+    cols = 5            # длина строки текста (в числах)
+    arrsize = 1000000   # длина массива распарсенных чисел (в числах)
+    m_ = arrsize        # длина чанка (в числах)
 
-    n = 128             # длина строк чанка
+    n = 128             # длина строк чанка (в символах)
     m = m_ // cols      # длина чанка (в строках)
 
 
@@ -112,6 +115,7 @@ def test0_nonparallel():
     print("total time: {:f} ms".format (total * 1000))
     print("total floats read: {:d}".format (nread))
 
+    # сравнение массива распарсенных чисел с массивом известных чисел
     arr_exact = np.load('data.npy')
     print("integrity: {}".format (np.allclose (arr, arr_exact)))
 
@@ -129,11 +133,12 @@ def test1(arr_exact, arr_str):
     libparse = load_parse_lib()
 
 
-    cols = 5            # кол-во колонок в тексте
-    arrsize = 1000000   # длина массива распарсенных чисел (в элементах float)
+    cols = 5            # длина строки текста (в числах)
+    arrsize = 1000000   # длина массива распарсенных чисел (в числах)
+    m_ = 100000         # длина чанка (в числах)
 
-    n = 128             # длина строк чанка
-    m = 100000 // cols  # длина чанка (в строках)
+    n = 128             # длина строк чанка (в символах)
+    m = m_ // cols      # длина чанка (в строках)
 
 
     fp = libc.fmemopen(arr_str, len(arr_str), b"r")
@@ -159,7 +164,7 @@ def test1(arr_exact, arr_str):
 def gen_data0():
     from os.path import isfile
 
-    # if both files exists
+    # если оба файла существуют
     if isfile('data.npy') and isfile('data.txt'):
         return
 
@@ -167,9 +172,12 @@ def gen_data0():
     cols = 5
     arrsize = 1000000
 
+    # генерация массива
     arr = 10 ** np.random.uniform(-3, 3, arrsize)
 
+    # запись массива с известными числами
     np.save('data.npy', arr)
+    # запись текстовика с cols колонками
     np.savetxt('data.txt', arr.reshape(arrsize // cols, cols))
 
 
@@ -191,7 +199,10 @@ def gen_data1():
 if __name__ == "__main__":
     gen_data0()
 
-    print("parallel version\n")
+    print("parallel program\n")
     test0()
+
+    print("\n\nnonparallel program\n")
+    test0_nonparallel()
 
     # test1(*gen_data1())

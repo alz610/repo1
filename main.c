@@ -7,14 +7,15 @@
 
 /*
 Парсинг файла fp в массив чисел arr.
+Параллельная программа.
 */
 int test0()
 {
-    size_t cols = 5;            // кол-во колонок в тексте
-    size_t arrsize = 1000000;   // длина массива распарсенных чисел (в элементах float)
-    size_t m_ = 100000;          // кол-во чисел в чанке
+    size_t cols = 5;            // длина строки текста (в числах float)
+    size_t arrsize = 1000000;   // длина массива распарсенных чисел (в числах float)
+    size_t m_ = 100000;        // длина чанка (в числах float)
 
-    size_t n = 128;             // длина строк чанка
+    size_t n = 128;             // длина строк чанка (в символах char)
     size_t m = m_ / cols;       // длина чанка (в строках)
 
 
@@ -46,15 +47,17 @@ int test0()
 
 /*
 Парсинг файла fp в массив чисел arr.
-Непаралелльная версия.
+Непараллельная программа.
+Отличается от параллельной программы длиной чанка (в числах),
+который равен длине записываемого массива чисел arr.
 */
 int test0_nonparallel()
 {
-    size_t cols = 5;            // кол-во колонок в тексте
-    size_t arrsize = 1000000;   // длина массива распарсенных чисел (в элементах float)
-    size_t m_ = arrsize;        // кол-во чисел в чанке
+    size_t cols = 5;            // длина строки текста (в числах float)
+    size_t arrsize = 1000000;   // длина массива распарсенных чисел (в числах float)
+    size_t m_ = arrsize;        // длина чанка (в числах float)
 
-    size_t n = 128;             // длина строк чанка
+    size_t n = 128;             // длина строк чанка (в символах char)
     size_t m = m_ / cols;       // длина чанка (в строках)
 
 
@@ -129,10 +132,10 @@ int test1()
 
 int main(int argc, char *argv[])
 {
-    printf("parallel version\n\n");
+    printf("parallel program\n\n");
     test0();
 
-    printf("\n\nnonparallel version\n\n");
+    printf("\n\nnonparallel program\n\n");
     test0_nonparallel();
 
     return 0;

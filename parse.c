@@ -78,8 +78,9 @@ nread -- кол-во прочитанных чисел
 */
 size_t parsefile(float *arr, size_t n, size_t m, FILE *fp)
 {
-    double t_read = 0, t_parse = 0, t_total = 0;
+    double t_read = 0, t_parse = 0;
     size_t nread0 = 0, nread1 = 0;
+    // double t_total = 0;
 
     char *chunk0 = malloc(n * m * sizeof(char));   // предыдущий чанк
     char *chunk1 = malloc(n * m * sizeof(char));   // следующий чанк
@@ -94,7 +95,7 @@ size_t parsefile(float *arr, size_t n, size_t m, FILE *fp)
         
         double end = omp_get_wtime();
         t_read += end - st;
-        t_total += end - st;
+        // t_total += end - st;
     }
 
     while (nread0 != 0)
@@ -131,7 +132,7 @@ size_t parsefile(float *arr, size_t n, size_t m, FILE *fp)
             }
         }
 
-        t_total += omp_get_wtime() - st;
+        // t_total += omp_get_wtime() - st;
 
         // swap
 
@@ -149,7 +150,6 @@ size_t parsefile(float *arr, size_t n, size_t m, FILE *fp)
     }
 
 
-    // double t_total = omp_get_wtime() - st;
     size_t nread = p - arr;
 
 
@@ -159,7 +159,7 @@ size_t parsefile(float *arr, size_t n, size_t m, FILE *fp)
 
     printf("read thread time: %f ms\n", t_read * 1000);
     printf("parse thread time: %f ms\n", t_parse * 1000);
-    printf("total time: %f ms\n", t_total * 1000);
+    // printf("total time: %f ms\n", t_total * 1000);
     // printf("total floats read: %zu\n", nread);
 
     return nread;
