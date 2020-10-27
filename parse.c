@@ -157,8 +157,8 @@ size_t parsefile(float *arr, size_t n, size_t m, FILE *fp)
     free(chunk1);
 
 
-    printf("read thread time: %f ms\n", t_read * 1000);
-    printf("parse thread time: %f ms\n", t_parse * 1000);
+    printf("read time: %f ms\n", t_read * 1000);
+    printf("parse time: %f ms\n", t_parse * 1000);
     // printf("total time: %f ms\n", t_total * 1000);
     // printf("total floats read: %zu\n", nread);
 

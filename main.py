@@ -72,7 +72,7 @@ def test0():
 
     # сравнение массива распарсенных чисел с массивом известных чисел
     arr_exact = np.load('data.npy')
-    print("integrity: {}".format (np.allclose (arr, arr_exact)))
+    print("integrity check: {}".format (np.allclose (arr, arr_exact)))
 
     # print(np.array(arr), '\n')
 
@@ -116,7 +116,7 @@ def test0_nonparallel():
 
     # сравнение массива распарсенных чисел с массивом известных чисел
     arr_exact = np.load('data.npy')
-    print("integrity: {}".format (np.allclose (arr, arr_exact)))
+    print("check: {}".format (np.allclose (arr, arr_exact)))
 
     # print(np.array(arr), '\n')
 
@@ -153,7 +153,7 @@ def test1(arr_exact, arr_str):
 
     print("total time: {:f} ms".format (total * 1000))
     print("total floats read: {:d}".format (nread))
-    print("integrity: {}".format (np.allclose (arr, arr_exact)))
+    print("check: {}".format (np.allclose (arr, arr_exact)))
 
     # print(np.array(arr1), '\n')
 
