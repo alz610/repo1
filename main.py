@@ -10,7 +10,7 @@ def load_sys_C_lib():
     libc = CDLL(find_library("c"))
 
     fopen = libc.fopen
-    fopen.argtypes = c_char_p, c_char_p,
+    fopen.argtypes = c_char_p, c_char_p
     fopen.restype = c_void_p
 
     fwrite = libc.fwrite
