@@ -1,4 +1,3 @@
-# %%
 import numpy as np
 from ctypes import *
 from timeit import default_timer as timer

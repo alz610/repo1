@@ -1,16 +1,16 @@
 parallel program
 
-total time: 223.604930 ms
+read thread time: 22.527206 ms
+parse thread time: 224.912293 ms
+total time: 237.598132 ms
 total floats read: 1000001
 integrity: True
 
 
 nonparallel program
 
-total time: 245.332652 ms
+read thread time: 29.820900 ms
+parse thread time: 222.803794 ms
+total time: 254.053846 ms
 total floats read: 1000000
 integrity: True
-read thread time: 22.210950 ms
-parse thread time: 219.759769 ms
-read thread time: 27.882854 ms
-parse thread time: 215.894779 ms
