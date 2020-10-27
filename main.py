@@ -160,6 +160,9 @@ def test1(arr_exact, arr_str):
     libc.fclose(fp)
 
 
+'''
+Генерация данных для парсинга в носителе информации.
+'''
 def gen_data0():
     from os.path import isfile
 
@@ -174,12 +177,15 @@ def gen_data0():
     # генерация массива
     arr = 10 ** np.random.uniform(-3, 3, arrsize)
 
-    # запись массива с известными числами
+    # запись массива с известными числами в носитель
     np.save('data.npy', arr)
-    # запись текстовика с cols колонками
+    # запись текстовика с cols колонками в носитель
     np.savetxt('data.txt', arr.reshape(arrsize // cols, cols))
 
 
+'''
+Генерация данных для парсинга не в носителе информации.
+'''
 def gen_data1():
     import io
 
