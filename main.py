@@ -53,7 +53,6 @@ def test0(arrsize, n, m):
     libparse = load_parse_lib()
 
 
-
     fp = libc.fopen(b'data.txt', b'r')  # читаемый текст
     arr = (c_float * arrsize)()         # записываемый массив
 
@@ -151,12 +150,12 @@ def main0():
     m_ = 100000         # длина чанка (в числах)
 
 
-    # если оба файла не существуют
-    if not (isfile('data.npy') and isfile('data.txt'))
-    :
-    # if True:
-        print('generating data...\n\n')
-        gen_data0(arrsize, cols)
+    # если текстового файла не существует
+    if not isfile('data.txt'):
+        # если массив с известными числами не существует или его длина не равна arrsize
+        if (not isfile('data.npy')) or (np.load('data.npy').shape != (arrsize,)):
+            print('generating data...\n\n')
+            gen_data0(arrsize, cols)
 
 
     print("parallel program\n")
@@ -170,9 +169,11 @@ def main0():
 def main1():
     arrsize = 10000000
 
+
     print('generating data...\n\n')
 
     arr, arr_str = gen_data1(arrsize, cols=5)
+
 
     print("parallel program\n")
 

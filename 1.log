@@ -3,17 +3,17 @@ generating data...
 
 parallel program
 
-read thread time: 2154.836608 ms
-parse thread time: 22647.207049 ms
-total time: 23488.886962 ms
+read time: 2285.622285 ms
+parse time: 23245.803191 ms
+total time: 24158.191423 ms
 total floats read: 100000001
 check: True
 
 
 nonparallel program
 
-read thread time: 2833.407230 ms
-parse thread time: 21960.416102 ms
-total time: 24872.356228 ms
+read time: 2927.477661 ms
+parse time: 22420.773488 ms
+total time: 25433.769643 ms
 total floats read: 100000000
 check: True
