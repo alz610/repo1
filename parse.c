@@ -100,7 +100,7 @@ size_t parsefile(float *arr, size_t n, size_t m, FILE *fp)
 
     while (nread0 != 0)
     {
-        double st = omp_get_wtime();
+        // double st = omp_get_wtime();
 
         #pragma omp parallel
         {

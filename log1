@@ -1,0 +1,19 @@
+generating data...
+
+
+parallel program
+
+read thread time: 2154.836608 ms
+parse thread time: 22647.207049 ms
+total time: 23488.886962 ms
+total floats read: 100000001
+check: True
+
+
+nonparallel program
+
+read thread time: 2833.407230 ms
+parse thread time: 21960.416102 ms
+total time: 24872.356228 ms
+total floats read: 100000000
+check: True

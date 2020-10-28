@@ -39,65 +39,19 @@ def load_parse_lib():
     return libparse
 
 
-'''
-Парсинг файла fp в массив чисел arr.
-'''
-def test0():
+def test0(arrsize, n, m):
+    '''
+    Парсинг файла fp в массив чисел arr.
+
+        arrsize -- длина массива распарсенных чисел (в числах)
+        n -- длина строк чанка (в символах)
+        m -- длина чанка (в строках)
+    '''
+
     # загрузка библиотек си
     libc = load_sys_C_lib()
     libparse = load_parse_lib()
 
-
-    cols = 5            # длина строки текста (в числах)
-    arrsize = 1000000   # длина массива распарсенных чисел (в числах)
-    m_ = 100000         # длина чанка (в числах)
-
-    n = 128             # длина строк чанка (в символах)
-    m = m_ // cols      # длина чанка (в строках)
-
-
-    fp = libc.fopen(b'data.txt', b'r')  # читаемый текст
-    arr = (c_float * arrsize)()         # записываемый массив
-
-
-    st = timer()
-
-    nread = libparse.parsefile(arr, n, m, fp)
-
-    total = timer() - st
-
-
-    print("total time: {:f} ms".format (total * 1000))
-    print("total floats read: {:d}".format (nread))
-
-    # сравнение массива распарсенных чисел с массивом известных чисел
-    arr_exact = np.load('data.npy')
-    print("integrity check: {}".format (np.allclose (arr, arr_exact)))
-
-    # print(np.array(arr), '\n')
-
-
-    libc.fclose(fp)
-
-
-'''
-Парсинг файла fp в массив чисел arr.
-Непаралелльная версия.
-Отличается от параллельной программы длиной чанка (в числах),
-который равен длине записываемого массива чисел arr.
-'''
-def test0_nonparallel():
-    # загрузка библиотек си
-    libc = load_sys_C_lib()
-    libparse = load_parse_lib()
-
-
-    cols = 5            # длина строки текста (в числах)
-    arrsize = 1000000   # длина массива распарсенных чисел (в числах)
-    m_ = arrsize        # длина чанка (в числах)
-
-    n = 128             # длина строк чанка (в символах)
-    m = m_ // cols      # длина чанка (в строках)
 
 
     fp = libc.fopen(b'data.txt', b'r')  # читаемый текст
@@ -124,16 +78,17 @@ def test0_nonparallel():
     libc.fclose(fp)
 
 
-'''
-Парсинг строки arr_str в массив чисел arr.
-'''
 def test1(arr_exact, arr_str):
+    '''
+    Парсинг строки arr_str в массив чисел arr.
+    '''
+
     libc = load_sys_C_lib()
     libparse = load_parse_lib()
 
 
     cols = 5            # длина строки текста (в числах)
-    arrsize = 1000000   # длина массива распарсенных чисел (в числах)
+    arrsize = 10000000  # длина массива распарсенных чисел (в числах)
     m_ = 100000         # длина чанка (в числах)
 
     n = 128             # длина строк чанка (в символах)
@@ -160,22 +115,11 @@ def test1(arr_exact, arr_str):
     libc.fclose(fp)
 
 
-'''
-Генерация данных для парсинга.
-Записывает в носитель информации.
-'''
-def gen_data0():
-    from os.path import isfile
-
-    # если оба файла существуют
-    if isfile('data.npy') and isfile('data.txt'):
-        return
-
-    print('generating data...\n\n')
-
-
-    cols = 5
-    arrsize = 1000000
+def gen_data0(arrsize, cols):
+    '''
+    Генерация данных для парсинга.
+    Записывает в носитель информации.
+    '''
 
     # генерация массива
     arr = 10 ** np.random.uniform(-3, 3, arrsize)
@@ -186,35 +130,58 @@ def gen_data0():
     np.savetxt('data.txt', arr.reshape(arrsize // cols, cols))
 
 
-'''
-Генерация данных для парсинга.
-Не записывает в носитель информации.
-'''
-def gen_data1():
+def gen_data1(arrsize, cols):
+    '''
+    Генерация данных для парсинга.
+    Не записывает в носитель информации.
+    '''
+
     import io
-
-    print('generating data...\n\n')
-
-
-    cols = 5
-    arrsize = 1000000
 
     arr = 10 ** np.random.uniform(-3, 3, arrsize)
 
     with io.BytesIO() as bio:
         np.savetxt(bio, arr.reshape(arrsize // cols, cols))  # write to the fake file
         arr_str = bio.getvalue()  # read the fake file
-    
+
     return arr, arr_str
 
 
-if __name__ == "__main__":
-    gen_data0()
+def main0():
+    from os.path import isfile
+
+
+    cols = 5            # длина строки текста (в числах)
+    arrsize = 100000000 # длина массива распарсенных чисел (в числах)
+    m_ = 100000         # длина чанка (в числах)
+
+
+    # если оба файла не существуют
+    # if not (isfile('data.npy') and isfile('data.txt')):
+    if True:
+        print('generating data...\n\n')
+        gen_data0(arrsize, cols)
+
 
     print("parallel program\n")
-    test0()
+    test0(arrsize, n=128, m=m_ // cols)
+
 
     print("\n\nnonparallel program\n")
-    test0_nonparallel()
+    test0(arrsize, n=128, m=arrsize // cols)
 
-    # test1(*gen_data1())
+
+def main1():
+    arrsize = 10000000
+
+    print('generating data...\n\n')
+
+    arr, arr_str = gen_data1(arrsize, cols=5)
+
+    print("parallel program\n")
+
+    test1(arr, arr_str)
+
+
+if __name__ == "__main__":
+    main0()
