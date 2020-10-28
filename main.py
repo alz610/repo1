@@ -171,6 +171,8 @@ def gen_data0():
     if isfile('data.npy') and isfile('data.txt'):
         return
 
+    print('generating data...\n\n')
+
 
     cols = 5
     arrsize = 1000000
@@ -190,6 +192,9 @@ def gen_data0():
 '''
 def gen_data1():
     import io
+
+    print('generating data...\n\n')
+
 
     cols = 5
     arrsize = 1000000
