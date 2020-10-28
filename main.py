@@ -87,14 +87,6 @@ def test1(arr_exact, arr_str):
     libparse = load_parse_lib()
 
 
-    cols = 5            # длина строки текста (в числах)
-    arrsize = 10000000  # длина массива распарсенных чисел (в числах)
-    m_ = 100000         # длина чанка (в числах)
-
-    n = 128             # длина строк чанка (в символах)
-    m = m_ // cols      # длина чанка (в строках)
-
-
     fp = libc.fmemopen(arr_str, len(arr_str), b"r")
     arr = (c_float * arrsize)()         # записываемый массив
 
@@ -108,6 +100,9 @@ def test1(arr_exact, arr_str):
 
     print("total time: {:f} ms".format (total * 1000))
     print("total floats read: {:d}".format (nread))
+
+    # сравнение массива распарсенных чисел с массивом известных чисел
+    arr_exact = np.load('data.npy')
     print("check: {}".format (np.allclose (arr, arr_exact)))
 
     # print(np.array(arr1), '\n')
@@ -157,8 +152,9 @@ def main0():
 
 
     # если оба файла не существуют
-    # if not (isfile('data.npy') and isfile('data.txt')):
-    if True:
+    if not (isfile('data.npy') and isfile('data.txt'))
+    :
+    # if True:
         print('generating data...\n\n')
         gen_data0(arrsize, cols)
 
