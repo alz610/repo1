@@ -76,6 +76,8 @@ def test0(arrsize, n, m):
 
     libc.fclose(fp)
 
+    return arr
+
 
 def test1(arr_exact, arr_str):
     '''
@@ -146,16 +148,15 @@ def main0():
 
 
     cols = 5            # длина строки текста (в числах)
-    arrsize = 100000000 # длина массива распарсенных чисел (в числах)
-    m_ = 100000         # длина чанка (в числах)
+    arrsize = 1000000   # длина массива распарсенных чисел (в числах)
+    m_ = 10000         # длина чанка (в числах)
 
 
     # если текстового файла не существует
-    if not isfile('data.txt'):
-        # если массив с известными числами не существует или его длина не равна arrsize
-        if (not isfile('data.npy')) or (np.load('data.npy').shape != (arrsize,)):
-            print('generating data...\n\n')
-            gen_data0(arrsize, cols)
+    # если массив с известными числами не существует или его длина не равна arrsize
+    if not isfile('data.txt') and not isfile('data.npy') or (np.load('data.npy').shape != (arrsize,)):
+        print('generating data...\n\n')
+        gen_data0(arrsize, cols)
 
 
     print("parallel program\n")

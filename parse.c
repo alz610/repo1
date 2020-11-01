@@ -8,27 +8,27 @@
 Чтение чанка файла fp в чанк chunk.
 
 Ввод:
-chunk -- записываемый чанк
-    n -- длина строк чанка
-    m -- длина чанка (в строках)
-   fp -- читаемый файл
+    chunk -- записываемый чанк
+ linesize -- длина строк чанка
+chunksize -- длина чанка (в строках)
+       fp -- читаемый файл
 
 Вывод:
-nread -- кол-во прочитанных строк
+n_lines_read -- кол-во прочитанных строк
 */
-size_t getchunk(char *chunk, size_t n, size_t m, FILE *fp)
+size_t getchunk(char *chunk, size_t linesize, size_t chunksize, FILE *fp)
 {
     size_t i;
 
-    for (i = 0; i < m; i++)
+    for (i = 0; i < chunksize; i++)
     {
         if (feof(fp)) break;
-        fgets((chunk + n * i), n, fp);
+        fgets((chunk + linesize * i), linesize, fp);
     }
 
-    size_t nread = i;
+    size_t n_lines_read = i;
 
-    return nread;
+    return n_lines_read;
 }
 
 /*
@@ -37,27 +37,48 @@ size_t getchunk(char *chunk, size_t n, size_t m, FILE *fp)
 Обновляет позицию *p.
 
 Ввод:
-   *p -- позиция в записываемом массиве чисел
-    n -- длина строк чанка
-    m -- длина чанка (в строках)
-chunk -- читаемый чанк
+       *p -- позиция в записываемом массиве чисел
+ linesize -- длина строк чанка
+chunksize -- длина чанка (в строках)
+    chunk -- читаемый чанк
 
 Вывод:
     нет
 */
-int parsechunk(float **p, size_t n, size_t m, char *chunk)
+int parsechunk(float **p, size_t linesize, size_t chunksize, size_t n_lines_read, char *chunk)
 {
-    char *k;
-    float parsed_num;
+    int i_local_chunk = omp_get_thread_num() - 1;
+    int n_local_chunks = omp_get_num_threads() - 1;
 
-    for (size_t i = 0; i < m; i++)
+    size_t local_chunksize = chunksize / n_local_chunks;
+    size_t start_line = i_local_chunk * local_chunksize;
+    size_t end_line = (i_local_chunk + 1) * local_chunksize;
+
+    // если это последний локальный чанк, то добавить остаток локального чанка
+    if (i_local_chunk == n_local_chunks - 1)
+        end_line += chunksize % n_local_chunks;
+
+
+    char *k;
+    float num;
+
+    // #pragma omp for
+    for (size_t i_line = start_line; (i_line < end_line); i_line++)
     {
-        if (k = strtok(chunk + n * i, " "))
+        if (i_line > n_lines_read)
+            break;
+
+        k = strtok(chunk + linesize * i_line, " ");
+
+        while (k != NULL)
         {
-            do {
-                if (parsed_num = atof(k))
-                    *((*p)++) = parsed_num;
-            } while (k = strtok(NULL, " "));
+            if (num = atof(k))
+            {
+                #pragma omp critical
+                    *((*p)++) = num;
+            }
+
+            k = strtok(NULL, " ");
         }
     }
 
@@ -68,22 +89,21 @@ int parsechunk(float **p, size_t n, size_t m, char *chunk)
 Парсинг файла fp в массив чисел arr.
 
 Ввод:
-  arr -- записываемый массив
-    n -- длина строк чанка
-    m -- длина чанка (в строках)
-   fp -- читаемый файл
+      arr -- записываемый массив
+ linesize -- длина строк чанка
+chunksize -- длина чанка (в строках)
+       fp -- читаемый файл
 
 Вывод:
 nread -- кол-во прочитанных чисел
 */
-size_t parsefile(float *arr, size_t n, size_t m, FILE *fp)
+size_t parsefile(float *arr, size_t linesize, size_t chunksize, FILE *fp)
 {
     double t_read = 0, t_parse = 0;
-    size_t nread0 = 0, nread1 = 0;
-    // double t_total = 0;
+    size_t n_lines_read_0 = 0, n_lines_read_1 = 0;
 
-    char *chunk0 = malloc(n * m * sizeof(char));   // предыдущий чанк
-    char *chunk1 = malloc(n * m * sizeof(char));   // следующий чанк
+    char *chunk0 = malloc(chunksize * linesize * sizeof(char));   // предыдущий чанк
+    char *chunk1 = malloc(chunksize * linesize * sizeof(char));   // следующий чанк
 
     float *p = arr;  // позиция в записываемом массиве
   
@@ -91,61 +111,60 @@ size_t parsefile(float *arr, size_t n, size_t m, FILE *fp)
     {
         double st = omp_get_wtime();
         
-        nread0 = getchunk(chunk0, n, m, fp);
+        n_lines_read_0 = getchunk(chunk0, linesize, chunksize, fp);
         
         double end = omp_get_wtime();
         t_read += end - st;
-        // t_total += end - st;
     }
 
-    while (nread0 != 0)
-    {
-        // double st = omp_get_wtime();
 
-        #pragma omp parallel
+    #pragma omp parallel
+    {
+        // arr;
+        while (n_lines_read_0 != 0)
         {
-            #pragma omp sections
+            if (omp_get_thread_num() == 0)
             {
-                /*
-                Поток парсит предыдущий чанк и обновляет позицию p в массиве arr
-                */
-                #pragma omp section
-                {
+                double st = omp_get_wtime();
+
+                n_lines_read_1 = getchunk(chunk1, linesize, chunksize, fp);
+
+                t_read += omp_get_wtime() - st;
+            }
+
+            else
+            {
+                // #pragma omp critical
+                // {
                     double st = omp_get_wtime();
 
-                    parsechunk(&p, n, nread0, chunk0);
+                    parsechunk(&p, linesize, chunksize, n_lines_read_0, chunk0);
 
                     t_parse += omp_get_wtime() - st;
+                // }
+            }
+
+
+            #pragma omp barrier
+
+            // swap
+
+            if (omp_get_thread_num() == 0)
+            {
+                {
+                    char *temp = chunk0;
+                    chunk0 = chunk1;
+                    chunk1 = temp;
                 }
 
-                /*
-                Поток читает следующий чанк
-                */
-                #pragma omp section
                 {
-                    double st = omp_get_wtime();
-
-                    nread1 = getchunk(chunk1, n, m, fp);
-
-                    t_read += omp_get_wtime() - st;
+                    size_t temp = n_lines_read_0;
+                    n_lines_read_0 = n_lines_read_1;
+                    n_lines_read_1 = temp;
                 }
             }
-        }
 
-        // t_total += omp_get_wtime() - st;
-
-        // swap
-
-        {
-            char *temp = chunk0;
-            chunk0 = chunk1;
-            chunk1 = temp;
-        }
-
-        {
-            size_t temp = nread0;
-            nread0 = nread1;
-            nread1 = temp;
+            #pragma omp barrier
         }
     }
 
@@ -159,8 +178,6 @@ size_t parsefile(float *arr, size_t n, size_t m, FILE *fp)
 
     printf("read time: %f ms\n", t_read * 1000);
     printf("parse time: %f ms\n", t_parse * 1000);
-    // printf("total time: %f ms\n", t_total * 1000);
-    // printf("total floats read: %zu\n", nread);
 
     return nread;
 }

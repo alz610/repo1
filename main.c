@@ -13,10 +13,10 @@ int test0()
 {
     size_t cols = 5;            // длина строки текста (в числах float)
     size_t arrsize = 1000000;   // длина массива распарсенных чисел (в числах float)
-    size_t m_ = 100000;        // длина чанка (в числах float)
+    size_t chunksize_ = 10000;        // длина чанка (в числах float)
 
-    size_t n = 128;             // длина строк чанка (в символах char)
-    size_t m = m_ / cols;       // длина чанка (в строках)
+    size_t linesize = 128;             // длина строк чанка (в символах char)
+    size_t chunksize = chunksize_ / cols;       // длина чанка (в строках)
 
 
     FILE *fp = fopen("data.txt", "r");              // читаемый текст
@@ -25,7 +25,7 @@ int test0()
 
     double st = omp_get_wtime();
 
-    size_t nread = parsefile(arr, n, m, fp);
+    size_t nread = parsefile(arr, linesize, chunksize, fp);
 
     double total = omp_get_wtime() - st;
 
