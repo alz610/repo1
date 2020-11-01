@@ -39,13 +39,13 @@ def load_parse_lib():
     return libparse
 
 
-def test0(arrsize, n, m):
+def test0(arrsize, linesize, chunksize):
     '''
     Парсинг файла fp в массив чисел arr.
 
         arrsize -- длина массива распарсенных чисел (в числах)
-        n -- длина строк чанка (в символах)
-        m -- длина чанка (в строках)
+        linesize -- длина строк чанка (в символах)
+        chunksize -- длина чанка (в строках)
     '''
 
     # загрузка библиотек си
@@ -59,7 +59,7 @@ def test0(arrsize, n, m):
 
     st = timer()
 
-    nread = libparse.parsefile(arr, n, m, fp)
+    nread = libparse.parsefile(arr, linesize, chunksize, fp)
 
     total = timer() - st
 
@@ -94,7 +94,7 @@ def test1(arr_exact, arr_str):
 
     st = timer()
 
-    nread = libparse.parsefile(arr, n, m, fp)
+    nread = libparse.parsefile(arr, linesize, chunksize, fp)
 
     total = timer() - st
 
@@ -149,7 +149,7 @@ def main0():
 
     cols = 5            # длина строки текста (в числах)
     arrsize = 1000000   # длина массива распарсенных чисел (в числах)
-    m_ = 10000         # длина чанка (в числах)
+    chunksize_ = 10000  # длина чанка (в числах)
 
 
     # если текстового файла не существует
@@ -160,11 +160,11 @@ def main0():
 
 
     print("parallel program\n")
-    test0(arrsize, n=128, m=m_ // cols)
+    test0(arrsize, linesize=128, chunksize=chunksize_ // cols)
 
 
     print("\n\nnonparallel program\n")
-    test0(arrsize, n=128, m=arrsize // cols)
+    test0(arrsize, linesize=128, chunksize=arrsize // cols)
 
 
 def main1():

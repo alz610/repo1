@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <omp.h>
+#include <assert.h> 
 
 
 /*
@@ -45,7 +46,7 @@ chunksize -- длина чанка (в строках)
 Вывод:
     нет
 */
-int parsechunk(float **p, size_t linesize, size_t chunksize, size_t n_lines_read, char *chunk)
+int parsechunk(float *p, size_t linesize, size_t chunksize, size_t n_lines_read, char *chunk)
 {
     int i_local_chunk = omp_get_thread_num() - 1;
     int n_local_chunks = omp_get_num_threads() - 1;
@@ -59,11 +60,18 @@ int parsechunk(float **p, size_t linesize, size_t chunksize, size_t n_lines_read
         end_line += chunksize % n_local_chunks;
 
 
+    // size_t _i = 0;
+    size_t i_line;
     char *k;
     float num;
+    int cols = 5;  // кол-во чисел в строке
+
+
+    float *p_start = p + start_line * cols;
+    float *p_ = p_start;
 
     // #pragma omp for
-    for (size_t i_line = start_line; (i_line < end_line); i_line++)
+    for (i_line = start_line; i_line < end_line; i_line++)
     {
         if (i_line > n_lines_read)
             break;
@@ -72,17 +80,26 @@ int parsechunk(float **p, size_t linesize, size_t chunksize, size_t n_lines_read
 
         while (k != NULL)
         {
+            int i = 0;
+
             if (num = atof(k))
             {
-                #pragma omp critical
-                    *((*p)++) = num;
+                *p_ = num;
+                p_++;
+                i++;
             }
+
+            assert(cols == i);
 
             k = strtok(NULL, " ");
         }
     }
 
-    return 0;
+
+    size_t n_float_read = p_ - p_start;
+    assert(local_chunksize * cols == n_float_read);
+
+    return n_float_read;
 }
 
 /*
@@ -120,7 +137,9 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize, FILE *fp)
 
     #pragma omp parallel
     {
-        // arr;
+        size_t n_float_read;
+        arr;
+
         while (n_lines_read_0 != 0)
         {
             if (omp_get_thread_num() == 0)
@@ -134,16 +153,15 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize, FILE *fp)
 
             else
             {
-                // #pragma omp critical
-                // {
-                    double st = omp_get_wtime();
+                double st = omp_get_wtime();
 
-                    parsechunk(&p, linesize, chunksize, n_lines_read_0, chunk0);
+                n_float_read = parsechunk(p, linesize, chunksize, n_lines_read_0, chunk0);
 
-                    t_parse += omp_get_wtime() - st;
-                // }
+                t_parse += omp_get_wtime() - st;
+
+                #pragma omp critical
+                    p += n_float_read;
             }
-
 
             #pragma omp barrier
 

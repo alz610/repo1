@@ -7,18 +7,13 @@
 
 /*
 Парсинг файла fp в массив чисел arr.
-Параллельная программа.
+
+    arrsize -- длина массива распарсенных чисел (в числах)
+    linesize -- длина строк чанка (в символах)
+    chunksize -- длина чанка (в строках)
 */
-int test0()
+int test0(size_t arrsize, size_t linesize, size_t chunksize)
 {
-    size_t cols = 5;            // длина строки текста (в числах float)
-    size_t arrsize = 1000000;   // длина массива распарсенных чисел (в числах float)
-    size_t chunksize_ = 10000;        // длина чанка (в числах float)
-
-    size_t linesize = 128;             // длина строк чанка (в символах char)
-    size_t chunksize = chunksize_ / cols;       // длина чанка (в строках)
-
-
     FILE *fp = fopen("data.txt", "r");              // читаемый текст
     float *arr = malloc(arrsize * sizeof(float));   // записываемый массив
 
@@ -28,49 +23,6 @@ int test0()
     size_t nread = parsefile(arr, linesize, chunksize, fp);
 
     double total = omp_get_wtime() - st;
-
-
-    printf("total time: %f ms\n", total * 1000);
-    printf("total floats read: %zu\n", nread);
-
-    /* float values were successfully read */
-    // for (size_t i = 0; i < nread; i++)
-    //     printf("arr[%zu]=%f\n", i, arr[i]);
-
-
-    fclose(fp);
-    free(arr);
-
-    return 0;
-}
-
-
-/*
-Парсинг файла data.txt в массив чисел arr.
-Непараллельная программа.
-Отличается от параллельной программы длиной чанка (в числах),
-который равен длине записываемого массива чисел arr.
-*/
-int test0_nonparallel()
-{
-    size_t cols = 5;            // длина строки текста (в числах float)
-    size_t arrsize = 1000000;   // длина массива распарсенных чисел (в числах float)
-    size_t m_ = arrsize;        // длина чанка (в числах float)
-
-    size_t n = 128;             // длина строк чанка (в символах char)
-    size_t m = m_ / cols;       // длина чанка (в строках)
-
-
-    FILE *fp = fopen("data.txt", "r");              // читаемый текст
-    float *arr = malloc(arrsize * sizeof(float));   // записываемый массив
-
-
-    double st = omp_get_wtime();
-
-    size_t nread = parsefile(arr, n, m, fp);
-
-    double total = omp_get_wtime() - st;
-
 
 
     printf("total time: %f ms\n", total * 1000);
@@ -100,8 +52,8 @@ int test1()
  2.4903279e+00 8.4508432e+00 9.4139468e+01 4.3782857e+01 3.4074724e+00
  6.7677397e-01 9.9332535e+01 4.3006734e-02 4.3427788e-01 3.6188581e-01)";
 
-    size_t n = 128;         // длина строк в чанке
-    size_t m = 100;         // длина чанка, кол-во строк
+    size_t linesize = 128;         // длина строк в чанке
+    size_t chunksize = 100;         // длина чанка, кол-во строк
 
 
     FILE *fp = fmemopen(data, strlen(data), "r");
@@ -110,7 +62,7 @@ int test1()
 
     double st = omp_get_wtime();
 
-    size_t nread = parsefile(arr, n, m, fp);
+    size_t nread = parsefile(arr, linesize, chunksize, fp);
 
     double total = omp_get_wtime() - st;
 
@@ -132,11 +84,22 @@ int test1()
 
 int main(int argc, char *argv[])
 {
+    size_t cols = 5;                // длина строки текста (в числах float)
+    size_t arrsize = 1000000;       // длина массива распарсенных чисел (в числах float)
+    size_t chunksize_ = 10000;         // длина чанка (в числах float)
+
+    size_t linesize = 128;                  // длина строк чанка (в символах char)
+    size_t chunksize = chunksize_ / cols;   // длина чанка (в строках)
+
+
     printf("parallel program\n\n");
-    test0();
+    test0(arrsize, linesize, chunksize);
+
+
+    chunksize = arrsize / cols;
 
     printf("\n\nnonparallel program\n\n");
-    test0_nonparallel();
+    test0(arrsize, linesize, chunksize);
 
     return 0;
 }
