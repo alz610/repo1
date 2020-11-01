@@ -1,0 +1,16 @@
+parallel program
+
+read time: 20.945469 ms
+parse time: 357.580047 ms
+total time: 137.278650 ms
+total floats read: 964070
+check: False
+
+
+nonparallel program
+
+read time: 32.335016 ms
+parse time: 342.092912 ms
+total time: 149.916467 ms
+total floats read: 977534
+check: False
