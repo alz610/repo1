@@ -60,19 +60,20 @@ int parsechunk(float *p, size_t linesize, size_t chunksize, size_t n_lines_read,
         end_line += chunksize % n_local_chunks;
 
 
-    // size_t _i = 0;
+    int i_;
     size_t i_line;
     char *k;
     float num;
     int cols = 5;  // кол-во чисел в строке
+    int i = 0;
 
-
-    float *p_start = p + start_line * cols;
-    float *p_ = p_start;
+    float *p_ = p + start_line * cols;
 
     // #pragma omp for
     for (i_line = start_line; i_line < end_line; i_line++)
     {
+        i_ = 0;
+
         if (i_line > n_lines_read)
             break;
 
@@ -80,26 +81,23 @@ int parsechunk(float *p, size_t linesize, size_t chunksize, size_t n_lines_read,
 
         while (k != NULL)
         {
-            int i = 0;
-
             if (num = atof(k))
             {
-                *p_ = num;
-                p_++;
-                i++;
+                p_[i++] = num;
+                i_++;
             }
-
-            assert(cols == i);
 
             k = strtok(NULL, " ");
         }
+
+        assert(cols == i_);
     }
 
 
-    size_t n_float_read = p_ - p_start;
-    assert(local_chunksize * cols == n_float_read);
+    size_t n_floats_read = i;
+    assert(local_chunksize * cols == n_floats_read);
 
-    return n_float_read;
+    return n_floats_read;
 }
 
 /*
@@ -137,7 +135,7 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize, FILE *fp)
 
     #pragma omp parallel
     {
-        size_t n_float_read;
+        size_t n_floats_read;
         arr;
 
         while (n_lines_read_0 != 0)
@@ -155,12 +153,12 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize, FILE *fp)
             {
                 double st = omp_get_wtime();
 
-                n_float_read = parsechunk(p, linesize, chunksize, n_lines_read_0, chunk0);
+                n_floats_read = parsechunk(p, linesize, chunksize, n_lines_read_0, chunk0);
 
                 t_parse += omp_get_wtime() - st;
 
                 #pragma omp critical
-                    p += n_float_read;
+                    p += n_floats_read;
             }
 
             #pragma omp barrier
