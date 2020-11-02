@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
     size_t arrsize = 1000000;       // длина массива распарсенных чисел (в числах float)
     size_t chunksize_ = 10000;         // длина чанка (в числах float)
 
-    size_t linesize = 128;                  // длина строк чанка (в символах char)
+    size_t linesize = 0x100;                  // длина строк чанка (в символах char)
     size_t chunksize = chunksize_ / cols;   // длина чанка (в строках)
 
 
