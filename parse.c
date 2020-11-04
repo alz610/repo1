@@ -65,7 +65,8 @@ int parsechunk(float *p, size_t linesize, size_t chunksize_lines, char *chunk)
     {
         if (DEBUG)
         {
-            printf("chunk line read: %s\n", chunk + linesize * i_line);
+            #pragma omp barrier
+            fprintf(stderr, "chunk line read: %s\n", chunk + linesize * i_line);
         }
 
         k = strtok(chunk + linesize * i_line, " ");
@@ -145,13 +146,14 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
 
         while (n_lines_read_0 != 0)
         {
-            if (omp_get_thread_num() == last_thread_num)
+            if (omp_get_thread_num() == 0)
             {
                 double st = omp_get_wtime();
 
                 n_lines_read_1 = getchunk(chunk1, linesize, chunksize_lines, fp);
 
-                t_read += omp_get_wtime() - st;
+                #pragma omp critical
+                    t_read += omp_get_wtime() - st;
             }
 
             else
@@ -159,11 +161,12 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
             // #pragma omp critical
             // {
                 if (DEBUG)
-                    #pragma omp critical
-                    printf("\n\nthread %d:\n", omp_get_thread_num());
+                {
+                    #pragma omp barrier
+                    fprintf(stderr, "\n\nthread %d:\n", omp_get_thread_num());
+                }
 
-
-                int i_subchunk = omp_get_thread_num();
+                int i_subchunk = omp_get_thread_num() - 1;
 
                 size_t subchunksize_lines = chunksize_lines / n_subchunks;
 
@@ -174,7 +177,11 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
                     subchunksize_lines += chunksize_lines % n_subchunks;
 
                 if (DEBUG)
-                    printf("subchunk: offset %ld, size_lines %ld\n\n", (size_t) (subchunk - chunk0), subchunksize_lines);
+                {
+                    #pragma omp barrier
+                    fprintf(stderr, "subchunk: offset %ld, size_lines %ld\n\n",
+                            (size_t) (subchunk - chunk0), subchunksize_lines);
+                }
 
                 size_t linesize_floats = 32;
 
@@ -194,17 +201,25 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
 
                 if (DEBUG)
                 {
-                    printf("floats read: %zu\n", n_floats_read[i_subchunk]);
+                    #pragma omp barrier
+                    fprintf(stderr, "floats read: %zu\n", n_floats_read[i_subchunk]);
 
                     /* float values were successfully read */
                     for (size_t i = 0; i < n_floats_read[i_subchunk]; i++)
                     {
-                        printf("%e", sub_p[i]);
+                        #pragma omp barrier
+                        fprintf(stderr, "%e", sub_p[i]);
 
                         if (!((i + 1) % cols))
-                            printf("\n");
+                        {
+                            #pragma omp barrier
+                            fprintf(stderr, "\n");
+                        }
                         else
-                            printf(" ");
+                        {
+                            #pragma omp barrier
+                            fprintf(stderr, " ");
+                        }
                     }
                 }
 
@@ -215,7 +230,10 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
                     write_offset += n_floats_read[j];
 
                 if (DEBUG)
-                    printf("write offset: %ld\n", write_offset);
+                {
+                    #pragma omp barrier
+                    fprintf(stderr, "write offset: %ld\n", write_offset);
+                }
                 
                 if (TEST)
                     assert(write_offset == subchunksize_lines * cols * i_subchunk);
@@ -225,6 +243,9 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
 
                 #pragma omp critical
                     p += n_floats_read[i_subchunk];
+                
+                #pragma omp critical
+                    fflush(stderr);
             // }
             }
 

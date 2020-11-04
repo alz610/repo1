@@ -118,9 +118,9 @@ int test1()
 
 
     omp_set_num_threads(4);
-    // DEBUG = 1;
+    DEBUG = 1;
     VERBOSE = 1;
-    TEST = 1;
+    // TEST = 1;
 
 
     double st = omp_get_wtime();
