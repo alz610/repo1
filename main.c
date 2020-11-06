@@ -49,7 +49,6 @@ int test0()
 */
 int test0_nonparallel()
 {
-    size_t cols = 5;                // длина строки текста (в числах float)
     size_t arrsize = 1000000;       // длина массива распарсенных чисел (в числах float)
     size_t chunksize_ = 10000;         // длина чанка (в числах float)
 
@@ -88,7 +87,6 @@ int test0_nonparallel()
 */
 int test1()
 {
-    size_t cols = 5;                // длина строки текста (в числах float)
     size_t arrsize = 1000;  // кол-во элементов в массиве распарсенных чисел
     char* data = 1 + R"(
 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-03
@@ -124,7 +122,7 @@ int test1()
     // omp_set_num_threads(4);
     DEBUG = 1;
     VERBOSE = 1;
-    // TEST = 1;
+    TEST = 1;
 
 
     double st = omp_get_wtime();

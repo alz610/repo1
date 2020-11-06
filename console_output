@@ -1,0 +1,39 @@
+(base) alz@alz-Desktop-PC:~/projects/repo1$ ./main.out 2> 3.1.log
+^C
+(base) alz@alz-Desktop-PC:~/projects/repo1$ ./main.out 2>> 3.1.log
+^C
+(base) alz@alz-Desktop-PC:~/projects/repo1$ ./main.out 2>> 3.1.log
+^C
+(base) alz@alz-Desktop-PC:~/projects/repo1$ ./main.out 2>> 3.1.log
+^C
+(base) alz@alz-Desktop-PC:~/projects/repo1$ ./main.out 2>> 3.1.log
+^C
+(base) alz@alz-Desktop-PC:~/projects/repo1$ ./main.out 2>> 3.1.log
+^C
+(base) alz@alz-Desktop-PC:~/projects/repo1$ ./main.out 2>> 3.1.log
+^C
+
+
+(base) alz@alz-Desktop-PC:~/projects/repo1$ ./main.out 2> 3.2.log 
+(base) alz@alz-Desktop-PC:~/projects/repo1$ ./main.out 2>> 3.2.log
+^C
+(base) alz@alz-Desktop-PC:~/projects/repo1$ ./main.out 2>> 3.2.log
+(base) alz@alz-Desktop-PC:~/projects/repo1$ ./main.out 2>> 3.2.log
+^C
+(base) alz@alz-Desktop-PC:~/projects/repo1$ ./main.out 2>> 3.2.log
+(base) alz@alz-Desktop-PC:~/projects/repo1$ ./main.out 2>> 3.2.log
+^C
+(base) alz@alz-Desktop-PC:~/projects/repo1$ ./main.out 2>> 3.2.log
+^C
+
+
+(base) alz@alz-Desktop-PC:~/projects/repo1$ ./main.out 2> 3.3.log 
+(base) alz@alz-Desktop-PC:~/projects/repo1$ ./main.out 2>> 3.3.log
+(base) alz@alz-Desktop-PC:~/projects/repo1$ ./main.out 2>> 3.3.log
+Aborted (core dumped)
+(base) alz@alz-Desktop-PC:~/projects/repo1$ ./main.out 2>> 3.3.log
+^C
+(base) alz@alz-Desktop-PC:~/projects/repo1$ ./main.out 2>> 3.3.log
+(base) alz@alz-Desktop-PC:~/projects/repo1$ ./main.out 2>> 3.3.log
+(base) alz@alz-Desktop-PC:~/projects/repo1$ ./main.out 2>> 3.3.log
+^C

@@ -85,8 +85,11 @@ int parsechunk(float *p, size_t linesize, size_t chunksize_lines, char *chunk)
             k = strtok(NULL, " ");
         }
 
-        if (*line != '\0')
-            assert(cols == _i);
+        if (TEST)
+        {
+            if (*line != '\0')
+                assert(cols == _i);
+        }
     }
 
 
@@ -240,9 +243,10 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
                         #pragma omp barrier
                         fprintf(stderr, "thread %d: write offset: %ld\n\n\n", i_thread, write_offset);
                     }
-                    
-                    if (TEST)
-                        assert(write_offset == subchunksize_lines * cols * i_subchunk);
+
+
+                    // if (TEST)
+                    //     assert(write_offset == subchunksize_lines * cols * i_subchunk);
 
 
                     #pragma omp barrier
@@ -280,6 +284,8 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
         }
     }
 
+    omp_set_nested(0);
+
 
     size_t nread = p - arr;
 
@@ -302,6 +308,8 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
             else
                 fprintf(stderr, " ");
         }
+
+        fprintf(stderr, "\n\n");
     }
 
 
