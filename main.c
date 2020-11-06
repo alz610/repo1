@@ -113,11 +113,15 @@ int test1()
     size_t chunksize_lines = 3 * 2;          // длина чанка (в строках)
 
 
+    fprintf(stderr, "-------------------------\n");
+    fprintf(stderr, "run test\n\n");
+
+
     FILE *fp = fmemopen(data, strlen(data), "r");
     float *arr = malloc(arrsize * sizeof(float)); // массив распарсенных чисел
 
 
-    omp_set_num_threads(4);
+    // omp_set_num_threads(4);
     DEBUG = 1;
     VERBOSE = 1;
     // TEST = 1;
@@ -132,29 +136,17 @@ int test1()
 
     if (VERBOSE)
     {
-        printf("total time: %f ms\n", total * 1000);
-    }
-
-    if (DEBUG)
-    {
-        printf("total floats read: %zu\n", nread);
-
-        /* float values were successfully read */
-        for (size_t i = 0; i < nread; i++)
-        {
-            printf("%e", arr[i]);
-
-            if (!((i + 1) % cols))
-                printf("\n");
-            else
-                printf(" ");
-        }
+        fprintf(stderr, "total time: %f ms\n", total * 1000);
     }
 
 
     fclose(fp);
     free(arr);
+    
+    
+    fflush(stderr);
 
+    
     return nread;
 }
 

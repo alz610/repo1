@@ -63,13 +63,15 @@ int parsechunk(float *p, size_t linesize, size_t chunksize_lines, char *chunk)
 
     for (size_t i_line = 0; i_line < chunksize_lines; i_line++)
     {
+        char *line = chunk + linesize * i_line;
+
         if (DEBUG)
         {
             #pragma omp barrier
-            fprintf(stderr, "chunk line read: %s\n", chunk + linesize * i_line);
+            fprintf(stderr, "chunk line read: %s\n", line);
         }
 
-        k = strtok(chunk + linesize * i_line, " ");
+        k = strtok(line, " ");
         _i = 0;
 
         while (k != NULL)
@@ -83,12 +85,15 @@ int parsechunk(float *p, size_t linesize, size_t chunksize_lines, char *chunk)
             k = strtok(NULL, " ");
         }
 
-        // assert(cols == _i);
+        if (*line != '\0')
+            assert(cols == _i);
     }
 
 
     // assert(chunksize * cols == i);
 
+    if (DEBUG)
+        fprintf(stderr, "\n\n");
 
     size_t n_floats_read = i;
 
@@ -110,163 +115,166 @@ nread -- кол-во прочитанных чисел
 size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
 {
     double t_read = 0, t_parse = 0;
-    size_t n_lines_read_0 = 0, n_lines_read_1 = 0;
+    size_t n_lines_read = 0;
 
     char *chunk0 = malloc(chunksize_lines * linesize * sizeof(char));   // предыдущий чанк
     char *chunk1 = malloc(chunksize_lines * linesize * sizeof(char));   // следующий чанк
 
     float *p = arr;  // позиция в записываемом массиве
-    int n_subchunks, last_thread_num;
+    int n_parsethreads = 3;
     size_t *n_floats_read;
 
 
     {
         double st = omp_get_wtime();
 
-        n_lines_read_0 = getchunk(chunk0, linesize, chunksize_lines, fp);
+        n_lines_read = getchunk(chunk0, linesize, chunksize_lines, fp);
 
         t_read += omp_get_wtime() - st;
     }
 
+
     // int _i = 0;
     int cols = 5;  // кол-во чисел в строке
 
-    #pragma omp parallel // shared(p, n_subchunks, n_floats_read, last_thread_num)
+
+    omp_set_nested(1);
+
+    #pragma omp parallel num_threads(2) // shared(p, n_subchunks, n_floats_read, last_thread_num)
     {
-        // arr; // для отладки
-        last_thread_num = omp_get_num_threads() - 1;
-        n_subchunks = omp_get_num_threads() - 1;
-
-
         #pragma omp master
-            n_floats_read = malloc(n_subchunks * sizeof(size_t));
+            n_floats_read = malloc(n_parsethreads * sizeof(size_t));
 
         #pragma omp barrier
 
 
-        while (n_lines_read_0 != 0)
+        while (n_lines_read != 0)
         {
             if (omp_get_thread_num() == 0)
             {
                 double st = omp_get_wtime();
 
-                n_lines_read_1 = getchunk(chunk1, linesize, chunksize_lines, fp);
+                n_lines_read = getchunk(chunk1, linesize, chunksize_lines, fp);
 
-                #pragma omp critical
+                // #pragma omp critical
                     t_read += omp_get_wtime() - st;
             }
 
             else
             {
-            // #pragma omp critical
-            // {
-                if (DEBUG)
+                #pragma omp parallel num_threads(n_parsethreads)
                 {
-                    #pragma omp barrier
-                    fprintf(stderr, "\n\nthread %d:\n", omp_get_thread_num());
-                }
+                    int i_thread = omp_get_thread_num();
 
-                int i_subchunk = omp_get_thread_num() - 1;
-
-                size_t subchunksize_lines = chunksize_lines / n_subchunks;
-
-                char *subchunk = chunk0 + i_subchunk * subchunksize_lines * linesize;
-
-                // если это последний локальный чанк, то добавить остаток локального чанка
-                if (i_subchunk == n_subchunks - 1)
-                    subchunksize_lines += chunksize_lines % n_subchunks;
-
-                if (DEBUG)
-                {
-                    #pragma omp barrier
-                    fprintf(stderr, "subchunk: offset %ld, size_lines %ld\n\n",
-                            (size_t) (subchunk - chunk0), subchunksize_lines);
-                }
-
-                size_t linesize_floats = 32;
-
-                float *sub_p = malloc(subchunksize_lines * linesize_floats * sizeof(float));
-
-
-                double st = omp_get_wtime();
-
-                n_floats_read[i_subchunk] = parsechunk(sub_p, linesize, subchunksize_lines, subchunk);
-
-                #pragma omp critical
-                    t_parse += omp_get_wtime() - st;
-
-
-                #pragma omp barrier
-
-
-                if (DEBUG)
-                {
-                    #pragma omp barrier
-                    fprintf(stderr, "floats read: %zu\n", n_floats_read[i_subchunk]);
-
-                    /* float values were successfully read */
-                    for (size_t i = 0; i < n_floats_read[i_subchunk]; i++)
+                    if (DEBUG)
                     {
                         #pragma omp barrier
-                        fprintf(stderr, "%e", sub_p[i]);
+                        fprintf(stderr, "thread: %d\n\n\n", i_thread);
+                    }
 
-                        if (!((i + 1) % cols))
+                    int i_subchunk = i_thread;
+                    int n_subchunks = n_parsethreads;
+
+                    size_t subchunksize_lines = chunksize_lines / n_subchunks;
+
+                    char *subchunk = chunk0 + i_subchunk * subchunksize_lines * linesize;
+
+                    // если это последний локальный чанк, то добавить остаток локального чанка
+                    if (i_subchunk == n_subchunks - 1)
+                        subchunksize_lines += chunksize_lines % n_subchunks;
+
+
+                    if (DEBUG)
+                    {
+                        #pragma omp barrier
+                        fprintf(stderr, "subchunk: offset %ld, size_lines %ld\n\n\n",
+                                (size_t) (subchunk - chunk0), subchunksize_lines);
+                    }
+
+
+                    size_t linesize_floats = 32;
+
+                    float *sub_p = malloc(subchunksize_lines * linesize_floats * sizeof(float));
+
+
+                    double st = omp_get_wtime();
+
+                    n_floats_read[i_subchunk] = parsechunk(sub_p, linesize, subchunksize_lines, subchunk);
+
+                    #pragma omp critical
+                        t_parse += omp_get_wtime() - st;
+ 
+
+                    if (DEBUG)
+                    {
+                        #pragma omp barrier
+
+                        #pragma omp critical
                         {
-                            #pragma omp barrier
-                            fprintf(stderr, "\n");
-                        }
-                        else
-                        {
-                            #pragma omp barrier
-                            fprintf(stderr, " ");
+                            fprintf(stderr, "floats read: %zu\n", n_floats_read[i_subchunk]);
+
+                            /* float values were successfully read */
+                            for (size_t i = 0; i < n_floats_read[i_subchunk]; i++)
+                            {
+                                fprintf(stderr, "%e", sub_p[i]);
+
+                                if (!((i + 1) % cols))
+                                    fprintf(stderr, "\n");
+                                else
+                                    fprintf(stderr, " ");
+                            }
+
+                            fprintf(stderr, "\n\n");
                         }
                     }
-                }
 
 
-                size_t write_offset = 0;
+                    size_t write_offset = 0;
 
-                for (size_t j = 0; j < i_subchunk; j++)
-                    write_offset += n_floats_read[j];
+                    for (size_t j = 0; j < i_subchunk; j++)
+                        write_offset += n_floats_read[j];
 
-                if (DEBUG)
-                {
+
+                    if (DEBUG)
+                    {
+                        #pragma omp barrier
+                        fprintf(stderr, "thread %d: write offset: %ld\n\n\n", i_thread, write_offset);
+                    }
+                    
+                    if (TEST)
+                        assert(write_offset == subchunksize_lines * cols * i_subchunk);
+
+
                     #pragma omp barrier
-                    fprintf(stderr, "write offset: %ld\n", write_offset);
+
+                    memcpy(p + write_offset, sub_p, n_floats_read[i_subchunk] * sizeof(float));
+
+
+                    #pragma omp critical
+                        p += n_floats_read[i_subchunk];
+                    
+
+                    if (DEBUG)
+                    {
+                        #pragma omp barrier
+                        fprintf(stderr, "\n");
+                    }
                 }
-                
-                if (TEST)
-                    assert(write_offset == subchunksize_lines * cols * i_subchunk);
-
-                memcpy(p + write_offset, sub_p, n_floats_read[i_subchunk] * sizeof(float));
-
-
-                #pragma omp critical
-                    p += n_floats_read[i_subchunk];
-                
-                #pragma omp critical
-                    fflush(stderr);
-            // }
             }
+
 
             #pragma omp barrier
 
-            // swap
 
             #pragma omp master
             {
-                {
-                    char *temp = chunk0;
-                    chunk0 = chunk1;
-                    chunk1 = temp;
-                }
+                // swap
 
-                {
-                    size_t temp = n_lines_read_0;
-                    n_lines_read_0 = n_lines_read_1;
-                    n_lines_read_1 = temp;
-                }
+                char *temp = chunk0;
+                chunk0 = chunk1;
+                chunk1 = temp;
             }
+
 
             #pragma omp barrier
         }
@@ -280,10 +288,27 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
     free(chunk1);
 
 
+    if (DEBUG)
+    {
+        fprintf(stderr, "total floats read: %zu\n", nread);
+
+        /* float values were successfully read */
+        for (size_t i = 0; i < nread; i++)
+        {
+            fprintf(stderr, "%e", arr[i]);
+
+            if (!((i + 1) % cols))
+                fprintf(stderr, "\n");
+            else
+                fprintf(stderr, " ");
+        }
+    }
+
+
     if (VERBOSE)
     {
-        printf("read time: %f ms\n", t_read * 1000);
-        printf("parse time: %f ms\n", t_parse * 1000);
+        fprintf(stderr, "read time: %f ms\n", t_read * 1000);
+        fprintf(stderr, "parse time: %f ms\n", t_parse * 1000);
     }
 
     return nread;
