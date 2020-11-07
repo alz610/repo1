@@ -22,7 +22,7 @@ size_t getchunk(char *chunk, size_t linesize, size_t chunksize, FILE *fp)
 {
     size_t i;
 
-    // сброс массива
+    // сброс массива, запись нуль-терминаторов в строки чанка
     for (i = 0; i < chunksize; i++)
         chunk[linesize * i] = '\0';
 
@@ -40,7 +40,6 @@ size_t getchunk(char *chunk, size_t linesize, size_t chunksize, FILE *fp)
 /*
 Функция парсит чанка chunk и записывает распарсенные числа
 в позицию *p в записываемом массиве.
-Обновляет позицию *p.
 
 Ввод:
              *p -- позиция в записываемом массиве чисел
@@ -49,21 +48,20 @@ chunksize_lines -- длина чанка (в строках)
           chunk -- читаемый чанк
 
 Вывод:
-n_floats_read
+n_floats_read -- кол-во распарсенных чисел в чанке
 */
 int parsechunk(float *p, size_t linesize, size_t chunksize_lines, char *chunk)
 {
-    char *k;
-    float num;
 
-    size_t i = 0;
-    int _i = 0;
-    int cols = 5;  // кол-во чисел в строке
-
+    size_t i = 0; // смещение положения записи p
+    int cols = 5; // точное кол-во чисел в строке
 
     for (size_t i_line = 0; i_line < chunksize_lines; i_line++)
     {
+        int n_parsed_nums_in_line = 0; // кол-во распарсенных чисел в строке line
+
         char *line = chunk + linesize * i_line;
+
 
         if (DEBUG)
         {
@@ -71,33 +69,47 @@ int parsechunk(float *p, size_t linesize, size_t chunksize_lines, char *chunk)
             fprintf(stderr, "chunk line read: %s\n", line);
         }
 
-        k = strtok(line, " ");
-        _i = 0;
 
-        while (k != NULL)
+        // извлечь первую подстроку строки line, разделенную пробелом
+        char *substring = strtok(line, " ");
+
+        while (substring != NULL)
         {
-            if (num = atof(k))
+            float num = atof(substring);
+
+            // если распарсено число в подстроке
+            if (num)
             {
                 p[i++] = num;
-                _i++;
+
+                if (TEST)
+                    n_parsed_nums_in_line++;
             }
 
-            k = strtok(NULL, " ");
+            // извлечь следующую подстроку строки line, разделенную пробелом
+            substring = strtok(NULL, " ");
         }
 
         if (TEST)
         {
+            // если что-либо распарсено в строке line, то проверка, верное ли кол-во распарсенных чисел
             if (*line != '\0')
-                assert(cols == _i);
+                assert(cols == n_parsed_nums_in_line);
         }
     }
 
 
-    // assert(chunksize * cols == i);
+    // ассерт не наладен
+
+    // if (TEST)
+    //     assert(chunksize * cols == i);
+
 
     if (DEBUG)
         fprintf(stderr, "\n\n");
 
+
+    // кол-во распарсенных чисел в чанке
     size_t n_floats_read = i;
 
     return n_floats_read;
@@ -107,7 +119,7 @@ int parsechunk(float *p, size_t linesize, size_t chunksize_lines, char *chunk)
 Парсинг файла fp в массив чисел arr.
 
 Ввод:
-            arr -- записываемый массив
+            arr -- записываемый массив чисел
        linesize -- длина строк чанка
 chunksize_lines -- длина чанка (в строках)
              fp -- читаемый файл
@@ -117,54 +129,78 @@ nread -- кол-во прочитанных чисел
 */
 size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
 {
-    double t_read = 0, t_parse = 0;
-    size_t n_lines_read = 0;
+    int cols = 5;  // кол-во чисел в строке файла
+    double t_read = 0, t_parse = 0;  // время чтения из файла чанков и парсинга чанков
+    size_t n_lines_read = 0;  // кол-во прочитанных строк из файла для чанка
 
     char *chunk0 = malloc(chunksize_lines * linesize * sizeof(char));   // предыдущий чанк
     char *chunk1 = malloc(chunksize_lines * linesize * sizeof(char));   // следующий чанк
 
-    float *p = arr;  // позиция в записываемом массиве
-    int n_parsethreads = 3;
-    size_t *n_floats_read;
+
+    /*
+    Структура чанков:
+    смещение     | данные
+    ------------------------------------------------------------
+    linesize * 0 | начало строки, меньшей linesize
+    linesize * 1 | начало строки, меньшей linesize
+    linesize * 2 | начало строки, меньшей linesize
+    ...
+    linesize * chunksize_lines | начало строки, меньшей linesize
+    */
 
 
-    {
-        double st = omp_get_wtime();
+    float *p = arr;  // позиция в записываемом массиве чисел
+    int n_parsethreads = 3;  // кол-во потоков парсинга чанка во вложенной параллельной секции
+ 
+    // массив c размером `n_parsethreads` служит для записи кол-ва чисел, распарсенных потоками парсинга
+    size_t *n_floats_read;  
 
-        n_lines_read = getchunk(chunk0, linesize, chunksize_lines, fp);
-
-        t_read += omp_get_wtime() - st;
-    }
-
-
-    // int _i = 0;
-    int cols = 5;  // кол-во чисел в строке
-
-
+    // включение вложенных параллельных секций
     omp_set_nested(1);
 
-    #pragma omp parallel num_threads(2) // shared(p, n_subchunks, n_floats_read, last_thread_num)
+    /*
+    Параллельная секция с 2 потоками:
+      - нулевой поток, читающий чанк из файла;
+      - первый поток с вложенной параллельной секцией с `n_parsethreads` потоков парсинга чанка.
+    */
+    #pragma omp parallel num_threads(2)
     {
+        // область кода для исполения главным потоком (нулевой поток)
         #pragma omp master
+        {
+            // выделение массива для хранения кол-ва чисел, распарсенных потоками парсинга
             n_floats_read = malloc(n_parsethreads * sizeof(size_t));
+
+
+            double st = omp_get_wtime();
+
+            // чтение первого чанка из файла fp и запись его в массив chunk0
+            n_lines_read = getchunk(chunk0, linesize, chunksize_lines, fp);
+
+            t_read += omp_get_wtime() - st;
+        }
 
         #pragma omp barrier
 
 
-        while (n_lines_read != 0)
+        // когда есть новые прочитанные строки в файле fp
+        while (n_lines_read)
         {
+            // если нулевой поток
             if (omp_get_thread_num() == 0)
             {
                 double st = omp_get_wtime();
 
+                // чтение следующего чанка из файла fp в массив chunk1
                 n_lines_read = getchunk(chunk1, linesize, chunksize_lines, fp);
 
-                // #pragma omp critical
-                    t_read += omp_get_wtime() - st;
+                t_read += omp_get_wtime() - st;
             }
 
-            else
+            // если первый поток
+            if (omp_get_thread_num() == 1)
             {
+                // вложенная параллельная секция с `n_parsethreads` потоками парсинга
                 #pragma omp parallel num_threads(n_parsethreads)
                 {
                     int i_thread = omp_get_thread_num();
@@ -178,11 +214,14 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
                     int i_subchunk = i_thread;
                     int n_subchunks = n_parsethreads;
 
+                    // размер подчанка потока в строках
                     size_t subchunksize_lines = chunksize_lines / n_subchunks;
 
+                    // subchunk -- начало подчанка
                     char *subchunk = chunk0 + i_subchunk * subchunksize_lines * linesize;
 
-                    // если это последний локальный чанк, то добавить остаток локального чанка
+
+                    // если это последний подчанк, то добавить остаток подчанка
                     if (i_subchunk == n_subchunks - 1)
                         subchunksize_lines += chunksize_lines % n_subchunks;
 
@@ -195,8 +234,10 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
                     }
 
 
+
                     size_t linesize_floats = 32;
 
+                    // распарсенные числа подчанков
                     float *sub_p = malloc(subchunksize_lines * linesize_floats * sizeof(float));
 
 
@@ -232,6 +273,10 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
                     }
 
 
+                    // вычисление смещения write_offset положения записи p
+                    // распарсенных чисел подчанка subchunk
+                    // в массив распарсенных чисел arr
+
                     size_t write_offset = 0;
 
                     for (size_t j = 0; j < i_subchunk; j++)
@@ -245,14 +290,23 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
                     }
 
 
+                    // ассерт не наладен
+
                     // if (TEST)
                     //     assert(write_offset == subchunksize_lines * cols * i_subchunk);
 
+
+                    // запись массива sub_p по смещению write_offset положения записи p
+                    // в массив распарсенных чисел arr
 
                     #pragma omp barrier
 
                     memcpy(p + write_offset, sub_p, n_floats_read[i_subchunk] * sizeof(float));
 
+
+                    // обновление позиции p
+
+                    #pragma omp barrier
 
                     #pragma omp critical
                         p += n_floats_read[i_subchunk];
@@ -272,7 +326,7 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
 
             #pragma omp master
             {
-                // swap
+                // замена
 
                 char *temp = chunk0;
                 chunk0 = chunk1;
