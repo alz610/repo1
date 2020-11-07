@@ -57,20 +57,15 @@ check: <проверка массива распарсеных чисел, ве�
 ## Компиляция
 
 ```
-make
+$ make
 ```
 
 ## Запуск
 
-Программа на си:
+Запуск тестов на си:
 ```
->>> cd repo1/
->>> export LD_LIBRARY_PATH=$PWD:$LD_LIBRARY_PATH
->>> ./main.c
-```
-
-Скрипт на питоне:
-```
->>> cd repo1/
->>> python main.py
+$ cd repo1/
+$ export LD_LIBRARY_PATH=$PWD:$LD_LIBRARY_PATH
+$ ./test0.out
+$ ./test1.out
 ```

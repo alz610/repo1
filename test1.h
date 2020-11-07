@@ -1,0 +1,1 @@
+int DEBUG = 0, VERBOSE = 0, TEST = 0;
