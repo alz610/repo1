@@ -63,7 +63,7 @@ int parsechunk(float *p, size_t linesize, size_t chunksize_lines, char *chunk)
         char *line = chunk + linesize * i_line;
 
 
-        if (DEBUG)
+        if (DEBUG_LVL >= 2)
         {
             #pragma omp barrier
             fprintf(stderr, "chunk line read: %s\n", line);
@@ -105,7 +105,7 @@ int parsechunk(float *p, size_t linesize, size_t chunksize_lines, char *chunk)
     //     assert(chunksize * cols == i);
 
 
-    if (DEBUG)
+    if (DEBUG_LVL >= 2)
         fprintf(stderr, "\n\n");
 
 
@@ -150,7 +150,7 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
 
 
     float *p = arr;  // позиция в записываемом массиве чисел
-    int n_parsethreads = 3;  // кол-во потоков парсинга чанка во вложенной параллельной секции
+    int n_parsethreads = 1;  // кол-во потоков парсинга чанка во вложенной параллельной секции
  
     // массив c размером `n_parsethreads` служит для записи кол-ва чисел, распарсенных потоками парсинга
     size_t *n_floats_read;  
@@ -193,6 +193,7 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
 
                 // чтение следующего чанка из файла fp в массив chunk1
                 n_lines_read = getchunk(chunk1, linesize, chunksize_lines, fp);
+                #pragma omp flush (n_lines_read)
 
                 t_read += omp_get_wtime() - st;
             }
@@ -205,7 +206,7 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
                 {
                     int i_thread = omp_get_thread_num();
 
-                    if (DEBUG)
+                    if (DEBUG_LVL >= 2)
                     {
                         #pragma omp barrier
                         fprintf(stderr, "thread: %d\n\n\n", i_thread);
@@ -226,13 +227,12 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
                         subchunksize_lines += chunksize_lines % n_subchunks;
 
 
-                    if (DEBUG)
+                    if (DEBUG_LVL >= 2)
                     {
                         #pragma omp barrier
                         fprintf(stderr, "subchunk: offset %ld, size_lines %ld\n\n\n",
                                 (size_t) (subchunk - chunk0), subchunksize_lines);
                     }
-
 
 
                     size_t linesize_floats = 32;
@@ -249,7 +249,7 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
                         t_parse += omp_get_wtime() - st;
  
 
-                    if (DEBUG)
+                    if (DEBUG_LVL >= 2)
                     {
                         #pragma omp barrier
 
@@ -283,7 +283,7 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
                         write_offset += n_floats_read[j];
 
 
-                    if (DEBUG)
+                    if (DEBUG_LVL >= 2)
                     {
                         #pragma omp barrier
                         fprintf(stderr, "thread %d: write offset: %ld\n\n\n", i_thread, write_offset);
@@ -299,7 +299,7 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
                     // запись массива sub_p по смещению write_offset положения записи p
                     // в массив распарсенных чисел arr
 
-                    #pragma omp barrier
+                    // #pragma omp barrier
 
                     memcpy(p + write_offset, sub_p, n_floats_read[i_subchunk] * sizeof(float));
 
@@ -312,7 +312,7 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
                         p += n_floats_read[i_subchunk];
                     
 
-                    if (DEBUG)
+                    if (DEBUG_LVL >= 2)
                     {
                         #pragma omp barrier
                         fprintf(stderr, "\n");
@@ -348,10 +348,14 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
     free(chunk1);
 
 
-    if (DEBUG)
+    if (DEBUG_LVL >= 1)
     {
         fprintf(stderr, "total floats read: %zu\n", nread);
+    }
 
+
+    if (DEBUG_LVL >= 2)
+    {
         /* float values were successfully read */
         for (size_t i = 0; i < nread; i++)
         {
@@ -367,7 +371,7 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
     }
 
 
-    if (VERBOSE)
+    if (DEBUG_LVL >= 1)
     {
         fprintf(stderr, "read time: %f ms\n", t_read * 1000);
         fprintf(stderr, "parse time: %f ms\n", t_parse * 1000);
