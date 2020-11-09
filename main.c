@@ -16,11 +16,11 @@ int test0()
     TEST = 1;       // воспроизведение ассертов
 
 
-    size_t cols = 5;                // длина строки текста (в числах float)
-    size_t arrsize = 1000000;       // длина массива распарсенных чисел (в числах float)
-    size_t chunksize_ = 10000;         // длина чанка (в числах float)
+    size_t cols = 5;                    // длина строки текста (в числах float)
+    size_t arrsize = 1000000;           // длина массива распарсенных чисел (в числах float)
+    size_t chunksize_ = 10000;          // длина чанка (в числах float)
 
-    size_t linesize = 0x100;                  // длина строк чанка (в символах char)
+    size_t linesize = 0x100;                // длина строк чанка (в символах char)
     size_t chunksize = chunksize_ / cols;   // длина чанка (в строках)
 
 

@@ -443,8 +443,8 @@ chunk line read: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-0
 
 chunk line read: 8.127293e+00 2.231672e+01 3.846160e-03 1.681731e-01 5.090333e+02
 
-test1.out: parse.c:97: parsechunk: Assertion `cols == n_parsed_nums_in_line' failed.
-test1.out: parse.c:97: parsechunk: Assertion `cols == n_parsed_nums_in_line' failed.
+main.out: parse.c:97: parsechunk: Assertion `cols == n_parsed_nums_in_line' failed.
+main.out: parse.c:97: parsechunk: Assertion `cols == n_parsed_nums_in_line' failed.
 -------------------------
 run test
 
@@ -1435,7 +1435,7 @@ subchunk: offset 0, size_lines 2
 chunk line read: 2.680943e+00 2.205157e-03 1.676864e+02 5.230805e+00 1.951069e+01
 
 chunk line read: 
-test1.out: parse.c:97: parsechunk: Assertion `cols == n_parsed_nums_in_line' failed.
+main.out: parse.c:97: parsechunk: Assertion `cols == n_parsed_nums_in_line' failed.
 chunk line read: 2.617648e+00 3.672331e+01 1.377019e+01 1.991189e-02 7.084127e-01
 
 -------------------------
@@ -1463,7 +1463,7 @@ chunk line read: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-0
 
 chunk line read: 3.267618e-02 1.643332e+01 3.252714e-01 5.411628e-01 4.373466e-03
 
-test1.out: parse.c:97: parsechunk: Assertion `cols == n_parsed_nums_in_line' failed.
+main.out: parse.c:97: parsechunk: Assertion `cols == n_parsed_nums_in_line' failed.
 -------------------------
 run test
 
@@ -2248,7 +2248,7 @@ chunk line read: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-0
 
 chunk line read: 3.267618e-02 1.643332e+01 3.252714e-01 5.411628e-01 4.373466e-03
 
-test1.out: parse.c:97: parsechunk: Assertion `cols == n_parsed_nums_in_line' failed.
+main.out: parse.c:97: parsechunk: Assertion `cols == n_parsed_nums_in_line' failed.
 -------------------------
 run test
 
@@ -2888,8 +2888,8 @@ chunk line read: 1.014477e-02 1.596934e-01 1.139246e-01 9.679427e+01 1.287466e-0
 
 chunk line read: 2.255975e+02 3.934291e+00 4.371512e+01 9.389749e+02 1.068752e+01
 
-test1.out: parse.c:97: parsechunk: Assertion `cols == n_parsed_nums_in_line' failed.
-test1.out: parse.c:97: parsechunk: Assertion `cols == n_parsed_nums_in_line' failed.
+main.out: parse.c:97: parsechunk: Assertion `cols == n_parsed_nums_in_line' failed.
+main.out: parse.c:97: parsechunk: Assertion `cols == n_parsed_nums_in_line' failed.
 -------------------------
 run test
 
@@ -3335,7 +3335,7 @@ chunk line read: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-0
 
 chunk line read: 8.127293e+00 2.231672e+01 3.846160e-03 1.681731e-01 5.090333e+02
 
-test1.out: parse.c:97: parsechunk: Assertion `cols == n_parsed_nums_in_line' failed.
+main.out: parse.c:97: parsechunk: Assertion `cols == n_parsed_nums_in_line' failed.
 -------------------------
 run test
 
@@ -3361,7 +3361,7 @@ chunk line read: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-0
 
 chunk line read: 3.267618e-02 1.643332e+01 3.252714e-01 5.411628e-01 4.373466e-03
 
-test1.out: parse.c:97: parsechunk: Assertion `cols == n_parsed_nums_in_line' failed.
+main.out: parse.c:97: parsechunk: Assertion `cols == n_parsed_nums_in_line' failed.
 -------------------------
 run test
 
