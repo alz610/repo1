@@ -4,4 +4,4 @@ int parsechunk(float *p, size_t linesize, size_t chunksize, char *chunk);
 
 size_t parsefile(float *arr, size_t linesize, size_t chunksize, FILE *fp);
 
-extern int DEBUG_LVL = 0, TEST = 0;
+extern int DEBUG_LVL, TEST;

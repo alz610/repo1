@@ -52,7 +52,6 @@ n_floats_read -- кол-во распарсенных чисел в чанке
 */
 int parsechunk(float *p, size_t linesize, size_t chunksize_lines, char *chunk)
 {
-
     size_t i = 0; // смещение положения записи p
     int cols = 5; // точное кол-во чисел в строке
 
@@ -114,6 +113,7 @@ int parsechunk(float *p, size_t linesize, size_t chunksize_lines, char *chunk)
 
     return n_floats_read;
 }
+
 
 /*
 Парсинг файла fp в массив чисел arr.
@@ -354,7 +354,7 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
     }
 
 
-    if (DEBUG_LVL >= 2)
+    if (DEBUG_LVL >= 1)
     {
         /* float values were successfully read */
         for (size_t i = 0; i < nread; i++)
