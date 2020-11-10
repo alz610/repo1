@@ -4,6 +4,7 @@
 #include <omp.h>
 #include "parse.h"
 #include "main.h"
+#include <assert.h>
 
 
 /*
@@ -38,7 +39,18 @@ int test0()
     if (DEBUG_LVL >= 1)
     {
         fprintf(stderr, "total time: %f ms\n", total * 1000);
-        // fprintf(stderr, "total floats read: %zu\n", nread);
+        fprintf(stderr, "total floats read: %zu\n", nread);
+
+        /* float values were successfully read */
+        for (size_t i = 0; i < nread; i++)
+        {
+            fprintf(stderr, "%e", arr[i]);
+
+            if (!((i + 1) % cols))
+                fprintf(stderr, "\n");
+            else
+                fprintf(stderr, " ");
+        }
     }
 
 
@@ -55,7 +67,7 @@ int test0()
 Программа запускает парсинг данных из строки `data` в массив чисел `arr`,
 включает отладочную информацию и ассерты, и замеряет время исполнения.
 */
-int test1()
+int test0_fakefile()
 {
     DEBUG_LVL = 2;  // вывод отладочной информации
     TEST = 1;       // воспроизведение ассертов
@@ -112,6 +124,55 @@ int test1()
     free(arr);
     
     fflush(stderr);
+
+    return nread;
+}
+
+
+/*
+Программа запускает парсинг файла `data.txt` в массив чисел `arr`,
+замеряет время исполнения.
+*/
+int test1()
+{
+    DEBUG_LVL = 1;  // вывод отладочной информации
+    // TEST = 1;       // воспроизведение ассертов
+
+    size_t nums_in_data = 1000000;      // кол-во чисел в данных data.txt
+
+    size_t cols = 5;                    // длина строки текста (в числах float)
+    size_t arrsize = nums_in_data;      // длина массива распарсенных чисел (в числах float)
+    size_t chunksize_ = 10000;          // длина чанка (в числах float)
+
+    size_t linesize = 0x100;                // длина строк чанка (в символах char)
+    size_t chunksize = chunksize_ / cols;   // длина чанка (в строках)
+
+
+    FILE *fp = fopen("data.txt", "r");              // читаемый файл
+    float *arr = malloc(arrsize * sizeof(float));   // записываемый массив чисел
+
+
+    double st = omp_get_wtime();
+
+    size_t nread = parsefile(arr, linesize, chunksize, fp);
+
+    double total = omp_get_wtime() - st;
+
+
+    if (DEBUG_LVL >= 1)
+    {
+        fprintf(stderr, "total time: %f ms\n", total * 1000);
+        fprintf(stderr, "total floats read: %zu\n", nread);
+    }
+
+
+    fclose(fp);
+    free(arr);
+
+    fflush(stderr);
+
+    // проверка, верно ли распарсены данные
+    assert(nread == nums_in_data);
 
     return nread;
 }

@@ -150,7 +150,7 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
 
 
     float *p = arr;  // позиция в записываемом массиве чисел
-    int n_parsethreads = 1;  // кол-во потоков парсинга чанка во вложенной параллельной секции
+    int n_parsethreads = 3;  // кол-во потоков парсинга чанка во вложенной параллельной секции
  
     // массив c размером `n_parsethreads` служит для записи кол-ва чисел, распарсенных потоками парсинга
     size_t *n_floats_read;  
@@ -348,27 +348,27 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
     free(chunk1);
 
 
-    if (DEBUG_LVL >= 1)
-    {
-        fprintf(stderr, "total floats read: %zu\n", nread);
-    }
+    // if (DEBUG_LVL >= 2)
+    // {
+    //     fprintf(stderr, "total floats read: %zu\n", nread);
+    // }
 
 
-    if (DEBUG_LVL >= 1)
-    {
-        /* float values were successfully read */
-        for (size_t i = 0; i < nread; i++)
-        {
-            fprintf(stderr, "%e", arr[i]);
+    // if (DEBUG_LVL >= 2)
+    // {
+    //     /* float values were successfully read */
+    //     for (size_t i = 0; i < nread; i++)
+    //     {
+    //         fprintf(stderr, "%e", arr[i]);
 
-            if (!((i + 1) % cols))
-                fprintf(stderr, "\n");
-            else
-                fprintf(stderr, " ");
-        }
+    //         if (!((i + 1) % cols))
+    //             fprintf(stderr, "\n");
+    //         else
+    //             fprintf(stderr, " ");
+    //     }
 
-        fprintf(stderr, "\n\n");
-    }
+    //     fprintf(stderr, "\n\n");
+    // }
 
 
     if (DEBUG_LVL >= 1)
