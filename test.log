@@ -1,11 +1,12 @@
+========================
 parse threads: 1
 thread 1 before birrier 1
 thread 0 before birrier 1
 thread 0 after birrier 1
 thread 1 after birrier 1
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=1
 BEGIN_LOOP thread 1 n_lines_read = 20000 counter=1
 thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=1
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
 thread 0 before birrier 2
@@ -83,9 +84,9 @@ thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 20000 counter=5
 thread 0 after inner barrier 2
 END_LOOP thread 0 n_lines_read = 20000 counter=5
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=6
 BEGIN_LOOP thread 1 n_lines_read = 20000 counter=6
 thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=6
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
 thread 0 before birrier 2
@@ -171,392 +172,21 @@ thread 0 of 2 before inner barrier 1
 thread 0 before birrier 2
 thread 0 after birrier 2
 thread 1 of 2 before inner barrier 1
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 0 counter=11
-thread 0 exit loop !!!!
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 0 counter=11
 thread 1 exit loop !!!!
-read time: 31.476472 ms
-parse time: 1555.867235 ms
-total time: 249.217931 ms
-total floats read: 1000000
-thread 1 before birrier 1
-thread 0 before birrier 1
-thread 0 after birrier 1
-thread 1 after birrier 1
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=1
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=1
-thread 1 n_lines_read = 20000
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 0 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=1
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=1
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=2
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=2
-thread 1 n_lines_read = 20000
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 0 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=2
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=3
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=3
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 0 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=3
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=3
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=4
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=4
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 0 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=4
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=4
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=5
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=5
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 0 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=5
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=5
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=6
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=6
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 0 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=6
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=6
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=7
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=7
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 0 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=7
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=7
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=8
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=8
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 0 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=8
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=8
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=9
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=9
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 0 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=9
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=9
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=10
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=10
-thread 0 n_lines_read = 1
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 0 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 1 counter=10
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 1 counter=10
-BEGIN_LOOP thread 1 n_lines_read = 1 counter=11
-thread 1 n_lines_read = 1
-BEGIN_LOOP thread 0 n_lines_read = 1 counter=11
-thread 0 n_lines_read = 0
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 0 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
 thread 0 after inner barrier 2
 END_LOOP thread 0 n_lines_read = 0 counter=11
 thread 0 exit loop !!!!
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 0 counter=11
-thread 1 exit loop !!!!
-read time: 29.792863 ms
-parse time: 1545.418690 ms
-total time: 248.260212 ms
+read time: 33.243409 ms
+parse time: 1565.528189 ms
+total time: 255.498195 ms
 total floats read: 1000000
-thread 1 before birrier 1
-thread 0 before birrier 1
-thread 0 after birrier 1
-thread 1 after birrier 1
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=1
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=1
-thread 1 n_lines_read = 20000
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 0 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=1
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=1
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=2
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=2
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 0 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=2
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=3
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=3
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 0 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=3
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=3
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=4
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=4
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 0 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=4
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=4
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=5
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=5
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 0 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=5
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=5
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=6
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=6
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 0 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=6
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=6
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=7
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=7
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 0 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=7
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=7
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=8
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=8
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 0 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=8
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=8
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=9
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=9
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 0 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=9
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=9
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=10
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=10
-thread 0 n_lines_read = 1
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 0 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 1 counter=10
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 1 counter=10
-BEGIN_LOOP thread 1 n_lines_read = 1 counter=11
-thread 1 n_lines_read = 1
-BEGIN_LOOP thread 0 n_lines_read = 1 counter=11
-thread 0 before birrier 2
-thread 0 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 0 n_lines_read = 0
-thread 0 of 2 before inner barrier 1
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 0 counter=11
-thread 0 exit loop !!!!
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 0 counter=11
-thread 1 exit loop !!!!
-read time: 32.822368 ms
-parse time: 1540.434744 ms
-total time: 256.204833 ms
-total floats read: 1000000
+------------------------
 thread 1 before birrier 1
 thread 0 before birrier 1
 thread 0 after birrier 1
@@ -729,20 +359,21 @@ thread 0 of 2 before inner barrier 1
 thread 0 before birrier 2
 thread 0 after birrier 2
 thread 1 of 2 before inner barrier 1
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 0 counter=11
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 0 counter=11
 thread 1 exit loop !!!!
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 0 counter=11
 thread 0 exit loop !!!!
-read time: 29.560125 ms
-parse time: 1540.203885 ms
-total time: 251.829699 ms
+read time: 28.369151 ms
+parse time: 1548.439794 ms
+total time: 246.370356 ms
 total floats read: 1000000
+------------------------
 thread 1 before birrier 1
 thread 0 before birrier 1
 thread 0 after birrier 1
@@ -759,13 +390,13 @@ thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=1
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 20000 counter=1
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=2
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=1
 BEGIN_LOOP thread 1 n_lines_read = 20000 counter=2
 thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=2
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
 thread 0 before birrier 2
@@ -871,13 +502,13 @@ thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=8
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 20000 counter=8
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=9
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=8
 BEGIN_LOOP thread 1 n_lines_read = 20000 counter=9
 thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=9
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
 thread 0 before birrier 2
@@ -915,22 +546,397 @@ thread 0 of 2 before inner barrier 1
 thread 0 before birrier 2
 thread 0 after birrier 2
 thread 1 of 2 before inner barrier 1
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 0 counter=11
-thread 0 exit loop !!!!
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 0 counter=11
 thread 1 exit loop !!!!
-read time: 28.017183 ms
-parse time: 1541.114437 ms
-total time: 253.259780 ms
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 0 counter=11
+thread 0 exit loop !!!!
+read time: 28.694871 ms
+parse time: 1546.189234 ms
+total time: 247.721947 ms
 total floats read: 1000000
+------------------------
+thread 1 before birrier 1
+thread 0 before birrier 1
+thread 0 after birrier 1
+thread 1 after birrier 1
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=1
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=1
+thread 1 n_lines_read = 20000
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=1
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=1
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=2
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=2
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=2
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=3
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=3
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=3
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=3
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=4
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=4
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=4
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=4
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=5
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=5
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=5
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=5
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=6
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=6
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=6
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=6
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=7
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=7
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=7
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=7
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=8
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=8
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=8
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=8
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=9
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=9
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=9
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=9
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=10
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=10
+thread 0 n_lines_read = 1
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 1 counter=10
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 1 counter=10
+BEGIN_LOOP thread 1 n_lines_read = 1 counter=11
+thread 1 n_lines_read = 1
+BEGIN_LOOP thread 0 n_lines_read = 1 counter=11
+thread 0 n_lines_read = 0
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 0 counter=11
+thread 1 exit loop !!!!
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 0 counter=11
+thread 0 exit loop !!!!
+read time: 29.329300 ms
+parse time: 1556.919032 ms
+total time: 252.434721 ms
+total floats read: 1000000
+------------------------
+thread 1 before birrier 1
+thread 0 before birrier 1
+thread 0 after birrier 1
+thread 1 after birrier 1
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=1
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=1
+thread 1 n_lines_read = 20000
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=1
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=1
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=2
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=2
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=2
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=2
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=3
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=3
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=3
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=3
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=4
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=4
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=4
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=4
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=5
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=5
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=5
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=5
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=6
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=6
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=6
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=6
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=7
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=7
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=7
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=7
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=8
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=8
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=8
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=8
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=9
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=9
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=9
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=9
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=10
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=10
+thread 0 n_lines_read = 1
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 1 counter=10
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 1 counter=10
+BEGIN_LOOP thread 1 n_lines_read = 1 counter=11
+thread 1 n_lines_read = 1
+BEGIN_LOOP thread 0 n_lines_read = 1 counter=11
+thread 0 n_lines_read = 0
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 0 counter=11
+thread 1 exit loop !!!!
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 0 counter=11
+thread 0 exit loop !!!!
+read time: 28.722133 ms
+parse time: 1550.382288 ms
+total time: 246.728446 ms
+total floats read: 1000000
+------------------------
 errors: 0
-
+========================
 parse threads: 2
 thread 1 before birrier 1
 thread 0 before birrier 1
@@ -968,10 +974,10 @@ thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=2
 thread 0 after inner barrier 2
 END_LOOP thread 0 n_lines_read = 20000 counter=2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=2
 BEGIN_LOOP thread 1 n_lines_read = 20000 counter=3
 thread 1 n_lines_read = 20000
 BEGIN_LOOP thread 0 n_lines_read = 20000 counter=3
@@ -986,13 +992,13 @@ thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=3
 thread 0 after inner barrier 2
 END_LOOP thread 0 n_lines_read = 20000 counter=3
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=3
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=4
 BEGIN_LOOP thread 1 n_lines_read = 20000 counter=4
 thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=4
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
 thread 0 before birrier 2
@@ -1013,10 +1019,10 @@ thread 1 n_lines_read = 20000
 BEGIN_LOOP thread 0 n_lines_read = 20000 counter=5
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
-thread 1 before birrier 2
 thread 0 before birrier 2
-thread 1 after birrier 2
+thread 1 before birrier 2
 thread 0 after birrier 2
+thread 1 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
@@ -1067,10 +1073,10 @@ thread 1 n_lines_read = 20000
 BEGIN_LOOP thread 0 n_lines_read = 20000 counter=8
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
 thread 1 before birrier 2
-thread 0 after birrier 2
+thread 0 before birrier 2
 thread 1 after birrier 2
+thread 0 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
@@ -1085,220 +1091,10 @@ thread 1 n_lines_read = 20000
 BEGIN_LOOP thread 0 n_lines_read = 20000 counter=9
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 0 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=9
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=9
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=10
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=10
-thread 0 n_lines_read = 1
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 0 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 1 counter=10
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 1 counter=10
-BEGIN_LOOP thread 1 n_lines_read = 1 counter=11
-thread 1 n_lines_read = 1
-BEGIN_LOOP thread 0 n_lines_read = 1 counter=11
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 0 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 0 n_lines_read = 0
-thread 0 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 0 counter=11
-thread 1 exit loop !!!!
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 0 counter=11
-thread 0 exit loop !!!!
-read time: 30.658184 ms
-parse time: 691.247939 ms
-total time: 130.729256 ms
-total floats read: 771730
-main.out: main.c:229: test1: Assertion `nread == nums_in_data' failed.
-test.sh: line 6: 482423 Aborted                 (core dumped) ./main.out $1
-thread 1 before birrier 1
-thread 0 before birrier 1
-thread 0 after birrier 1
-thread 1 after birrier 1
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=1
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=1
-thread 1 n_lines_read = 20000
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 1 after birrier 2
-thread 0 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=1
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=1
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=2
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=2
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 0 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=2
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=3
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=3
-thread 1 n_lines_read = 20000
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 0 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=3
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=3
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=4
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=4
-thread 1 n_lines_read = 20000
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 1 after birrier 2
-thread 0 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=4
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=4
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=5
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=5
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 0 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=5
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=5
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=6
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=6
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
 thread 1 before birrier 2
 thread 0 before birrier 2
 thread 1 after birrier 2
 thread 0 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=6
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=6
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=7
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=7
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 0 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=7
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=7
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=8
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=8
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 0 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=8
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=8
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=9
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=9
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 0 after birrier 2
-thread 1 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
@@ -1336,22 +1132,23 @@ thread 1 before birrier 2
 thread 0 after birrier 2
 thread 1 after birrier 2
 thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 0 counter=11
-thread 1 exit loop !!!!
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
 thread 0 after inner barrier 2
 END_LOOP thread 0 n_lines_read = 0 counter=11
 thread 0 exit loop !!!!
-read time: 33.446473 ms
-parse time: 681.976653 ms
-total time: 136.272226 ms
-total floats read: 746011
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 0 counter=11
+thread 1 exit loop !!!!
+read time: 30.509144 ms
+parse time: 708.878441 ms
+total time: 133.049268 ms
+total floats read: 751794
 main.out: main.c:229: test1: Assertion `nread == nums_in_data' failed.
-test.sh: line 6: 482437 Aborted                 (core dumped) ./main.out $1
+test.sh: line 8: 486454 Aborted                 (core dumped) ./main.out $1
+------------------------
 thread 1 before birrier 1
 thread 0 before birrier 1
 thread 0 after birrier 1
@@ -1366,224 +1163,14 @@ thread 1 before birrier 2
 thread 0 after birrier 2
 thread 1 after birrier 2
 thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
 thread 0 after inner barrier 2
 END_LOOP thread 0 n_lines_read = 20000 counter=1
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=2
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=2
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 0 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=2
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=3
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=3
-thread 1 n_lines_read = 20000
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 0 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=3
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=3
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=4
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=4
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 0 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=4
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=4
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=5
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=5
-thread 1 n_lines_read = 20000
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 0 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=5
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=5
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=6
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=6
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 0 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=6
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=6
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=7
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=7
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 0 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=7
-END_LOOP thread 0 n_lines_read = 20000 counter=7
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=8
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=8
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 0 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=8
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=8
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=9
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=9
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 0 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=9
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=9
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=10
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=10
-thread 0 n_lines_read = 1
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 0 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 1 counter=10
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 1 counter=10
-BEGIN_LOOP thread 1 n_lines_read = 1 counter=11
-thread 1 n_lines_read = 1
-BEGIN_LOOP thread 0 n_lines_read = 1 counter=11
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 0 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 0 n_lines_read = 0
-thread 0 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 0 counter=11
-thread 1 exit loop !!!!
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 0 counter=11
-thread 0 exit loop !!!!
-read time: 30.984187 ms
-parse time: 672.722419 ms
-total time: 133.215072 ms
-total floats read: 744774
-main.out: main.c:229: test1: Assertion `nread == nums_in_data' failed.
-test.sh: line 6: 482452 Aborted                 (core dumped) ./main.out $1
-thread 1 before birrier 1
-thread 0 before birrier 1
-thread 0 after birrier 1
-thread 1 after birrier 1
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=1
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=1
-thread 1 n_lines_read = 20000
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 0 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 20000 counter=1
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=1
 BEGIN_LOOP thread 1 n_lines_read = 20000 counter=2
 thread 1 n_lines_read = 20000
 BEGIN_LOOP thread 0 n_lines_read = 20000 counter=2
@@ -1625,8 +1212,430 @@ thread 1 n_lines_read = 20000
 BEGIN_LOOP thread 0 n_lines_read = 20000 counter=4
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
+thread 1 before birrier 2
+thread 0 before birrier 2
+thread 1 after birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=4
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=4
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=5
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=5
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
 thread 0 before birrier 2
 thread 1 before birrier 2
+thread 0 after birrier 2
+thread 1 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=5
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=5
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=6
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=6
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 1 before birrier 2
+thread 0 before birrier 2
+thread 1 after birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=6
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=6
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=7
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=7
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 1 before birrier 2
+thread 0 after birrier 2
+thread 1 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=7
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=7
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=8
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=8
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 1 before birrier 2
+thread 0 after birrier 2
+thread 1 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=8
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=8
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=9
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=9
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 1 before birrier 2
+thread 0 after birrier 2
+thread 1 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=9
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=9
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=10
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=10
+thread 1 n_lines_read = 20000
+thread 0 n_lines_read = 1
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 1 before birrier 2
+thread 0 after birrier 2
+thread 1 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 1 counter=10
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 1 counter=10
+BEGIN_LOOP thread 1 n_lines_read = 1 counter=11
+thread 1 n_lines_read = 1
+BEGIN_LOOP thread 0 n_lines_read = 1 counter=11
+thread 0 before birrier 2
+thread 1 before birrier 2
+thread 0 after birrier 2
+thread 1 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 0 n_lines_read = 0
+thread 0 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 0 counter=11
+thread 0 exit loop !!!!
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 0 counter=11
+thread 1 exit loop !!!!
+read time: 30.627551 ms
+parse time: 674.515294 ms
+total time: 126.715655 ms
+total floats read: 758580
+main.out: main.c:229: test1: Assertion `nread == nums_in_data' failed.
+test.sh: line 8: 486468 Aborted                 (core dumped) ./main.out $1
+------------------------
+thread 1 before birrier 1
+thread 0 before birrier 1
+thread 0 after birrier 1
+thread 1 after birrier 1
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=1
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=1
+thread 1 n_lines_read = 20000
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 1 before birrier 2
+thread 1 after birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=1
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=1
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=2
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=2
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 1 before birrier 2
+thread 0 after birrier 2
+thread 1 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=2
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=2
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=3
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=3
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 1 before birrier 2
+thread 0 after birrier 2
+thread 1 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=3
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=3
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=4
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=4
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 1 before birrier 2
+thread 0 after birrier 2
+thread 1 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=4
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=4
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=5
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=5
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 1 before birrier 2
+thread 0 after birrier 2
+thread 1 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=5
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=5
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=6
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=6
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 1 before birrier 2
+thread 0 before birrier 2
+thread 1 after birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=6
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=6
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=7
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=7
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 1 before birrier 2
+thread 0 after birrier 2
+thread 1 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=7
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=7
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=8
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=8
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 1 before birrier 2
+thread 0 after birrier 2
+thread 1 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=8
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=8
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=9
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=9
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 1 before birrier 2
+thread 0 after birrier 2
+thread 1 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=9
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=9
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=10
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=10
+thread 0 n_lines_read = 1
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 1 before birrier 2
+thread 0 after birrier 2
+thread 1 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 1 counter=10
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 1 counter=10
+BEGIN_LOOP thread 1 n_lines_read = 1 counter=11
+thread 1 n_lines_read = 1
+BEGIN_LOOP thread 0 n_lines_read = 1 counter=11
+thread 0 before birrier 2
+thread 1 before birrier 2
+thread 0 after birrier 2
+thread 1 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 0 n_lines_read = 0
+thread 0 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 0 counter=11
+thread 1 exit loop !!!!
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 0 counter=11
+thread 0 exit loop !!!!
+read time: 31.824266 ms
+parse time: 687.847824 ms
+total time: 123.666364 ms
+total floats read: 750682
+main.out: main.c:229: test1: Assertion `nread == nums_in_data' failed.
+test.sh: line 8: 486486 Aborted                 (core dumped) ./main.out $1
+------------------------
+thread 1 before birrier 1
+thread 0 before birrier 1
+thread 0 after birrier 1
+thread 1 after birrier 1
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=1
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=1
+thread 1 n_lines_read = 20000
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 1 before birrier 2
+thread 0 after birrier 2
+thread 1 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=1
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=1
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=2
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=2
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 1 before birrier 2
+thread 0 before birrier 2
+thread 1 after birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=2
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=2
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=3
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=3
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 1 before birrier 2
+thread 0 after birrier 2
+thread 1 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=3
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=3
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=4
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=4
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 1 before birrier 2
+thread 0 before birrier 2
 thread 0 after birrier 2
 thread 1 after birrier 2
 thread 1 of 2 before inner barrier 1
@@ -1706,10 +1715,10 @@ thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=8
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 20000 counter=8
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=8
 BEGIN_LOOP thread 1 n_lines_read = 20000 counter=9
 thread 1 n_lines_read = 20000
 BEGIN_LOOP thread 0 n_lines_read = 20000 counter=9
@@ -1739,16 +1748,16 @@ thread 0 after birrier 2
 thread 1 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
-thread 1 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 1 counter=10
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 1 counter=10
-BEGIN_LOOP thread 0 n_lines_read = 1 counter=11
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 1 counter=10
 BEGIN_LOOP thread 1 n_lines_read = 1 counter=11
 thread 1 n_lines_read = 1
+BEGIN_LOOP thread 0 n_lines_read = 1 counter=11
 thread 0 before birrier 2
 thread 1 before birrier 2
 thread 0 after birrier 2
@@ -1766,12 +1775,13 @@ thread 1 exit loop !!!!
 thread 0 after inner barrier 2
 END_LOOP thread 0 n_lines_read = 0 counter=11
 thread 0 exit loop !!!!
-read time: 30.931947 ms
-parse time: 682.731429 ms
-total time: 127.097101 ms
-total floats read: 744863
+read time: 31.090727 ms
+parse time: 667.778706 ms
+total time: 118.151372 ms
+total floats read: 740726
 main.out: main.c:229: test1: Assertion `nread == nums_in_data' failed.
-test.sh: line 6: 482476 Aborted                 (core dumped) ./main.out $1
+test.sh: line 8: 486500 Aborted                 (core dumped) ./main.out $1
+------------------------
 thread 1 before birrier 1
 thread 0 before birrier 1
 thread 0 after birrier 1
@@ -1801,8 +1811,8 @@ thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
 thread 0 before birrier 2
 thread 1 before birrier 2
-thread 1 after birrier 2
 thread 0 after birrier 2
+thread 1 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
@@ -1819,38 +1829,38 @@ thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
 thread 0 before birrier 2
 thread 1 before birrier 2
-thread 1 after birrier 2
 thread 0 after birrier 2
+thread 1 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=3
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 20000 counter=3
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=4
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=3
 BEGIN_LOOP thread 1 n_lines_read = 20000 counter=4
 thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=4
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
-thread 1 before birrier 2
 thread 0 before birrier 2
-thread 1 after birrier 2
+thread 1 before birrier 2
 thread 0 after birrier 2
+thread 1 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=4
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 20000 counter=4
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=5
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=4
 BEGIN_LOOP thread 1 n_lines_read = 20000 counter=5
 thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=5
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
 thread 0 before birrier 2
@@ -1943,8 +1953,8 @@ thread 1 n_lines_read = 20000
 BEGIN_LOOP thread 0 n_lines_read = 20000 counter=10
 thread 0 n_lines_read = 1
 thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
 thread 1 before birrier 2
+thread 0 before birrier 2
 thread 0 after birrier 2
 thread 1 after birrier 2
 thread 1 of 2 before inner barrier 1
@@ -1952,38 +1962,39 @@ thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 1 counter=10
 thread 0 after inner barrier 2
 END_LOOP thread 0 n_lines_read = 1 counter=10
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 1 counter=10
 BEGIN_LOOP thread 1 n_lines_read = 1 counter=11
 thread 1 n_lines_read = 1
 BEGIN_LOOP thread 0 n_lines_read = 1 counter=11
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 0 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
 thread 0 n_lines_read = 0
 thread 0 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
+thread 1 before birrier 2
+thread 0 before birrier 2
+thread 1 after birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 0 counter=11
-thread 1 exit loop !!!!
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
 thread 0 after inner barrier 2
 END_LOOP thread 0 n_lines_read = 0 counter=11
 thread 0 exit loop !!!!
-read time: 29.812232 ms
-parse time: 692.124226 ms
-total time: 129.284657 ms
-total floats read: 764910
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 0 counter=11
+thread 1 exit loop !!!!
+read time: 32.082854 ms
+parse time: 694.312279 ms
+total time: 132.585666 ms
+total floats read: 768353
 main.out: main.c:229: test1: Assertion `nread == nums_in_data' failed.
-test.sh: line 6: 482490 Aborted                 (core dumped) ./main.out $1
+test.sh: line 8: 486516 Aborted                 (core dumped) ./main.out $1
+------------------------
 errors: 5
-
+========================
 parse threads: 3
 thread 1 before birrier 1
 thread 0 before birrier 1
@@ -1997,9 +2008,9 @@ thread 0 of 2 before inner barrier 1
 thread 0 before birrier 2
 thread 1 before birrier 2
 thread 2 before birrier 2
-thread 0 after birrier 2
 thread 1 after birrier 2
 thread 2 after birrier 2
+thread 0 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
@@ -2017,9 +2028,9 @@ thread 0 of 2 before inner barrier 1
 thread 1 before birrier 2
 thread 2 before birrier 2
 thread 0 before birrier 2
-thread 2 after birrier 2
-thread 0 after birrier 2
 thread 1 after birrier 2
+thread 0 after birrier 2
+thread 2 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
@@ -2034,21 +2045,21 @@ thread 1 n_lines_read = 20000
 BEGIN_LOOP thread 0 n_lines_read = 20000 counter=3
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 1 before birrier 2
 thread 2 before birrier 2
-thread 1 after birrier 2
+thread 1 before birrier 2
+thread 0 before birrier 2
 thread 2 after birrier 2
+thread 1 after birrier 2
 thread 0 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=3
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 20000 counter=3
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=3
 BEGIN_LOOP thread 1 n_lines_read = 20000 counter=4
 thread 1 n_lines_read = 20000
 BEGIN_LOOP thread 0 n_lines_read = 20000 counter=4
@@ -2057,49 +2068,49 @@ thread 0 of 2 before inner barrier 1
 thread 0 before birrier 2
 thread 1 before birrier 2
 thread 2 before birrier 2
+thread 2 after birrier 2
 thread 0 after birrier 2
 thread 1 after birrier 2
-thread 2 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=4
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 20000 counter=4
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=5
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=4
 BEGIN_LOOP thread 1 n_lines_read = 20000 counter=5
 thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=5
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
-thread 1 before birrier 2
 thread 0 before birrier 2
 thread 2 before birrier 2
-thread 0 after birrier 2
-thread 2 after birrier 2
+thread 1 before birrier 2
 thread 1 after birrier 2
+thread 2 after birrier 2
+thread 0 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=5
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 20000 counter=5
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=6
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=5
 BEGIN_LOOP thread 1 n_lines_read = 20000 counter=6
 thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=6
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
 thread 1 before birrier 2
 thread 0 before birrier 2
 thread 2 before birrier 2
 thread 0 after birrier 2
-thread 2 after birrier 2
 thread 1 after birrier 2
+thread 2 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
@@ -2115,11 +2126,11 @@ BEGIN_LOOP thread 0 n_lines_read = 20000 counter=7
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
 thread 1 before birrier 2
-thread 2 before birrier 2
 thread 0 before birrier 2
+thread 2 before birrier 2
 thread 1 after birrier 2
-thread 0 after birrier 2
 thread 2 after birrier 2
+thread 0 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
@@ -2141,257 +2152,25 @@ thread 0 after birrier 2
 thread 1 after birrier 2
 thread 2 after birrier 2
 thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=8
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
 thread 0 after inner barrier 2
 END_LOOP thread 0 n_lines_read = 20000 counter=8
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=9
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=9
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 2 before birrier 2
-thread 1 before birrier 2
-thread 0 after birrier 2
-thread 2 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=9
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=9
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=10
-thread 0 n_lines_read = 1
-thread 0 of 2 before inner barrier 1
-BEGIN_LOOP thread 1 n_lines_read = 1 counter=10
-thread 1 n_lines_read = 1
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 2 before birrier 2
-thread 0 after birrier 2
-thread 1 after birrier 2
-thread 2 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 1 counter=10
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 1 counter=10
-BEGIN_LOOP thread 0 n_lines_read = 1 counter=11
-thread 0 n_lines_read = 0
-thread 0 of 2 before inner barrier 1
-BEGIN_LOOP thread 1 n_lines_read = 0 counter=11
-thread 1 n_lines_read = 0
-thread 0 before birrier 2
-thread 2 before birrier 2
-thread 1 before birrier 2
-thread 0 after birrier 2
-thread 1 after birrier 2
-thread 2 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 0 counter=11
-thread 0 exit loop !!!!
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 0 counter=11
-thread 1 exit loop !!!!
-read time: 32.857353 ms
-parse time: 508.369533 ms
-total time: 157.280417 ms
-total floats read: 769184
-main.out: main.c:229: test1: Assertion `nread == nums_in_data' failed.
-test.sh: line 6: 482506 Aborted                 (core dumped) ./main.out $1
-thread 1 before birrier 1
-thread 0 before birrier 1
-thread 0 after birrier 1
-thread 1 after birrier 1
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=1
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=1
-thread 1 n_lines_read = 20000
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 2 before birrier 2
-thread 0 after birrier 2
-thread 1 after birrier 2
-thread 2 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=1
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=1
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=2
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=2
-thread 1 n_lines_read = 20000
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 2 before birrier 2
-thread 1 before birrier 2
-thread 0 before birrier 2
-thread 0 after birrier 2
-thread 1 after birrier 2
-thread 2 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=2
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=3
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=3
-thread 1 n_lines_read = 20000
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 2 before birrier 2
-thread 1 before birrier 2
-thread 0 before birrier 2
-thread 2 after birrier 2
-thread 1 after birrier 2
-thread 0 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=3
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=3
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=4
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=4
-thread 1 n_lines_read = 20000
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 2 before birrier 2
-thread 1 before birrier 2
-thread 0 after birrier 2
-thread 2 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=4
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=4
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=5
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=5
-thread 1 n_lines_read = 20000
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 2 before birrier 2
-thread 1 before birrier 2
-thread 0 after birrier 2
-thread 2 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=5
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=5
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=6
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=6
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 2 before birrier 2
-thread 0 after birrier 2
-thread 2 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=6
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=6
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=7
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=7
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 1 before birrier 2
-thread 0 before birrier 2
-thread 2 before birrier 2
-thread 0 after birrier 2
-thread 2 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=7
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=7
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=8
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=8
-thread 1 n_lines_read = 20000
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 2 before birrier 2
-thread 1 before birrier 2
-thread 0 before birrier 2
-thread 1 after birrier 2
-thread 0 after birrier 2
-thread 2 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 20000 counter=8
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=8
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=9
 BEGIN_LOOP thread 1 n_lines_read = 20000 counter=9
 thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=9
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
-thread 1 before birrier 2
 thread 0 before birrier 2
+thread 1 before birrier 2
 thread 2 before birrier 2
+thread 2 after birrier 2
 thread 1 after birrier 2
 thread 0 after birrier 2
-thread 2 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
@@ -2406,49 +2185,50 @@ thread 1 n_lines_read = 20000
 BEGIN_LOOP thread 0 n_lines_read = 20000 counter=10
 thread 0 n_lines_read = 1
 thread 0 of 2 before inner barrier 1
-thread 1 before birrier 2
 thread 0 before birrier 2
+thread 1 before birrier 2
 thread 2 before birrier 2
-thread 1 after birrier 2
 thread 0 after birrier 2
+thread 1 after birrier 2
 thread 2 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 1 counter=10
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 1 counter=10
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 1 counter=10
 BEGIN_LOOP thread 1 n_lines_read = 1 counter=11
 thread 1 n_lines_read = 1
 BEGIN_LOOP thread 0 n_lines_read = 1 counter=11
 thread 0 n_lines_read = 0
 thread 0 of 2 before inner barrier 1
 thread 2 before birrier 2
-thread 1 before birrier 2
 thread 0 before birrier 2
-thread 0 after birrier 2
+thread 1 before birrier 2
 thread 2 after birrier 2
+thread 0 after birrier 2
 thread 1 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 0 counter=11
-thread 1 exit loop !!!!
 thread 0 after inner barrier 2
 END_LOOP thread 0 n_lines_read = 0 counter=11
 thread 0 exit loop !!!!
-read time: 29.532484 ms
-parse time: 500.453256 ms
-total time: 153.103506 ms
-total floats read: 767334
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 0 counter=11
+thread 1 exit loop !!!!
+read time: 38.261264 ms
+parse time: 552.623053 ms
+total time: 165.770737 ms
+total floats read: 779899
 main.out: main.c:229: test1: Assertion `nread == nums_in_data' failed.
-test.sh: line 6: 482535 Aborted                 (core dumped) ./main.out $1
+test.sh: line 8: 486541 Aborted                 (core dumped) ./main.out $1
+------------------------
 thread 1 before birrier 1
 thread 0 before birrier 1
 thread 0 after birrier 1
@@ -2469,38 +2249,98 @@ thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=1
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 20000 counter=1
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=1
 BEGIN_LOOP thread 1 n_lines_read = 20000 counter=2
 thread 1 n_lines_read = 20000
 BEGIN_LOOP thread 0 n_lines_read = 20000 counter=2
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
-thread 2 before birrier 2
-thread 0 before birrier 2
 thread 1 before birrier 2
-thread 2 after birrier 2
+thread 0 before birrier 2
+thread 2 before birrier 2
 thread 1 after birrier 2
+thread 2 after birrier 2
 thread 0 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=2
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 20000 counter=2
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=3
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=2
 BEGIN_LOOP thread 1 n_lines_read = 20000 counter=3
 thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=3
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
-thread 2 before birrier 2
 thread 0 before birrier 2
 thread 1 before birrier 2
+thread 2 before birrier 2
+thread 0 after birrier 2
+thread 1 after birrier 2
+thread 2 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=3
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=3
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=4
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=4
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 2 before birrier 2
+thread 1 before birrier 2
+thread 0 after birrier 2
+thread 2 after birrier 2
+thread 1 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=4
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=4
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=5
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=5
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 1 before birrier 2
+thread 0 before birrier 2
+thread 2 before birrier 2
+thread 1 after birrier 2
+thread 0 after birrier 2
+thread 2 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=5
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=5
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=6
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=6
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 1 before birrier 2
+thread 0 before birrier 2
+thread 2 before birrier 2
 thread 1 after birrier 2
 thread 0 after birrier 2
 thread 2 after birrier 2
@@ -2510,11 +2350,51 @@ thread 1 before inner barrier 2
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
 thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=3
+END_LOOP thread 0 n_lines_read = 20000 counter=6
 thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=3
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=4
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=4
+END_LOOP thread 1 n_lines_read = 20000 counter=6
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=7
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=7
+thread 1 n_lines_read = 20000
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 2 before birrier 2
+thread 0 before birrier 2
+thread 1 before birrier 2
+thread 2 after birrier 2
+thread 0 after birrier 2
+thread 1 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=7
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=7
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=8
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=8
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 1 before birrier 2
+thread 0 before birrier 2
+thread 2 before birrier 2
+thread 1 after birrier 2
+thread 0 after birrier 2
+thread 2 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=8
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=8
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=9
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=9
 thread 1 n_lines_read = 20000
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
@@ -2522,13 +2402,146 @@ thread 1 before birrier 2
 thread 0 before birrier 2
 thread 2 before birrier 2
 thread 2 after birrier 2
-thread 1 after birrier 2
 thread 0 after birrier 2
+thread 1 after birrier 2
 thread 1 of 2 before inner barrier 1
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=9
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=9
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=10
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=10
+thread 0 n_lines_read = 1
+thread 0 of 2 before inner barrier 1
+thread 1 before birrier 2
+thread 2 before birrier 2
+thread 0 before birrier 2
+thread 0 after birrier 2
+thread 2 after birrier 2
+thread 1 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 1 counter=10
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 1 counter=10
+BEGIN_LOOP thread 1 n_lines_read = 1 counter=11
+thread 1 n_lines_read = 1
+BEGIN_LOOP thread 0 n_lines_read = 1 counter=11
+thread 0 n_lines_read = 0
+thread 0 of 2 before inner barrier 1
+thread 1 before birrier 2
+thread 0 before birrier 2
+thread 2 before birrier 2
+thread 1 after birrier 2
+thread 0 after birrier 2
+thread 2 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 0 counter=11
+thread 1 exit loop !!!!
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 0 counter=11
+thread 0 exit loop !!!!
+read time: 31.441066 ms
+parse time: 498.202630 ms
+total time: 143.179568 ms
+total floats read: 768118
+main.out: main.c:229: test1: Assertion `nread == nums_in_data' failed.
+test.sh: line 8: 486566 Aborted                 (core dumped) ./main.out $1
+------------------------
+thread 1 before birrier 1
+thread 0 before birrier 1
+thread 0 after birrier 1
+thread 1 after birrier 1
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=1
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=1
+thread 1 n_lines_read = 20000
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 1 before birrier 2
+thread 2 before birrier 2
+thread 0 after birrier 2
+thread 2 after birrier 2
+thread 1 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=1
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=1
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=2
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=2
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 1 before birrier 2
+thread 2 before birrier 2
+thread 0 after birrier 2
+thread 1 after birrier 2
+thread 2 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=2
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=2
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=3
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=3
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 1 before birrier 2
+thread 0 before birrier 2
+thread 2 before birrier 2
+thread 2 after birrier 2
+thread 0 after birrier 2
+thread 1 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=3
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=3
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=4
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=4
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 1 before birrier 2
+thread 2 before birrier 2
+thread 0 before birrier 2
+thread 1 after birrier 2
+thread 0 after birrier 2
+thread 2 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
 thread 0 after inner barrier 2
 END_LOOP thread 0 n_lines_read = 20000 counter=4
 thread 1 after inner barrier 2
@@ -2549,13 +2562,226 @@ thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=5
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 20000 counter=5
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=6
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=5
 BEGIN_LOOP thread 1 n_lines_read = 20000 counter=6
 thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=6
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 1 before birrier 2
+thread 2 before birrier 2
+thread 0 after birrier 2
+thread 2 after birrier 2
+thread 1 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=6
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=6
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=7
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=7
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 1 before birrier 2
+thread 2 before birrier 2
+thread 0 after birrier 2
+thread 1 after birrier 2
+thread 2 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=7
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=7
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=8
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=8
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 2 before birrier 2
+thread 1 before birrier 2
+thread 0 before birrier 2
+thread 1 after birrier 2
+thread 2 after birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=8
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=8
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=9
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=9
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 2 before birrier 2
+thread 1 before birrier 2
+thread 0 after birrier 2
+thread 1 after birrier 2
+thread 2 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=9
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=9
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=10
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=10
+thread 0 n_lines_read = 1
+thread 0 of 2 before inner barrier 1
+thread 1 before birrier 2
+thread 0 before birrier 2
+thread 2 before birrier 2
+thread 1 after birrier 2
+thread 2 after birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 1 counter=10
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 1 counter=10
+BEGIN_LOOP thread 1 n_lines_read = 1 counter=11
+thread 1 n_lines_read = 1
+BEGIN_LOOP thread 0 n_lines_read = 1 counter=11
+thread 0 n_lines_read = 0
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 2 before birrier 2
+thread 1 before birrier 2
+thread 0 after birrier 2
+thread 2 after birrier 2
+thread 1 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 0 counter=11
+thread 1 exit loop !!!!
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 0 counter=11
+thread 0 exit loop !!!!
+read time: 28.513839 ms
+parse time: 512.331620 ms
+total time: 135.647916 ms
+total floats read: 766094
+main.out: main.c:229: test1: Assertion `nread == nums_in_data' failed.
+test.sh: line 8: 486591 Aborted                 (core dumped) ./main.out $1
+------------------------
+thread 1 before birrier 1
+thread 0 before birrier 1
+thread 0 after birrier 1
+thread 1 after birrier 1
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=1
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=1
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 0 before birrier 2
+thread 1 before birrier 2
+thread 2 before birrier 2
+thread 1 after birrier 2
+thread 2 after birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=1
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=1
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=2
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=2
+thread 1 n_lines_read = 20000
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 2 before birrier 2
+thread 1 before birrier 2
+thread 0 before birrier 2
+thread 0 after birrier 2
+thread 2 after birrier 2
+thread 1 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 0 after inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=2
+END_LOOP thread 0 n_lines_read = 20000 counter=2
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=3
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=3
+thread 1 n_lines_read = 20000
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 2 before birrier 2
+thread 0 before birrier 2
+thread 1 before birrier 2
+thread 1 after birrier 2
+thread 0 after birrier 2
+thread 2 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=3
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=3
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=4
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=4
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 1 before birrier 2
+thread 0 before birrier 2
+thread 2 before birrier 2
+thread 1 after birrier 2
+thread 0 after birrier 2
+thread 2 after birrier 2
+thread 1 of 2 before inner barrier 1
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=4
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=4
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=5
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=5
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
 thread 0 before birrier 2
@@ -2565,25 +2791,45 @@ thread 2 after birrier 2
 thread 0 after birrier 2
 thread 1 after birrier 2
 thread 1 of 2 before inner barrier 1
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=5
+thread 1 after inner barrier 2
+END_LOOP thread 1 n_lines_read = 20000 counter=5
+BEGIN_LOOP thread 1 n_lines_read = 20000 counter=6
+thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=6
+thread 0 n_lines_read = 20000
+thread 0 of 2 before inner barrier 1
+thread 1 before birrier 2
+thread 2 before birrier 2
+thread 0 before birrier 2
+thread 1 after birrier 2
+thread 2 after birrier 2
+thread 0 after birrier 2
+thread 1 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=6
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 20000 counter=6
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=7
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=6
 BEGIN_LOOP thread 1 n_lines_read = 20000 counter=7
 thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=7
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
-thread 2 before birrier 2
 thread 0 before birrier 2
 thread 1 before birrier 2
-thread 1 after birrier 2
+thread 2 before birrier 2
 thread 2 after birrier 2
 thread 0 after birrier 2
+thread 1 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
@@ -2593,17 +2839,17 @@ thread 0 after inner barrier 2
 END_LOOP thread 0 n_lines_read = 20000 counter=7
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 20000 counter=7
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=8
 BEGIN_LOOP thread 1 n_lines_read = 20000 counter=8
 thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=8
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
 thread 1 before birrier 2
+thread 0 before birrier 2
 thread 2 before birrier 2
 thread 2 after birrier 2
-thread 0 after birrier 2
 thread 1 after birrier 2
+thread 0 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
@@ -2618,12 +2864,12 @@ BEGIN_LOOP thread 1 n_lines_read = 20000 counter=9
 thread 1 n_lines_read = 20000
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
+thread 1 before birrier 2
 thread 2 before birrier 2
 thread 0 before birrier 2
-thread 1 before birrier 2
 thread 0 after birrier 2
-thread 2 after birrier 2
 thread 1 after birrier 2
+thread 2 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
@@ -2633,37 +2879,37 @@ thread 0 after inner barrier 2
 END_LOOP thread 0 n_lines_read = 20000 counter=9
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 20000 counter=9
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=10
 BEGIN_LOOP thread 1 n_lines_read = 20000 counter=10
 thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=10
 thread 0 n_lines_read = 1
 thread 0 of 2 before inner barrier 1
-thread 2 before birrier 2
 thread 1 before birrier 2
+thread 2 before birrier 2
 thread 0 before birrier 2
 thread 2 after birrier 2
-thread 1 after birrier 2
 thread 0 after birrier 2
+thread 1 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 1 counter=10
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 1 counter=10
-BEGIN_LOOP thread 0 n_lines_read = 1 counter=11
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 1 counter=10
 BEGIN_LOOP thread 1 n_lines_read = 1 counter=11
 thread 1 n_lines_read = 1
+BEGIN_LOOP thread 0 n_lines_read = 1 counter=11
 thread 0 n_lines_read = 0
 thread 0 of 2 before inner barrier 1
 thread 2 before birrier 2
-thread 0 before birrier 2
 thread 1 before birrier 2
+thread 0 before birrier 2
 thread 2 after birrier 2
-thread 0 after birrier 2
 thread 1 after birrier 2
+thread 0 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
@@ -2675,12 +2921,13 @@ thread 1 exit loop !!!!
 thread 0 after inner barrier 2
 END_LOOP thread 0 n_lines_read = 0 counter=11
 thread 0 exit loop !!!!
-read time: 31.917358 ms
-parse time: 634.529354 ms
-total time: 196.925483 ms
-total floats read: 768215
+read time: 31.020269 ms
+parse time: 605.443956 ms
+total time: 194.352621 ms
+total floats read: 791160
 main.out: main.c:229: test1: Assertion `nread == nums_in_data' failed.
-test.sh: line 6: 482560 Aborted                 (core dumped) ./main.out $1
+test.sh: line 8: 486620 Aborted                 (core dumped) ./main.out $1
+------------------------
 thread 1 before birrier 1
 thread 0 before birrier 1
 thread 0 after birrier 1
@@ -2710,238 +2957,6 @@ thread 1 n_lines_read = 20000
 BEGIN_LOOP thread 0 n_lines_read = 20000 counter=2
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
-thread 2 before birrier 2
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 1 after birrier 2
-thread 2 after birrier 2
-thread 0 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=2
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=3
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=3
-thread 1 n_lines_read = 20000
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 2 before birrier 2
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 2 after birrier 2
-thread 0 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=3
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=3
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=4
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=4
-thread 1 n_lines_read = 20000
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 1 before birrier 2
-thread 2 before birrier 2
-thread 0 before birrier 2
-thread 0 after birrier 2
-thread 2 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=4
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=4
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=5
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=5
-thread 1 n_lines_read = 20000
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 1 before birrier 2
-thread 2 before birrier 2
-thread 0 before birrier 2
-thread 0 after birrier 2
-thread 2 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=5
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=5
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=6
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=6
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 1 before birrier 2
-thread 0 before birrier 2
-thread 2 before birrier 2
-thread 2 after birrier 2
-thread 1 after birrier 2
-thread 0 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=6
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=6
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=7
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=7
-thread 1 n_lines_read = 20000
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 1 before birrier 2
-thread 2 before birrier 2
-thread 0 before birrier 2
-thread 0 after birrier 2
-thread 1 after birrier 2
-thread 2 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=7
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=7
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=8
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=8
-thread 1 n_lines_read = 20000
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 2 before birrier 2
-thread 1 after birrier 2
-thread 0 after birrier 2
-thread 2 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=8
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=8
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=9
-thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=9
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 1 before birrier 2
-thread 0 before birrier 2
-thread 2 before birrier 2
-thread 1 after birrier 2
-thread 0 after birrier 2
-thread 2 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=9
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=9
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=10
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=10
-thread 1 n_lines_read = 20000
-thread 0 n_lines_read = 1
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 2 before birrier 2
-thread 0 after birrier 2
-thread 2 after birrier 2
-thread 1 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 1 counter=10
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 1 counter=10
-BEGIN_LOOP thread 1 n_lines_read = 1 counter=11
-thread 1 n_lines_read = 1
-BEGIN_LOOP thread 0 n_lines_read = 1 counter=11
-thread 0 n_lines_read = 0
-thread 0 of 2 before inner barrier 1
-thread 1 before birrier 2
-thread 2 before birrier 2
-thread 0 before birrier 2
-thread 1 after birrier 2
-thread 0 after birrier 2
-thread 2 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 0 counter=11
-thread 1 exit loop !!!!
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 0 counter=11
-thread 0 exit loop !!!!
-read time: 28.298496 ms
-parse time: 495.179233 ms
-total time: 147.391002 ms
-total floats read: 767506
-main.out: main.c:229: test1: Assertion `nread == nums_in_data' failed.
-test.sh: line 6: 482591 Aborted                 (core dumped) ./main.out $1
-thread 1 before birrier 1
-thread 0 before birrier 1
-thread 0 after birrier 1
-thread 1 after birrier 1
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=1
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=1
-thread 1 n_lines_read = 20000
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
-thread 1 before birrier 2
-thread 2 before birrier 2
-thread 0 after birrier 2
-thread 1 after birrier 2
-thread 2 after birrier 2
-thread 1 of 2 before inner barrier 1
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
-thread 1 after inner barrier 2
-END_LOOP thread 1 n_lines_read = 20000 counter=1
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=1
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=2
-BEGIN_LOOP thread 1 n_lines_read = 20000 counter=2
-thread 1 n_lines_read = 20000
-thread 0 n_lines_read = 20000
-thread 0 of 2 before inner barrier 1
 thread 0 before birrier 2
 thread 1 before birrier 2
 thread 2 before birrier 2
@@ -2966,8 +2981,8 @@ thread 1 before birrier 2
 thread 2 before birrier 2
 thread 0 before birrier 2
 thread 0 after birrier 2
-thread 2 after birrier 2
 thread 1 after birrier 2
+thread 2 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
@@ -2982,132 +2997,132 @@ thread 1 n_lines_read = 20000
 BEGIN_LOOP thread 0 n_lines_read = 20000 counter=4
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
-thread 1 before birrier 2
 thread 0 before birrier 2
+thread 1 before birrier 2
 thread 2 before birrier 2
-thread 1 after birrier 2
 thread 0 after birrier 2
 thread 2 after birrier 2
+thread 1 after birrier 2
 thread 1 of 2 before inner barrier 1
-thread 0 of 2 after inner barrier 1
-thread 0 before inner barrier 2
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=4
+thread 0 of 2 after inner barrier 1
+thread 0 before inner barrier 2
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 20000 counter=4
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=4
 BEGIN_LOOP thread 1 n_lines_read = 20000 counter=5
 thread 1 n_lines_read = 20000
 BEGIN_LOOP thread 0 n_lines_read = 20000 counter=5
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
 thread 2 before birrier 2
 thread 1 before birrier 2
-thread 0 after birrier 2
+thread 0 before birrier 2
 thread 2 after birrier 2
 thread 1 after birrier 2
+thread 0 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=5
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 20000 counter=5
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=5
 BEGIN_LOOP thread 0 n_lines_read = 20000 counter=6
 BEGIN_LOOP thread 1 n_lines_read = 20000 counter=6
 thread 1 n_lines_read = 20000
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
-thread 2 before birrier 2
-thread 1 before birrier 2
 thread 0 before birrier 2
-thread 2 after birrier 2
+thread 1 before birrier 2
+thread 2 before birrier 2
 thread 0 after birrier 2
+thread 2 after birrier 2
 thread 1 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=6
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 20000 counter=6
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=6
 BEGIN_LOOP thread 1 n_lines_read = 20000 counter=7
 thread 1 n_lines_read = 20000
 BEGIN_LOOP thread 0 n_lines_read = 20000 counter=7
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
-thread 2 before birrier 2
-thread 0 before birrier 2
 thread 1 before birrier 2
-thread 2 after birrier 2
+thread 0 before birrier 2
+thread 2 before birrier 2
 thread 0 after birrier 2
 thread 1 after birrier 2
+thread 2 after birrier 2
 thread 1 of 2 before inner barrier 1
-thread 1 of 2 after inner barrier 1
-thread 1 before inner barrier 2
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
+thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
 thread 0 after inner barrier 2
 END_LOOP thread 0 n_lines_read = 20000 counter=7
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 20000 counter=7
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=8
 BEGIN_LOOP thread 1 n_lines_read = 20000 counter=8
 thread 1 n_lines_read = 20000
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=8
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
 thread 1 before birrier 2
 thread 0 before birrier 2
 thread 2 before birrier 2
 thread 1 after birrier 2
-thread 2 after birrier 2
 thread 0 after birrier 2
+thread 2 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=8
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 20000 counter=8
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=8
 BEGIN_LOOP thread 1 n_lines_read = 20000 counter=9
 thread 1 n_lines_read = 20000
 BEGIN_LOOP thread 0 n_lines_read = 20000 counter=9
 thread 0 n_lines_read = 20000
 thread 0 of 2 before inner barrier 1
-thread 0 before birrier 2
 thread 1 before birrier 2
 thread 2 before birrier 2
+thread 0 before birrier 2
+thread 1 after birrier 2
 thread 2 after birrier 2
 thread 0 after birrier 2
-thread 1 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
-thread 0 after inner barrier 2
-END_LOOP thread 0 n_lines_read = 20000 counter=9
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 20000 counter=9
-BEGIN_LOOP thread 0 n_lines_read = 20000 counter=10
+thread 0 after inner barrier 2
+END_LOOP thread 0 n_lines_read = 20000 counter=9
 BEGIN_LOOP thread 1 n_lines_read = 20000 counter=10
 thread 1 n_lines_read = 20000
+BEGIN_LOOP thread 0 n_lines_read = 20000 counter=10
 thread 0 n_lines_read = 1
 thread 0 of 2 before inner barrier 1
+thread 2 before birrier 2
 thread 1 before birrier 2
 thread 0 before birrier 2
-thread 2 before birrier 2
-thread 1 after birrier 2
-thread 0 after birrier 2
 thread 2 after birrier 2
+thread 0 after birrier 2
+thread 1 after birrier 2
 thread 1 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
 thread 1 before inner barrier 2
@@ -3117,33 +3132,33 @@ thread 0 after inner barrier 2
 END_LOOP thread 0 n_lines_read = 1 counter=10
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 1 counter=10
-BEGIN_LOOP thread 0 n_lines_read = 1 counter=11
 BEGIN_LOOP thread 1 n_lines_read = 1 counter=11
 thread 1 n_lines_read = 1
-thread 0 n_lines_read = 0
-thread 0 of 2 before inner barrier 1
-thread 2 before birrier 2
 thread 0 before birrier 2
+thread 2 before birrier 2
 thread 1 before birrier 2
-thread 2 after birrier 2
 thread 0 after birrier 2
 thread 1 after birrier 2
+thread 2 after birrier 2
 thread 1 of 2 before inner barrier 1
+BEGIN_LOOP thread 0 n_lines_read = 1 counter=11
+thread 0 n_lines_read = 0
+thread 0 of 2 before inner barrier 1
 thread 1 of 2 after inner barrier 1
+thread 1 before inner barrier 2
 thread 0 of 2 after inner barrier 1
 thread 0 before inner barrier 2
-thread 1 before inner barrier 2
 thread 1 after inner barrier 2
 END_LOOP thread 1 n_lines_read = 0 counter=11
 thread 1 exit loop !!!!
 thread 0 after inner barrier 2
 END_LOOP thread 0 n_lines_read = 0 counter=11
 thread 0 exit loop !!!!
-read time: 31.861019 ms
-parse time: 526.111425 ms
-total time: 147.121277 ms
-total floats read: 764896
+read time: 28.531561 ms
+parse time: 499.736806 ms
+total time: 137.005311 ms
+total floats read: 763761
 main.out: main.c:229: test1: Assertion `nread == nums_in_data' failed.
-test.sh: line 6: 482620 Aborted                 (core dumped) ./main.out $1
+test.sh: line 8: 486651 Aborted                 (core dumped) ./main.out $1
+------------------------
 errors: 5
-
