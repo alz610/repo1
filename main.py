@@ -39,7 +39,7 @@ def load_parse_lib():
     return libparse
 
 
-def test0(arrsize, linesize, chunksize):
+def test0(arrsize, linesize, chunksize_lines):
     '''
     Парсинг файла fp в массив чисел arr.
 
@@ -59,7 +59,7 @@ def test0(arrsize, linesize, chunksize):
 
     st = timer()
 
-    nread = libparse.parsefile(arr, linesize, chunksize, fp)
+    nread = libparse.parsefile(arr, linesize, chunksize_lines, fp)
 
     total = timer() - st
 
@@ -118,12 +118,27 @@ def gen_data0(arrsize, cols):
     '''
 
     # генерация массива
-    arr = 10 ** np.random.uniform(-3, 3, arrsize)
+    arr_exact = 10 ** np.random.uniform(-3, 3, arrsize).astype('float32')
 
     # запись массива с известными числами в носитель
-    np.save('data.npy', arr)
+    np.save('data.npy', arr_exact)
     # запись текстовика с cols колонками в носитель
-    np.savetxt('data.txt', arr.reshape(arrsize // cols, cols))
+    np.savetxt('data.txt', arr_exact.reshape(arrsize // cols, cols))
+
+
+def gen_checksum_data():
+    # запись чексуммы
+    arr = np.loadtxt('data.txt', dtype='float32')
+    # arr.sum().tofile('data.checksum')
+
+    print(arr.sum())
+
+    checksum = 0
+    for x in arr.flatten():
+        checksum += x
+    
+    print(type(x))
+    print(checksum)
 
 
 def gen_data1(arrsize, cols):
@@ -149,22 +164,23 @@ def main0():
 
     cols = 5            # длина строки текста (в числах)
     arrsize = 1000000   # длина массива распарсенных чисел (в числах)
-    chunksize_ = 10000  # длина чанка (в числах)
+    chunksize_floats = 100000  # длина чанка (в числах)
 
 
     # если текстового файла не существует
     # если массив с известными числами не существует или его длина не равна arrsize
     if not isfile('data.txt') and not isfile('data.npy') or (np.load('data.npy').shape != (arrsize,)):
-        print('generating data...\n\n')
+        print('generating data...')
         gen_data0(arrsize, cols)
+        gen_checksum_data()
 
 
-    print("parallel program\n")
-    test0(arrsize, linesize=128, chunksize=chunksize_ // cols)
+    print("\n\nparallel program")
+    test0(arrsize, linesize=128, chunksize_lines=chunksize_floats // cols)
 
 
-    print("\n\nnonparallel program\n")
-    test0(arrsize, linesize=128, chunksize=arrsize // cols)
+    # print("\n\n\nnonparallel program\n")
+    # test0(arrsize, linesize=128, chunksize=arrsize // cols)
 
 
 def main1():
@@ -181,5 +197,12 @@ def main1():
     test1(arr, arr_str)
 
 
+def main2():
+    cols = 5            # длина строки текста (в числах)
+    arrsize = 1000000   # длина массива распарсенных чисел (в числах)
+
+    print('generating data...')
+    gen_data0(arrsize, cols)
+
 if __name__ == "__main__":
-    main0()
+    gen_checksum_data()

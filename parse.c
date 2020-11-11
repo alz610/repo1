@@ -150,9 +150,8 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
 
 
     float *p = arr;  // позиция в записываемом массиве чисел
-    int n_parsethreads = 3;  // кол-во потоков парсинга чанка во вложенной параллельной секции
  
-    // массив c размером `n_parsethreads` служит для записи кол-ва чисел, распарсенных потоками парсинга
+    // массив c размером `N_PARSETHREADS` служит для записи кол-ва чисел, распарсенных потоками парсинга
     size_t *n_floats_read;  
 
     // включение вложенных параллельных секций
@@ -161,7 +160,7 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
     /*
     Параллельная секция с 2 потоками:
       - нулевой поток, читающий чанк из файла;
-      - первый поток с вложенной параллельной секцией с `n_parsethreads` потоков парсинга чанка.
+      - первый поток с вложенной параллельной секцией с `N_PARSETHREADS` потоков парсинга чанка.
     */
     #pragma omp parallel num_threads(2)
     {
@@ -169,7 +168,7 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
         #pragma omp master
         {
             // выделение массива для хранения кол-ва чисел, распарсенных потоками парсинга
-            n_floats_read = malloc(n_parsethreads * sizeof(size_t));
+            n_floats_read = malloc(N_PARSETHREADS * sizeof(size_t));
 
 
             double st = omp_get_wtime();
@@ -180,12 +179,32 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
             t_read += omp_get_wtime() - st;
         }
 
-        #pragma omp barrier
 
+        double t_parse_single = 0;
+        int n_subchunks = N_PARSETHREADS;
+
+        // размер подчанка потока в строках
+        size_t subchunksize_lines = chunksize_lines / n_subchunks;
+
+        // распарсенные числа подчанков
+        size_t linesize_floats = 32;
+        float *sub_p = malloc(subchunksize_lines * linesize_floats * sizeof(float));
+
+
+        fprintf(stderr, "thread %d before birrier 1\n", omp_get_thread_num()); fflush(stderr);
+#pragma omp barrier
+        fprintf(stderr, "thread %d after birrier 1\n", omp_get_thread_num()); fflush(stderr);
+
+        int counter = 0;
 
         // когда есть новые прочитанные строки в файле fp
-        while (n_lines_read)
+        while (1)
         {
+#pragma omp barrier
+            counter++;
+
+            fprintf(stderr, "BEGIN_LOOP thread %d n_lines_read = %d counter=%d\n", omp_get_thread_num(), n_lines_read, counter); fflush(stderr);
+
             // если нулевой поток
             if (omp_get_thread_num() == 0)
             {
@@ -193,18 +212,28 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
 
                 // чтение следующего чанка из файла fp в массив chunk1
                 n_lines_read = getchunk(chunk1, linesize, chunksize_lines, fp);
-                #pragma omp flush (n_lines_read)
+                //#pragma omp flush (n_lines_read)
 
                 t_read += omp_get_wtime() - st;
+                /*
+                if (!n_lines_read)
+                {
+                  fprintf(stderr, "thread %d exit loop !!!!\n", omp_get_thread_num()); fflush(stderr);
+                  break;
+                }*/
             }
+
+            fprintf(stderr, "thread %d n_lines_read = %d\n", omp_get_thread_num(), n_lines_read); fflush(stderr);
+
 
             // если первый поток
             if (omp_get_thread_num() == 1)
             {
-                // вложенная параллельная секция с `n_parsethreads` потоками парсинга
-                #pragma omp parallel num_threads(n_parsethreads)
+                // вложенная параллельная секция с `N_PARSETHREADS` потоками парсинга
+                #pragma omp parallel num_threads(N_PARSETHREADS)
                 {
                     int i_thread = omp_get_thread_num();
+                    int nnn = omp_get_num_threads();
 
                     if (DEBUG_LVL >= 2)
                     {
@@ -213,10 +242,6 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
                     }
 
                     int i_subchunk = i_thread;
-                    int n_subchunks = n_parsethreads;
-
-                    // размер подчанка потока в строках
-                    size_t subchunksize_lines = chunksize_lines / n_subchunks;
 
                     // subchunk -- начало подчанка
                     char *subchunk = chunk0 + i_subchunk * subchunksize_lines * linesize;
@@ -235,18 +260,16 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
                     }
 
 
-                    size_t linesize_floats = 32;
-
-                    // распарсенные числа подчанков
-                    float *sub_p = malloc(subchunksize_lines * linesize_floats * sizeof(float));
-
-
-                    double st = omp_get_wtime();
+                    #pragma omp single
+                    t_parse_single -= omp_get_wtime();
 
                     n_floats_read[i_subchunk] = parsechunk(sub_p, linesize, subchunksize_lines, subchunk);
 
-                    #pragma omp critical
-                        t_parse += omp_get_wtime() - st;
+                    #pragma omp single
+                    t_parse_single += omp_get_wtime();
+
+                    #pragma omp single
+                    t_parse += t_parse_single;
  
 
                     if (DEBUG_LVL >= 2)
@@ -272,6 +295,7 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
                         }
                     }
 
+                    #pragma omp barrier
 
                     // вычисление смещения write_offset положения записи p
                     // распарсенных чисел подчанка subchunk
@@ -305,8 +329,9 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
 
 
                     // обновление позиции p
-
-                    #pragma omp barrier
+                    fprintf(stderr, "thread %d before birrier 2\n", omp_get_thread_num()); fflush(stderr);
+#pragma omp barrier
+                    fprintf(stderr, "thread %d after birrier 2\n", omp_get_thread_num()); fflush(stderr);
 
                     #pragma omp critical
                         p += n_floats_read[i_subchunk];
@@ -317,12 +342,13 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
                         #pragma omp barrier
                         fprintf(stderr, "\n");
                     }
-                }
+                }///////////// inner parallel loop
             }
 
 
+            fprintf(stderr, "thread %d of %d before inner barrier 1\n", omp_get_thread_num(), omp_get_num_threads()); fflush(stderr);
             #pragma omp barrier
-
+            fprintf(stderr, "thread %d of %d after inner barrier 1\n", omp_get_thread_num(), omp_get_num_threads()); fflush(stderr);
 
             #pragma omp master
             {
@@ -333,12 +359,22 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
                 chunk1 = temp;
             }
 
-
+            fprintf(stderr, "thread %d before inner barrier 2\n", omp_get_thread_num()); fflush(stderr);
             #pragma omp barrier
+            fprintf(stderr, "thread %d after inner barrier 2\n", omp_get_thread_num()); fflush(stderr);
+
+            fprintf(stderr, "END_LOOP thread %d n_lines_read = %d counter=%d\n", omp_get_thread_num(), n_lines_read, counter); fflush(stderr);
+
+
+            if (!n_lines_read)
+              { 
+                fprintf(stderr, "thread %d exit loop !!!!\n", omp_get_thread_num()); fflush(stderr);
+                break;
+              }
         }
     }
 
-    omp_set_nested(0);
+    //omp_set_nested(0);
 
 
     size_t nread = p - arr;
@@ -348,33 +384,10 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
     free(chunk1);
 
 
-    // if (DEBUG_LVL >= 2)
-    // {
-    //     fprintf(stderr, "total floats read: %zu\n", nread);
-    // }
-
-
-    // if (DEBUG_LVL >= 2)
-    // {
-    //     /* float values were successfully read */
-    //     for (size_t i = 0; i < nread; i++)
-    //     {
-    //         fprintf(stderr, "%e", arr[i]);
-
-    //         if (!((i + 1) % cols))
-    //             fprintf(stderr, "\n");
-    //         else
-    //             fprintf(stderr, " ");
-    //     }
-
-    //     fprintf(stderr, "\n\n");
-    // }
-
-
     if (DEBUG_LVL >= 1)
     {
-        fprintf(stderr, "read time: %f ms\n", t_read * 1000);
-        fprintf(stderr, "parse time: %f ms\n", t_parse * 1000);
+        fprintf(stderr, "read time: %f ms\n", t_read * 1000); fflush(stderr);
+        fprintf(stderr, "parse time: %f ms\n", t_parse * 1000); fflush(stderr);
     }
 
     return nread;

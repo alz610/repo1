@@ -2,7 +2,7 @@ all:
 	gcc -g -Wall -fopenmp -c parse.c -o libparse.o 
 	ar -rc libparse.a libparse.o
 
-	gcc main.c -L. -fopenmp -lparse -o main.out
+	gcc main.c -g -Wall -L. -fopenmp -lparse -o main.out
 
 
 shared:
