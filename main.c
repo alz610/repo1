@@ -174,7 +174,7 @@ int test1(int argc, char *argv[])
 {
     N_PARSETHREADS = atoi(argv[1]);
     DEBUG_LVL = 1;  // вывод отладочной информации
-    TEST = 1;       // воспроизведение ассертов
+    // TEST = 1;       // воспроизведение ассертов
 
     size_t nums_in_data = 1000000;      // кол-во чисел в данных data.txt
 
