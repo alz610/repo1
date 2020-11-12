@@ -7,15 +7,16 @@ function run_test {
 
     for i in $(seq 1 $n_runs);
     do
+        echo "------------------------"
         ./main.out $1
         if [ $? -ne 0 ]
         then
             # echo "error occurred"
             ((n_errors+=1))
         fi
-        echo "------------------------"
     done
 
+    echo "------------------------"
     echo "errors: $n_errors"
 }
 
