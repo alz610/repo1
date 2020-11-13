@@ -93,7 +93,17 @@ int parsechunk(float *p, size_t linesize, size_t chunksize_lines, char *chunk)
         {
             // если что-либо распарсено в строке line, то проверка, верное ли кол-во распарсенных чисел
             if (*line != '\0')
-                assert(cols == n_parsed_nums_in_line);
+            {
+                // assert(cols == n_parsed_nums_in_line);
+                if (!(cols == n_parsed_nums_in_line))
+                {
+                    fprintf(stderr, "thread %d: Fail: 'cols == n_parsed_nums_in_line'.\n",
+                            omp_get_thread_num());  fflush(stderr);
+                    fprintf(stderr, "thread %d: cols=%d; n_parsed_nums_in_line=%ld\n",
+                            omp_get_thread_num(), cols, n_parsed_nums_in_line);  fflush(stderr);
+                    exit(EXIT_FAILURE);
+                }
+            }
         }
     }
 
