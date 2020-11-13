@@ -4,45 +4,7 @@
 #include <omp.h>
 #include <assert.h>
 #include "parse.h"
-
-
-// extern int dprint(const char *fmt, ...);
-
-int dprint(const char *fmt, ...)
-{
-    va_list args;
-    va_start(args, fmt);
-
-#pragma omp critical (dprint_section_name)
-{
-    fprintf(stderr, "thread %d: ", omp_get_thread_num());
-    vfprintf(stderr, fmt, args);
-    fflush(stderr);
-}
-
-    va_end(args);
-}
-
-
-int print_float_array(float* arr, size_t len)
-{
-    int cols = 5;
-
-    for (size_t i = 0; i < len; i++)
-    {
-        dprint("%e", arr[i]);
-
-        if (!((i + 1) % cols))
-            dprint("\n");
-        else
-            dprint(" ");
-    }
-
-    dprint("\n\n");
-    
-    return 0;
-}
-
+#include "debug.h"
 
 /*
 Чтение чанка файла fp в чанк chunk.
@@ -88,7 +50,7 @@ chunksize_lines -- длина чанка (в строках)
 Вывод:
 n_floats_read -- кол-во распарсенных чисел в чанке
 */
-int parsechunk(float *p, size_t linesize, size_t chunksize_lines, char *chunk)
+int parsechunk(float *p, size_t max_linesize_floats, size_t linesize, size_t chunksize_lines, char *chunk)
 {
     size_t i = 0; // смещение положения записи p
     int cols = 5; // точное кол-во чисел в строке
@@ -98,6 +60,8 @@ int parsechunk(float *p, size_t linesize, size_t chunksize_lines, char *chunk)
         int n_parsed_nums_in_line = 0; // кол-во распарсенных чисел в строке line
 
         char *line = chunk + linesize * i_line;
+
+        dprint("parse line: %s\n", line);
 
 
         // извлечь первую подстроку строки line, разделенную пробелом
@@ -124,7 +88,16 @@ int parsechunk(float *p, size_t linesize, size_t chunksize_lines, char *chunk)
         {
             // если что-либо распарсено в строке line, то проверка, верное ли кол-во распарсенных чисел
             if (*line != '\0')
-                assert(cols == n_parsed_nums_in_line);
+            {
+                // assert(cols == n_parsed_nums_in_line);
+                if (!(cols == n_parsed_nums_in_line))
+                {
+                    dprint("Fail: 'cols == n_parsed_nums_in_line'.\n");
+                    dprint("cols=%d; n_parsed_nums_in_line=%ld\n", cols, n_parsed_nums_in_line);
+                    // dprint_float_array(p, max_linesize_floats);
+                    exit(EXIT_FAILURE);
+                }
+            }
         }
     }
 
@@ -204,18 +177,23 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
             subchunksize_lines += chunksize_lines % n_parsethreads;
 
         // распарсенные числа подчанка
-        size_t linesize_floats = 32;
+        size_t max_linesize_floats = 32;
 
-        float *sub_p = malloc(subchunksize_lines * linesize_floats * sizeof(float));
+        float *sub_p = malloc(subchunksize_lines * max_linesize_floats * sizeof(float));
 
 
         int counter = 0;
 
         do {
-            counter++;
-            printf("thread %d, begin parallel loop, counter = %d\n", i_thread, counter);
-
 #pragma omp barrier
+
+            counter++;
+
+#pragma omp single
+            dprint("---------------------------------------------------\n");
+
+            dprint("begin parallel loop, counter = %d\n", counter);
+
 
             // если нулевой поток
             if (i_thread == 0)
@@ -224,6 +202,8 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
 
                 // чтение следующего чанка из файла fp в массив chunk1
                 n_lines_read = getchunk(chunk1, linesize, chunksize_lines, fp);
+
+                dprint("read %ld lines\n", n_lines_read);
 
                 t_read += omp_get_wtime() - st;
             }
@@ -237,13 +217,25 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
 #pragma omp single nowait
                 t_parse_single -= omp_get_wtime();
 
-                n_floats_read[i_parsethread] = parsechunk(sub_p, linesize, subchunksize_lines, subchunk);
+                n_floats_read[i_parsethread] = parsechunk(sub_p, max_linesize_floats, linesize, subchunksize_lines, subchunk);
+
+#if 0
+{
+                size_t strsize = 1000;
+                char str[strsize];
+                char *p_str = str;
+                size_t arrsize = n_floats_read[i_parsethread];
+
+                float_array_to_str(sub_p, arrsize, strsize, &p_str);
+                dprint("parsed floats output:\n%s\n\n", str);
+}
+#endif
 
 #pragma omp critical (name0)
 {
-                printf("thread %d, parsed floats output:\n", i_thread);
-                size_t len = n_floats_read[i_parsethread];
-                print_float_array(sub_p, len);
+                size_t arrsize = n_floats_read[i_parsethread];
+                dprint("parsed %ld floats:\n", arrsize);
+                dprint_float_array(arr, arrsize);
 }
 
 
@@ -297,7 +289,11 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
             chunk1 = temp;
 }
 
+
+        dprint("end parallel loop\n");
+
 #pragma omp barrier
+
 
         // когда есть новые прочитанные строки в файле fp
         } while (n_lines_read);
@@ -311,8 +307,8 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
     free(chunk1);
 
 
-    printf("read time: %f ms\n", t_read * 1000);
-    printf("parse time: %f ms\n", t_parse * 1000);
+    dprint("read time: %f ms\n", t_read * 1000);
+    dprint("parse time: %f ms\n", t_parse * 1000);
 
 
     return nread;

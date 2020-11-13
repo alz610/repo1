@@ -5,6 +5,7 @@
 #include "parse.h"
 #include "main.h"
 #include <assert.h>
+#include "debug.h"
 
 
 /*
@@ -14,17 +15,18 @@
 int test0()
 {
     DEBUG_LVL = 2;  // вывод отладочной информации
-    TEST = 0;       // воспроизведение ассертов
+    TEST = 1;       // воспроизведение тестов (ассертов)
 
+    size_t nums_in_data = 80;           // кол-во чисел в данных 
 
     size_t cols = 5;                    // длина строки текста (в числах float)
-    size_t arrsize = 10000;  // кол-во элементов в массиве распарсенных чисел
+    size_t arrsize = nums_in_data;      // кол-во элементов в массиве распарсенных чисел
     size_t linesize = 256;              // длина строк в чанке
     size_t chunksize_lines = 3 * 2;     // длина чанка (в строках)
 
 
-    printf("-------------------------\n");
-    printf("run\n\n");
+    // dprint("-------------------------\n");
+    // dprint("run\n\n");
 
 
     FILE *fp = fopen("test.txt", "r");              // читаемый файл
@@ -38,39 +40,42 @@ int test0()
     double total = omp_get_wtime() - st;
 
 
-    if (DEBUG_LVL >= 1)
-    {
-        printf("total time: %f ms\n", total * 1000);
-    }
+    dprint("total time: %f ms\n", total * 1000);
+    dprint("total %zu floats parsed:\n", nread);
+    dprint_float_array(arr, nread);
 
 
-    if (DEBUG_LVL >= 2)
-    {
-        printf("total floats read: %zu\n", nread);
-    }
 
 
-    if (DEBUG_LVL >= 2)
-    {
-        /* float values were successfully read */
-        for (size_t i = 0; i < nread; i++)
-        {
-            printf("%e", arr[i]);
+    // вычисление чексуммы файла
 
-            if (!((i + 1) % cols))
-                printf("\n");
-            else
-                printf(" ");
-        }
+    size_t n = 0;
 
-        printf("\n\n");
-    }
+    fp = fopen("data.txt", "r");              // читаемый файл
+    float *arr_exact = malloc(arrsize * sizeof(float));
+    while (fscanf(fp, "%f", &arr_exact[n++]) != EOF);
+
+    float checksum0 = 0;
+    for (size_t i = 0; i < nums_in_data; i++)
+        checksum0 += arr_exact[i];
+
+
+    // вычисление чексуммы массива
+
+    float checksum1 = 0;
+    for (size_t i = 0; i < nums_in_data; i++)
+        checksum1 += arr[i];
+
+
+    // проверка, верно ли распарсены данные
+
+    assert(nread == nums_in_data);
+    assert(checksum0 == checksum1);
+
 
 
     fclose(fp);
     free(arr);
-    
-    fflush(stderr);
 
     return 0;
 }
@@ -236,7 +241,7 @@ int test1()
 int main(int argc, char *argv[])
 {
     N_PARSETHREADS = atoi(argv[1]);
-    // N_PARSETHREADS = 1;
+    // N_PARSETHREADS = 2;
 
     test0();
     // test0_fakefile();
