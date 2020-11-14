@@ -152,9 +152,9 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
     // setbuf(stdout, NULL);
 
     /*
-    Параллельная секция с 2 потоками:
+    Параллельная секция с потоками:
       - нулевой поток, читающий чанк из файла;
-      - первый поток с вложенной параллельной секцией с `N_PARSETHREADS` потоков парсинга чанка.
+      - остальные потоки парсят чанк.
     */
     #pragma omp parallel num_threads(N_PARSETHREADS + 1)
     {
