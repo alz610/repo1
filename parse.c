@@ -161,6 +161,8 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
 
     float *p = arr;  // позиция в записываемом массиве чисел
     int n_parsethreads = N_PARSETHREADS;  // кол-во потоков парсинга чанка во вложенной параллельной секции
+
+    fprintf(stderr, "parse threads: %d\n", n_parsethreads);
  
     // массив c размером `n_parsethreads` служит для записи кол-ва чисел, распарсенных потоками парсинга
     size_t *n_floats_read;  
