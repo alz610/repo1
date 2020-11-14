@@ -1,5 +1,0 @@
-parallel program
-
-main.out: parse.c:93: parsechunk: Assertion `cols == i_' failed.
-Aborted (core dumped)
-make: *** [Makefile:11: test] Error 134

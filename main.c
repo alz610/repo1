@@ -8,30 +8,33 @@
 
 
 /*
-Программа запускает парсинг файла `test.txt` в массив чисел `arr`,
+Программа запускает парсинг данных из строки `data` в массив чисел `arr`,
 включает отладочную информацию и ассерты, и замеряет время исполнения.
 */
 int test0()
 {
-    DEBUG_LVL = 0;  // вывод отладочной информации
-    TEST = 1;       // воспроизведение ассертов
+    DEBUG_LVL = 2;  // вывод отладочной информации
+    TEST = 1;       // воспроизведение тестов (ассертов)
+
+    size_t cols = 5; // точное кол-во чисел в строке
+    size_t datasize = 80;           // кол-во чисел в данных 
+    size_t arrsize = datasize;      // кол-во элементов в массиве распарсенных чисел
+    size_t linesize = 256;              // длина строк в чанке
+    size_t chunksize_lines = 3 * 2;     // длина чанка (в строках)
 
 
-    size_t cols = 5;                    // длина строки текста (в числах float)
-    size_t arrsize = 1000000;           // длина массива распарсенных чисел (в числах float)
-    size_t chunksize_ = 10000;          // длина чанка (в числах float)
-
-    size_t linesize = 0x100;                // длина строк чанка (в символах char)
-    size_t chunksize = chunksize_ / cols;   // длина чанка (в строках)
+    fprintf(stderr, "-------------------------\n");
+    fprintf(stderr, "run test0\n");
+    fprintf(stderr, "-------------------------\n");
 
 
-    FILE *fp = fopen("data.txt", "r");              // читаемый файл
+    FILE *fp = fopen("test.txt", "r");              // читаемый файл
     float *arr = malloc(arrsize * sizeof(float));   // записываемый массив чисел
 
 
     double st = omp_get_wtime();
 
-    size_t nread = parsefile(arr, linesize, chunksize, fp);
+    size_t nread = parsefile(arr, linesize, chunksize_lines, fp);
 
     double total = omp_get_wtime() - st;
 
@@ -54,12 +57,40 @@ int test0()
     }
 
 
+
+
+
+    // вычисление чексуммы файла
+
+    size_t n = 0;
+
+    fp = fopen("test.txt", "r");              // читаемый файл
+    float *arr_exact = malloc(arrsize * sizeof(float));
+    while (fscanf(fp, "%f", &arr_exact[n++]) != EOF);
+
+    float checksum0 = 0;
+    for (size_t i = 0; i < datasize; i++)
+        checksum0 += arr_exact[i];
+
+
+    // вычисление чексуммы массива
+
+    float checksum1 = 0;
+    for (size_t i = 0; i < datasize; i++)
+        checksum1 += arr[i];
+
+
+    // проверка, верно ли распарсены данные
+
+    assert(nread == datasize);
+    assert(checksum0 == checksum1);
+
+
+
     fclose(fp);
     free(arr);
 
-    fflush(stderr);
-
-    return nread;
+    return 0;
 }
 
 #if 0

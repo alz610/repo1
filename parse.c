@@ -97,7 +97,7 @@ int parsechunk(float *p, size_t linesize, size_t chunksize_lines, char *chunk)
                 // assert(cols == n_parsed_nums_in_line);
                 if (!(cols == n_parsed_nums_in_line))
                 {
-                    fprintf(stderr, "thread %d: Fail: 'cols == n_parsed_nums_in_line'.\n",
+                    fprintf(stderr, "thread %d: fail: 'cols == n_parsed_nums_in_line'.\n",
                             omp_get_thread_num());  fflush(stderr);
                     fprintf(stderr, "thread %d: cols=%d; n_parsed_nums_in_line=%ld\n",
                             omp_get_thread_num(), cols, n_parsed_nums_in_line);  fflush(stderr);
