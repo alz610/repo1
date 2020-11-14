@@ -2,14 +2,14 @@
 runs: 100
 parse threads: 1
 ------------------------
-run fails: 0
+fails: 0
 ========================
 runs: 100
 parse threads: 2
 ------------------------
-run fails: 24
+fails: 24
 ========================
 runs: 100
 parse threads: 3
 ------------------------
-run fails: 36
+fails: 36

@@ -20,7 +20,7 @@ function run_test {
     done
 
     echo "------------------------"
-    echo "run fails: $n_fails"
+    echo "fails: $n_fails"
 }
 
 n_runs=$1
