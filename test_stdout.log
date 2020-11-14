@@ -7,9 +7,9 @@ fails: 0
 runs: 100
 parse threads: 2
 ------------------------
-fails: 24
+fails: 22
 ========================
 runs: 100
 parse threads: 3
 ------------------------
-fails: 36
+fails: 32
