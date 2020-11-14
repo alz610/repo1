@@ -164,6 +164,9 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
         int n_parsethreads = n_threads - 1;
         int i_parsethread = i_thread - 1;
 
+#pragma omp master
+        dprint("parse threads: %d\n", n_parsethreads);
+
 
 #pragma omp master
         n_floats_read = malloc(n_parsethreads * sizeof(size_t));
@@ -235,10 +238,10 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
 {
                 size_t arrsize = n_floats_read[i_parsethread];
                 dprint("parsed %ld floats:\n", arrsize);
-                dprint_float_array(arr, arrsize);
+                dprint_float_array(sub_p, arrsize);
 }
 
-
+// nowait служит для исключения неявного барьера в конце секции
 #pragma omp single nowait
                 t_parse_single += omp_get_wtime();
 
@@ -269,6 +272,15 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
 
 #pragma omp barrier
 
+            if (i_thread == 0)
+            {
+                // замена
+
+                char *temp = chunk0;
+                chunk0 = chunk1;
+                chunk1 = temp;
+            }
+
             if (i_thread > 0)
             {
                 // обновление позиции p
@@ -280,20 +292,11 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
 
 #pragma omp barrier
 
-#pragma omp master
-{
-            // замена
-
-            char *temp = chunk0;
-            chunk0 = chunk1;
-            chunk1 = temp;
-}
-
 
         dprint("end parallel loop\n");
 
-#pragma omp barrier
 
+#pragma omp barrier
 
         // когда есть новые прочитанные строки в файле fp
         } while (n_lines_read);
