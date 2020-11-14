@@ -12036,9 +12036,9 @@ thread 2: parse line: 1.811544e+02 8.194344e+01 6.617470e+00 5.088499e-03 2.5829
 
 thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-03
 
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: cols=5; n_parsed_nums_in_line=8
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 -------------------------
 run test0
 -------------------------
@@ -12782,9 +12782,9 @@ thread 2: parse line: 1.811544e+02 8.194344e+01 6.617470e+00 5.088499e-03 2.5829
 
 thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-03
 
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: cols=5; n_parsed_nums_in_line=9
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: -------------------------
 run test0
 -------------------------
@@ -13409,9 +13409,9 @@ thread 2: parse line: 1.811544e+02 8.194344e+01 6.617470e+00 5.088499e-03 2.5829
 thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-03
 
 thread 0: read 6 lines
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: cols=5; n_parsed_nums_in_line=1
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: -------------------------
 run test0
 -------------------------
@@ -13560,7 +13560,7 @@ thread 2: parse line: 1.811544e+02 8.194344e+01 6.617470e+00 5.088499e-03 2.5829
 
 thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-03
 
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: cols=5; n_parsed_nums_in_line=1
 thread 2: parse line: 8.127293e+00 2.231672e+01 3.846160e-03 1.681731e-01 5.090333e+02
 
@@ -13712,9 +13712,9 @@ thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.6194
 thread 2: parse line: 1.811544e+02 8.194344e+01 6.617470e+00 5.088499e-03 2.582988e+01
 
 thread 0: read 6 lines
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: cols=5; n_parsed_nums_in_line=4
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: -------------------------
 run test0
 -------------------------
@@ -13744,9 +13744,9 @@ thread 2: parse line: 1.811544e+02 8.194344e+01 6.617470e+00 5.088499e-03 2.5829
 
 thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-03
 
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: cols=5; n_parsed_nums_in_line=9
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: -------------------------
 run test0
 -------------------------
@@ -13895,9 +13895,9 @@ thread 2: parse line: 1.811544e+02 8.194344e+01 6.617470e+00 5.088499e-03 2.5829
 
 thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-03
 
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: cols=5; n_parsed_nums_in_line=8
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: -------------------------
 run test0
 -------------------------
@@ -13927,7 +13927,7 @@ thread 2: parse line: 1.811544e+02 8.194344e+01 6.617470e+00 5.088499e-03 2.5829
 thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-03
 
 thread 0: read 6 lines
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: cols=5; n_parsed_nums_in_line=2
 thread 2: parse line: 8.127293e+00 2.231672e+01 3.846160e-03 1.681731e-01 5.090333e+02
 
@@ -15031,9 +15031,9 @@ thread 2: parse line: 1.811544e+02 8.194344e+01 6.617470e+00 5.088499e-03 2.5829
 
 thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-03
 
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: cols=5; n_parsed_nums_in_line=4
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 -------------------------
 run test0
 -------------------------
@@ -15658,9 +15658,9 @@ thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.6194
 thread 2: parse line: 1.811544e+02 8.194344e+01 6.617470e+00 5.088499e-03 2.582988e+01
 
 thread 0: read 6 lines
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: cols=5; n_parsed_nums_in_line=9
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 -------------------------
 run test0
 -------------------------
@@ -15690,7 +15690,7 @@ thread 2: parse line: 1.811544e+02 8.194344e+01 6.617470e+00 5.088499e-03 2.5829
 
 thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-03
 
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: cols=5; n_parsed_nums_in_line=7
 -------------------------
 run test0
@@ -15721,9 +15721,9 @@ thread 2: parse line: 1.811544e+02 8.194344e+01 6.617470e+00 5.088499e-03 2.5829
 thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-03
 
 thread 0: read 6 lines
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: cols=5; n_parsed_nums_in_line=1
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 -------------------------
 run test0
 -------------------------
@@ -15753,9 +15753,9 @@ thread 2: parse line: 1.811544e+02 8.194344e+01 6.617470e+00 5.088499e-03 2.5829
 thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-03
 
 thread 0: read 6 lines
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: cols=5; n_parsed_nums_in_line=7
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 -------------------------
 run test0
 -------------------------
@@ -18403,9 +18403,9 @@ thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.6194
 
 thread 2: parse line: 1.811544e+02 8.194344e+01 6.617470e+00 5.088499e-03 2.582988e+01
 
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: cols=5; n_parsed_nums_in_line=2
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: cols=5; n_parsed_nums_in_line=2
 -------------------------
 run test0
@@ -18555,7 +18555,7 @@ thread 2: parse line: 1.811544e+02 8.194344e+01 6.617470e+00 5.088499e-03 2.5829
 
 thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-03
 
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: cols=5; n_parsed_nums_in_line=1
 thread 2: -------------------------
 run test0
@@ -18586,7 +18586,7 @@ thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.6194
 
 thread 2: parse line: 1.811544e+02 8.194344e+01 6.617470e+00 5.088499e-03 2.582988e+01
 
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: cols=5; n_parsed_nums_in_line=2
 thread 1: parse line: 6.642741e-01 1.029128e+01 1.287661e+01 4.820329e-01 2.915097e-03
 
@@ -19333,7 +19333,7 @@ thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.6194
 
 thread 2: parse line: 1.811544e+02 8.194344e+01 6.617470e+00 5.088499e-03 2.582988e+01
 
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: parse line: 6.642741e-01 1.029128e+01 1.287661e+01 4.820329e-01 2.915097e-03
 
 thread 2: cols=5; n_parsed_nums_in_line=1
@@ -19368,9 +19368,9 @@ thread 2: parse line: 1.811544e+02 8.194344e+01 6.617470e+00 5.088499e-03 2.5829
 
 thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-03
 
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: cols=5; n_parsed_nums_in_line=8
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: -------------------------
 run test0
 -------------------------
@@ -19756,9 +19756,9 @@ thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.6194
 thread 2: parse line: 1.811544e+02 8.194344e+01 6.617470e+00 5.088499e-03 2.582988e+01
 
 thread 0: begin parallel loop, counter = 2
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: cols=5; n_parsed_nums_in_line=1
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: -------------------------
 run test0
 -------------------------
@@ -20502,9 +20502,9 @@ thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.6194
 thread 2: parse line: 1.811544e+02 8.194344e+01 6.617470e+00 5.088499e-03 2.582988e+01
 
 thread 0: read 6 lines
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: cols=5; n_parsed_nums_in_line=1
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 -------------------------
 run test0
 -------------------------
@@ -20536,7 +20536,7 @@ thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.6194
 
 thread 2: parse line: 8.127293e+00 2.231672e+01 3.846160e-03 1.681731e-01 5.090333e+02
 
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: cols=5; n_parsed_nums_in_line=1
 thread 2: parse line: 3.924403e-03 6.899752e-03 6.298465e+00 9.636068e+01 1.204787e-02
 
@@ -20688,9 +20688,9 @@ thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.6194
 
 thread 2: parse line: 1.811544e+02 8.194344e+01 6.617470e+00 5.088499e-03 2.582988e+01
 
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: cols=5; n_parsed_nums_in_line=9
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 -------------------------
 run test0
 -------------------------
@@ -20862,7 +20862,7 @@ thread 1: parse line: 6.642741e-01 1.029128e+01 1.287661e+01 4.820329e-01 2.9150
 thread 3: parse line: 3.924403e-03 6.899752e-03 6.298465e+00 9.636068e+01 1.204787e-02
 
 thread 1: parsed 10 floats:
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: cols=5; n_parsed_nums_in_line=1
 3.835915e-03 -------------------------
 run test0
@@ -21433,7 +21433,7 @@ thread 2: parse line: 1.811544e+02 8.194344e+01 6.617470e+00 5.088499e-03 2.5829
 thread 2: parsed 10 floats:
 3.267618e-02 1.643332e+01 3.252714e-01 5.411628e-01 4.373466e-03
 1.811544e+02 8.194344e+01 6.617470e+00 5.088499e-03 2.582988e+01
-thread 3: Fail: 'cols == n_parsed_nums_in_line'.
+thread 3: fail: 'cols == n_parsed_nums_in_line'.
 thread 3: cols=5; n_parsed_nums_in_line=1
 -------------------------
 run test0
@@ -21730,10 +21730,10 @@ thread 3: parse line: 8.127293e+00 2.231672e+01 3.846160e-03 1.681731e-01 5.0903
 
 thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-03
 
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: cols=5; n_parsed_nums_in_line=4
 thread 0: begin parallel loop, counter = 2
-thread 3: Fail: 'cols == n_parsed_nums_in_line'.
+thread 3: fail: 'cols == n_parsed_nums_in_line'.
 thread 3: -------------------------
 run test0
 -------------------------
@@ -22028,9 +22028,9 @@ thread 2: parse line: 3.267618e-02 1.643332e+01 3.252714e-01 5.411628e-01 4.3734
 
 thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-03
 
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: cols=5; n_parsed_nums_in_line=1
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: -------------------------
 run test0
 -------------------------
@@ -22194,9 +22194,9 @@ thread 2: parse line: 3.267618e-02 1.643332e+01 3.252714e-01 5.411628e-01 4.3734
 
 thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-03
 
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: cols=5; n_parsed_nums_in_line=3
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: -------------------------
 run test0
 -------------------------
@@ -22231,7 +22231,7 @@ thread 3: begin parallel loop, counter = 2
 thread 3: parse line: 8.127293e+00 2.231672e+01 3.846160e-03 1.681731e-01 5.090333e+02
 
 thread 0: begin parallel loop, counter = 2
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: cols=5; n_parsed_nums_in_line=2
 thread 3: parse line: 3.924403e-03 6.899752e-03 6.298465e+00 9.636068e+01 1.204787e-02
 
@@ -22269,9 +22269,9 @@ thread 3: parse line: 8.127293e+00 2.231672e+01 3.846160e-03 1.681731e-01 5.0903
 thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-03
 
 thread 2: begin parallel loop, counter = 2
-thread 3: Fail: 'cols == n_parsed_nums_in_line'.
+thread 3: fail: 'cols == n_parsed_nums_in_line'.
 thread 3: cols=5; n_parsed_nums_in_line=6
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: -------------------------
 run test0
 -------------------------
@@ -22304,9 +22304,9 @@ thread 2: parse line: 3.267618e-02 1.643332e+01 3.252714e-01 5.411628e-01 4.3734
 
 thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-03
 
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: cols=5; n_parsed_nums_in_line=4
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: -------------------------
 run test0
 -------------------------
@@ -22865,9 +22865,9 @@ thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.6194
 
 thread 3: parse line: 8.127293e+00 2.231672e+01 3.846160e-03 1.681731e-01 5.090333e+02
 
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: cols=5; n_parsed_nums_in_line=1
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: cols=5; n_parsed_nums_in_line=6
 -------------------------
 run test0
@@ -23034,7 +23034,7 @@ thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.6194
 
 thread 2: parse line: 3.267618e-02 1.643332e+01 3.252714e-01 5.411628e-01 4.373466e-03
 
-thread 3: Fail: 'cols == n_parsed_nums_in_line'.
+thread 3: fail: 'cols == n_parsed_nums_in_line'.
 thread 3: cols=5; n_parsed_nums_in_line=2
 thread 0: read 6 lines
 -------------------------
@@ -23070,9 +23070,9 @@ thread 2: parse line: 3.267618e-02 1.643332e+01 3.252714e-01 5.411628e-01 4.3734
 thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-03
 
 thread 3: begin parallel loop, counter = 2
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: cols=5; n_parsed_nums_in_line=1
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: -------------------------
 run test0
 -------------------------
@@ -24284,7 +24284,7 @@ thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.6194
 thread 3: parse line: 8.127293e+00 2.231672e+01 3.846160e-03 1.681731e-01 5.090333e+02
 
 thread 0: read 6 lines
-thread 3: Fail: 'cols == n_parsed_nums_in_line'.
+thread 3: fail: 'cols == n_parsed_nums_in_line'.
 thread 3: cols=5; n_parsed_nums_in_line=2
 thread 2: begin parallel loop, counter = 2
 thread 1: -------------------------
@@ -24320,11 +24320,11 @@ thread 3: parse line: 8.127293e+00 2.231672e+01 3.846160e-03 1.681731e-01 5.0903
 
 thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-03
 
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: cols=5; n_parsed_nums_in_line=3
 thread 1: parse line: 6.642741e-01 1.029128e+01 1.287661e+01 4.820329e-01 2.915097e-03
 
-thread 3: Fail: 'cols == n_parsed_nums_in_line'.
+thread 3: fail: 'cols == n_parsed_nums_in_line'.
 -------------------------
 run test0
 -------------------------
@@ -24357,9 +24357,9 @@ thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.6194
 thread 3: parse line: 8.127293e+00 2.231672e+01 3.846160e-03 1.681731e-01 5.090333e+02
 
 thread 0: read 6 lines
-thread 3: Fail: 'cols == n_parsed_nums_in_line'.
+thread 3: fail: 'cols == n_parsed_nums_in_line'.
 thread 3: cols=5; n_parsed_nums_in_line=2
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: -------------------------
 run test0
 -------------------------
@@ -24526,9 +24526,9 @@ thread 2: parse line: 3.267618e-02 1.643332e+01 3.252714e-01 5.411628e-01 4.3734
 
 thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-03
 
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: cols=5; n_parsed_nums_in_line=3
-thread 3: Fail: 'cols == n_parsed_nums_in_line'.
+thread 3: fail: 'cols == n_parsed_nums_in_line'.
 thread 3: cols=5; n_parsed_nums_in_line=3
 thread 1: -------------------------
 run test0
@@ -25347,8 +25347,8 @@ thread 3: parse line: 8.127293e+00 2.231672e+01 3.846160e-03 1.681731e-01 5.0903
 
 thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-03
 
-thread 3: Fail: 'cols == n_parsed_nums_in_line'.
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 3: fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: cols=5; n_parsed_nums_in_line=4
 thread 2: parse line: 3.267618e-02 1.643332e+01 3.252714e-01 5.411628e-01 4.373466e-03
 
@@ -25909,9 +25909,9 @@ thread 2: parse line: 3.267618e-02 1.643332e+01 3.252714e-01 5.411628e-01 4.3734
 
 thread 3: parse line: 8.127293e+00 2.231672e+01 3.846160e-03 1.681731e-01 5.090333e+02
 
-thread 3: Fail: 'cols == n_parsed_nums_in_line'.
+thread 3: fail: 'cols == n_parsed_nums_in_line'.
 thread 3: cols=5; n_parsed_nums_in_line=1
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: -------------------------
 run test0
 -------------------------
@@ -26730,9 +26730,9 @@ thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.6194
 thread 3: parse line: 8.127293e+00 2.231672e+01 3.846160e-03 1.681731e-01 5.090333e+02
 
 thread 0: read 6 lines
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: cols=5; n_parsed_nums_in_line=6
-thread 3: Fail: 'cols == n_parsed_nums_in_line'.
+thread 3: fail: 'cols == n_parsed_nums_in_line'.
 -------------------------
 run test0
 -------------------------
@@ -26768,9 +26768,9 @@ thread 3: parse line: 8.127293e+00 2.231672e+01 3.846160e-03 1.681731e-01 5.0903
 
 thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-03
 
-thread 3: Fail: 'cols == n_parsed_nums_in_line'.
+thread 3: fail: 'cols == n_parsed_nums_in_line'.
 thread 3: cols=5; n_parsed_nums_in_line=1
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 -------------------------
 run test0
 -------------------------
@@ -26934,7 +26934,7 @@ thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.6194
 
 thread 3: parse line: 8.127293e+00 2.231672e+01 3.846160e-03 1.681731e-01 5.090333e+02
 
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: cols=5; n_parsed_nums_in_line=4
 thread 3: -------------------------
 run test0
@@ -27492,9 +27492,9 @@ thread 2: parse line: 3.267618e-02 1.643332e+01 3.252714e-01 5.411628e-01 4.3734
 thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-03
 
 thread 0: read 6 lines
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: cols=5; n_parsed_nums_in_line=3
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: -------------------------
 run test0
 -------------------------
@@ -27658,9 +27658,9 @@ thread 3: parse line: 8.127293e+00 2.231672e+01 3.846160e-03 1.681731e-01 5.0903
 
 thread 2: parse line: 3.267618e-02 1.643332e+01 3.252714e-01 5.411628e-01 4.373466e-03
 
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: cols=5; n_parsed_nums_in_line=3
-thread 3: Fail: 'cols == n_parsed_nums_in_line'.
+thread 3: fail: 'cols == n_parsed_nums_in_line'.
 thread 3: cols=5; n_parsed_nums_in_line=4
 -------------------------
 run test0
@@ -27696,7 +27696,7 @@ thread 3: parse line: 8.127293e+00 2.231672e+01 3.846160e-03 1.681731e-01 5.0903
 thread 0: read 6 lines
 thread 1: parse line: 6.642741e-01 1.029128e+01 1.287661e+01 4.820329e-01 2.915097e-03
 
-thread 3: Fail: 'cols == n_parsed_nums_in_line'.
+thread 3: fail: 'cols == n_parsed_nums_in_line'.
 thread 3: cols=5; n_parsed_nums_in_line=1
 thread 1: parsed 10 floats:
 3.835915e-03-------------------------
@@ -28124,9 +28124,9 @@ thread 2: parse line: 3.267618e-02 1.643332e+01 3.252714e-01 5.411628e-01 4.3734
 thread 3: parse line: 8.127293e+00 2.231672e+01 3.846160e-03 1.681731e-01 5.090333e+02
 
 thread 0: read 6 lines
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: cols=5; n_parsed_nums_in_line=4
-thread 3: Fail: 'cols == n_parsed_nums_in_line'.
+thread 3: fail: 'cols == n_parsed_nums_in_line'.
 thread 3: cols=5; n_parsed_nums_in_line=4
 -------------------------
 run test0
@@ -28291,9 +28291,9 @@ thread 3: parse line: 8.127293e+00 2.231672e+01 3.846160e-03 1.681731e-01 5.0903
 
 thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-03
 
-thread 3: Fail: 'cols == n_parsed_nums_in_line'.
+thread 3: fail: 'cols == n_parsed_nums_in_line'.
 thread 3: cols=5; n_parsed_nums_in_line=7
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: -------------------------
 run test0
 -------------------------
@@ -28329,9 +28329,9 @@ thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.6194
 
 thread 3: parse line: 8.127293e+00 2.231672e+01 3.846160e-03 1.681731e-01 5.090333e+02
 
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: cols=5; n_parsed_nums_in_line=1
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 -------------------------
 run test0
 -------------------------
@@ -28498,7 +28498,7 @@ thread 3: parse line: 8.127293e+00 2.231672e+01 3.846160e-03 1.681731e-01 5.0903
 thread 0: read 6 lines
 thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-03
 
-thread 3: Fail: 'cols == n_parsed_nums_in_line'.
+thread 3: fail: 'cols == n_parsed_nums_in_line'.
 thread 3: cols=5; n_parsed_nums_in_line=1
 thread 1: parse line: 6.642741e-01 1.029128e+01 1.287661e+01 4.820329e-01 2.915097e-03
 
@@ -28665,9 +28665,9 @@ thread 2: parse line: 3.267618e-02 1.643332e+01 3.252714e-01 5.411628e-01 4.3734
 thread 3: begin parallel loop, counter = 2
 thread 3: parse line: 8.127293e+00 2.231672e+01 3.846160e-03 1.681731e-01 5.090333e+02
 
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: cols=5; n_parsed_nums_in_line=8
-thread 3: Fail: 'cols == n_parsed_nums_in_line'.
+thread 3: fail: 'cols == n_parsed_nums_in_line'.
 thread 3: cols=5; n_parsed_nums_in_line=1
 -------------------------
 run test0
@@ -29880,9 +29880,9 @@ thread 2: parse line: 3.267618e-02 1.643332e+01 3.252714e-01 5.411628e-01 4.3734
 thread 3: parse line: 8.127293e+00 2.231672e+01 3.846160e-03 1.681731e-01 5.090333e+02
 
 thread 0: read 6 lines
-thread 3: Fail: 'cols == n_parsed_nums_in_line'.
+thread 3: fail: 'cols == n_parsed_nums_in_line'.
 thread 3: cols=5; n_parsed_nums_in_line=1
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: -------------------------
 run test0
 -------------------------
@@ -30306,9 +30306,9 @@ thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.6194
 
 thread 2: parse line: 3.267618e-02 1.643332e+01 3.252714e-01 5.411628e-01 4.373466e-03
 
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: cols=5; n_parsed_nums_in_line=2
-thread 2: Fail: 'cols == n_parsed_nums_in_line'.
+thread 2: fail: 'cols == n_parsed_nums_in_line'.
 thread 2: cols=5; n_parsed_nums_in_line=2
 -------------------------
 run test0
@@ -30343,9 +30343,9 @@ thread 3: parse line: 8.127293e+00 2.231672e+01 3.846160e-03 1.681731e-01 5.0903
 
 thread 2: parse line: 3.267618e-02 1.643332e+01 3.252714e-01 5.411628e-01 4.373466e-03
 
-thread 3: Fail: 'cols == n_parsed_nums_in_line'.
+thread 3: fail: 'cols == n_parsed_nums_in_line'.
 thread 3: cols=5; n_parsed_nums_in_line=2
-thread 1: Fail: 'cols == n_parsed_nums_in_line'.
+thread 1: fail: 'cols == n_parsed_nums_in_line'.
 thread 1: cols=5; n_parsed_nums_in_line=4
 -------------------------
 run test0
@@ -30512,7 +30512,7 @@ thread 1: parse line: 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.6194
 thread 2: begin parallel loop, counter = 2
 thread 2: parse line: 3.267618e-02 1.643332e+01 3.252714e-01 5.411628e-01 4.373466e-03
 
-thread 3: Fail: 'cols == n_parsed_nums_in_line'.
+thread 3: fail: 'cols == n_parsed_nums_in_line'.
 thread 3: cols=5; n_parsed_nums_in_line=4
 thread 2: parse line: 1.811544e+02 8.194344e+01 6.617470e+00 5.088499e-03 2.582988e+01
 

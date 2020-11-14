@@ -92,7 +92,7 @@ int parsechunk(float *p, size_t max_linesize_floats, size_t linesize, size_t chu
                 // assert(cols == n_parsed_nums_in_line);
                 if (!(cols == n_parsed_nums_in_line))
                 {
-                    dprint("Fail: 'cols == n_parsed_nums_in_line'.\n");
+                    dprint("fail: 'cols == n_parsed_nums_in_line'.\n");
                     dprint("cols=%d; n_parsed_nums_in_line=%ld\n", cols, n_parsed_nums_in_line);
                     // dprint_float_array(p, max_linesize_floats);
                     exit(EXIT_FAILURE);
