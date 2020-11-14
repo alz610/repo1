@@ -7,4 +7,4 @@ size_t parsefile(float *arr, size_t linesize, size_t chunksize, FILE *fp);
 
 extern int DEBUG_LVL, TEST;
 extern int N_PARSETHREADS;  // кол-во потоков парсинга чанка во вложенной параллельной секции
-extern int cols; // точное кол-во чисел в строке
+extern int cols;  // точное кол-во чисел в строке
