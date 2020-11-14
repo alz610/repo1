@@ -14,19 +14,20 @@
 */
 int test0()
 {
+    cols = 5;
     DEBUG_LVL = 2;  // вывод отладочной информации
     TEST = 1;       // воспроизведение тестов (ассертов)
 
-    size_t nums_in_data = 80;           // кол-во чисел в данных 
+    size_t datasize = 80;           // кол-во чисел в данных 
 
-    size_t cols = 5;                    // длина строки текста (в числах float)
-    size_t arrsize = nums_in_data;      // кол-во элементов в массиве распарсенных чисел
+    size_t arrsize = datasize;      // кол-во элементов в массиве распарсенных чисел
     size_t linesize = 256;              // длина строк в чанке
     size_t chunksize_lines = 3 * 2;     // длина чанка (в строках)
 
 
-    // dprint("-------------------------\n");
-    // dprint("run\n\n");
+    dprint("-------------------------\n");
+    dprint("run test0\n");
+    dprint("-------------------------\n");
 
 
     FILE *fp = fopen("test.txt", "r");              // читаемый файл
@@ -51,25 +52,25 @@ int test0()
 
     size_t n = 0;
 
-    fp = fopen("data.txt", "r");              // читаемый файл
+    fp = fopen("test.txt", "r");              // читаемый файл
     float *arr_exact = malloc(arrsize * sizeof(float));
     while (fscanf(fp, "%f", &arr_exact[n++]) != EOF);
 
     float checksum0 = 0;
-    for (size_t i = 0; i < nums_in_data; i++)
+    for (size_t i = 0; i < datasize; i++)
         checksum0 += arr_exact[i];
 
 
     // вычисление чексуммы массива
 
     float checksum1 = 0;
-    for (size_t i = 0; i < nums_in_data; i++)
+    for (size_t i = 0; i < datasize; i++)
         checksum1 += arr[i];
 
 
     // проверка, верно ли распарсены данные
 
-    assert(nread == nums_in_data);
+    assert(nread == datasize);
     assert(checksum0 == checksum1);
 
 
@@ -88,6 +89,7 @@ int test0()
 */
 int test0_fakefile()
 {
+    cols = 5;
     // плюс единица для исключения перехода на новую строку в начале строки data
     char* data = 1 + R"(
 3.835915e-03 9.119928e+02 3.097778e-03 3.313361e+01 7.619404e-03
@@ -112,7 +114,6 @@ int test0_fakefile()
     DEBUG_LVL = 2;  // вывод отладочной информации
     TEST = 1;       // воспроизведение ассертов
 
-    size_t cols = 5;                    // длина строки текста (в числах float)
     size_t arrsize = 1000;              // кол-во элементов в массиве распарсенных чисел
     size_t linesize = 256;              // длина строк в чанке
     size_t chunksize_lines = 3 * 2;     // длина чанка (в строках)
@@ -177,13 +178,13 @@ int test0_fakefile()
 */
 int test1()
 {
+    cols = 5;
     DEBUG_LVL = 1;  // вывод отладочной информации
     // TEST = 1;       // воспроизведение ассертов
 
-    size_t nums_in_data = 1000000;      // кол-во чисел в данных data.txt
+    size_t datasize = 1000000;      // кол-во чисел в данных data.txt
 
-    size_t cols = 5;                    // длина строки текста (в числах float)
-    size_t arrsize = nums_in_data;      // длина массива распарсенных чисел (в числах float)
+    size_t arrsize = datasize;      // длина массива распарсенных чисел (в числах float)
     size_t chunksize_floats = 100000;     // длина чанка (в числах float)
 
     size_t linesize = 256;                            // длина строк чанка (в символах char)
@@ -214,20 +215,20 @@ int test1()
     while (fscanf(fp, "%f", &arr_exact[n++]) != EOF);
 
     float checksum0 = 0;
-    for (size_t i = 0; i < nums_in_data; i++)
+    for (size_t i = 0; i < datasize; i++)
         checksum0 += arr_exact[i];
 
 
     // вычисление чексуммы массива
 
     float checksum1 = 0;
-    for (size_t i = 0; i < nums_in_data; i++)
+    for (size_t i = 0; i < datasize; i++)
         checksum1 += arr[i];
 
 
     // проверка, верно ли распарсены данные
 
-    assert(nread == nums_in_data);
+    assert(nread == datasize);
     assert(checksum0 == checksum1);
 
 
@@ -241,7 +242,7 @@ int test1()
 int main(int argc, char *argv[])
 {
     N_PARSETHREADS = atoi(argv[1]);
-    // N_PARSETHREADS = 2;
+    // N_PARSETHREADS = 1;
 
     test0();
     // test0_fakefile();

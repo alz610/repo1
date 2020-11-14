@@ -6,6 +6,7 @@
 #include "parse.h"
 #include "debug.h"
 
+
 /*
 Чтение чанка файла fp в чанк chunk.
 
@@ -53,7 +54,6 @@ n_floats_read -- кол-во распарсенных чисел в чанке
 int parsechunk(float *p, size_t max_linesize_floats, size_t linesize, size_t chunksize_lines, char *chunk)
 {
     size_t i = 0; // смещение положения записи p
-    int cols = 5; // точное кол-во чисел в строке
 
     for (size_t i_line = 0; i_line < chunksize_lines; i_line++)
     {
@@ -123,7 +123,7 @@ nread -- кол-во прочитанных чисел
 */
 size_t parsefile(float *arr, size_t linesize, size_t chunksize_lines, FILE *fp)
 {
-    int cols = 5;  // кол-во чисел в строке файла
+    // int cols = 5;  // кол-во чисел в строке файла
     double t_read = 0, t_parse = 0;  // время чтения из файла чанков и парсинга чанков
     double t_parse_single = 0;
     size_t n_lines_read = 0;  // кол-во прочитанных строк из файла для чанка

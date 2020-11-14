@@ -4,9 +4,7 @@
 #include <string.h>
 #include <omp.h>
 #include <stdarg.h>
-
-
-#define OUTPUT_STREAM stdout
+#include "debug.h"
 
 
 int dprint(const char *fmt, ...)
@@ -33,8 +31,6 @@ int dprint(const char *fmt, ...)
 int float_array_to_str(float *arr, size_t arrsize, size_t strsize, char **p_str)
 {
     char *str = *p_str;
-    int cols = 5;
-
 
     char *p = str;
 
@@ -54,8 +50,6 @@ int float_array_to_str(float *arr, size_t arrsize, size_t strsize, char **p_str)
 
 int dprint_float_array(float *arr, size_t arrsize)
 {
-    int cols = 5;
-
 #pragma omp critical (dprint_float_array_section_name)
 {
     for (size_t i = 0; i < arrsize; i++)
